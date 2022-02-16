@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -20,38 +21,46 @@ public class Applicant {
     private String id;
 
     @Size(min = 2, max = 20, message = "{hrwebapp.constraint.name.Size.message}")
+    @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
     @Column(length = 20, nullable = false)
-    @NotNull(message = "{hrwebapp.constraint.name.NotNull.message}")
     private String name;
 
     @Size(min = 2, max = 10, message = "{hrwebapp.constraint.surname.Size.message}")
+    @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
     @Column(length = 10, nullable = false)
-    @NotNull(message = "{hrwebapp.constraint.surname.NotNull.message}")
     private String surname;
 
     @Size(min = 2, max = 50, message = "{hrwebapp.constraint.mail.Size.message}")
+    @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
+    @Pattern(regexp = "^(.+)@(.+)$", message = "{hrwebapp.constraint.mail.Pattern.message}")
     @Column(length = 50, nullable = false)
-    @NotNull(message = "{hrwebapp.constraint.mail.NotNull.message}")
     private String mail;
 
     @Size(min = 13, max = 13, message = "{hrwebapp.constraint.telephone.Size.message}")
-    @Column(length = 13, nullable = false)
-    @NotNull(message = "{hrwebapp.constraint.telephone.NotNull.message}")
+    @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
+    @Column(length = 11, nullable = false)
     private String telephone;
 
+    @Size(min = 2, max = 15, message = "{hrwebapp.constraint.country.Size.message}")
+    @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
+    @Column(length = 15, nullable = false)
+    private String country;
+
     @Size(min = 2, max = 15, message = "{hrwebapp.constraint.residence.Size.message}")
-    @Column(length = 15)
+    @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
+    @Column(length = 15, nullable = false)
     private String city;
 
     @Size(min = 2, max = 15, message = "{hrwebapp.constraint.district.Size.message}")
-    @Column(length = 15)
+    @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
+    @Column(length = 15, nullable = false)
     private String district;
 
-    @Size(min = 11, max = 100, message = "{hrwebapp.constraint.gitLink.Size.message}")
+    @Size(min = 11, max = 100, message = "{hrwebapp.constraint.link.Size.message}")
     @Column(length = 100)
     private String gitLink;
 
-    @Size(min = 13, max = 100, message = "{hrwebapp.constraint.linkedInLink.Size.message}")
+    @Size(min = 13, max = 100, message = "{hrwebapp.constraint.link.Size.message}")
     @Column(length = 100)
     private String linkedInLink;
 

@@ -20,6 +20,7 @@ public class ApplicantDto {
     private String surname;
     private String mail;
     private String telephone;
+    private String country;
     private String city;
     private String district;
     private String gitLink;

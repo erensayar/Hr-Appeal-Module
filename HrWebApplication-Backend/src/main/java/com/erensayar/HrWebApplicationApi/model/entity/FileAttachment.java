@@ -22,5 +22,5 @@ public class FileAttachment {
 
     private String filePath;
 
-    private LocalDateTime createdOrUpdatedTime;
+    private LocalDateTime createOrUpdateTime;
 }

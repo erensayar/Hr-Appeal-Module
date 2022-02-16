@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -95,9 +94,9 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
                 // Create File & Duplicate Control
                 boolean isFileCreated = file.createNewFile();
                 if (!isFileCreated) { // Duplicate condition
-                    log.debug("File already exist. Deleted old file. And save new file. File Name: " + fileName);
+                    log.debug("File already exist. Deleted old file. And saved new file. File Name: " + fileName);
                     this.deleteFileFromHardDrive(storagePathPlusFileName);
-                    attachment.setId(applicant.getCv().getId()); // Written to not save new file
+                    attachment.setId(applicant.getCv().getId()); // Written to not save new file. this provide to update
                     this.updateFileAttachmentName(attachment); // update file name in db
                     // File create try again
                     if (!file.createNewFile()) {
@@ -124,7 +123,7 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
     public FileAttachment createFileInfoInDb(FileAttachment fileAttachment) {
         if (fileAttachment.getId() == null)
             fileAttachment.setId("CV" + UUID.randomUUID().toString().replaceAll("-", ""));
-        fileAttachment.setCreatedOrUpdatedTime(LocalDateTime.now());
+        fileAttachment.setCreateOrUpdateTime(LocalDateTime.now());
         return fileAttachmentRepo.save(fileAttachment);
     }
 
@@ -133,16 +132,17 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
         return fileAttachmentRepo.findById(id).orElseThrow(NoContentException::new);
     }
 
-    private FileAttachment updateFileAttachmentName(FileAttachment fileAttachmentUpdated) {
+    private void updateFileAttachmentName(FileAttachment fileAttachmentUpdated) {
         FileAttachment fileInDb = this.getFileById(fileAttachmentUpdated.getId());
         fileInDb.setFilePath(fileAttachmentUpdated.getFilePath());
-        fileAttachmentUpdated.setCreatedOrUpdatedTime(LocalDateTime.now());
-        return fileAttachmentRepo.save(fileAttachmentUpdated);
+        fileAttachmentUpdated.setCreateOrUpdateTime(LocalDateTime.now());
+        fileAttachmentRepo.save(fileAttachmentUpdated);
     }
 
 
     // PRIVATE METHODS
     //<================================================================================================================>
+
     /**
      * Delete From DB. It's not delete from hard drive!
      */

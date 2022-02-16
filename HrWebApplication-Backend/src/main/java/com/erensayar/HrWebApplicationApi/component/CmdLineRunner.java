@@ -68,6 +68,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .surname("Stu")
                 .mail("harold.stu@mail.com")
                 .telephone("+905335550000")
+                .country("Turkey")
                 .city("İstanbul")
                 .district("Sarıyer")
                 .gitLink("github.com/haroldStu")
@@ -83,6 +84,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .surname("Elessar")
                 .mail("aragornelessar@mail.com")
                 .telephone("+905335550000")
+                .country("Turkey")
                 .city("İstanbul")
                 .district("Sarıyer")
                 .gitLink("github.com/aragornelessar")
@@ -98,6 +100,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .surname("hedehödö")
                 .mail("legolashawk@mail.com")
                 .telephone("+905335550000")
+                .country("Turkey")
                 .city("İstanbul")
                 .district("Beşiktaş")
                 .gitLink("github.com/legolasss")
@@ -113,7 +116,7 @@ public class CmdLineRunner implements CommandLineRunner {
         applicantList1.add(applicant2.getId());
 
         List<String> applicantList2 = new ArrayList<>();
-        applicantList2.add(applicant2.getId());
+        applicantList2.add(applicant3.getId());
 
         Job job1 = jobService.createJob(JobDto.builder()
                 .name("Java Software Engineer")

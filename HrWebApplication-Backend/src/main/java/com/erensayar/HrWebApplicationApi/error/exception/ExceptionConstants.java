@@ -16,8 +16,8 @@ public final class ExceptionConstants {
     static final String UNSUPPORTED_MEDIA_TYPE_ERROR_MESSAGE  = "Unsupported Media Type";
     static final String INTERNAL_SERVER_ERROR_CODE            = "0005";
     static final String INTERNAL_SERVER_ERROR_MESSAGE         = "Internal Server Error";
-    static final String VALIDATION_ERROR_CODE                 = "0006";
-    static final String VALIDATION_ERROR_MESSAGE              = "Not Valid Error";
+    public static final String VALIDATION_ERROR_CODE                 = "0006";
+    public static final String VALIDATION_ERROR_MESSAGE              = "Not Valid Error";
     static final String OK_CODE                               = "0007";
     static final String OK_MESSAGE                            = "Checked but something is wrong";
 

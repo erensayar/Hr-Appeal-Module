@@ -4,6 +4,7 @@ import com.erensayar.HrWebApplicationApi.error.exception.BadRequestException;
 import com.erensayar.HrWebApplicationApi.error.exception.NoContentException;
 import com.erensayar.HrWebApplicationApi.model.dto.ApplicantDto;
 import com.erensayar.HrWebApplicationApi.model.entity.Applicant;
+import com.erensayar.HrWebApplicationApi.model.entity.FileAttachment;
 import com.erensayar.HrWebApplicationApi.model.entity.Job;
 import com.erensayar.HrWebApplicationApi.model.enums.ApplicantStatus;
 import com.erensayar.HrWebApplicationApi.repo.ApplicantRepo;
@@ -105,16 +106,27 @@ public class ApplicantServiceImpl implements ApplicantService {
                 .surname(applicantDto.getSurname())
                 .mail(applicantDto.getMail())
                 .telephone(applicantDto.getTelephone())
+                .country(applicantDto.getCountry())
                 .city(applicantDto.getCity())
                 .district(applicantDto.getDistrict())
                 .gitLink(applicantDto.getGitLink())
                 .linkedInLink(applicantDto.getLinkedInLink())
                 .applicantStatus(applicantDto.getApplicantStatus())
                 .applicationDate(applicantDto.getApplicationDate())
-                .cv(fileAttachmentService.getFileById(applicantDto.getCv()))
+                .cv(getCvAndCheckException(applicantDto.getCv()))
                 .personalInfoStoragePermission(applicantDto.getPersonalInfoStoragePermission())
                 //.jobs(getJobsFromJobIdList(applicantDto.getJobs()))
                 .build();
+    }
+
+    // Written for 204 convert to 400
+    // If cv id is wrong then we tell the client in response body as message
+    private FileAttachment getCvAndCheckException(String cvId) {
+        try {
+            return fileAttachmentService.getFileById(cvId);
+        } catch (NoContentException e) {
+            throw new BadRequestException("Cv id is invalid!");
+        }
     }
 
     // This block wrote for getting object, from id list

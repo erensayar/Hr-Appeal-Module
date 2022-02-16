@@ -20,24 +20,24 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull(message = "{hrwebapp.constraint.name.NotNull.message}")
+    @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
     @Column(nullable = false)
     private String name;
 
-    @NotNull(message = "{hrwebapp.constraint.surname.NotNull.message}")
+    @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
     @Column(nullable = false)
     private String surname;
 
-    @NotNull(message = "{hrwebapp.constraint.mail.NotNull.message}")
+    @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
     @Column(nullable = false, unique = true)
     private String personalMail;
 
-    @NotNull(message = "{hrwebapp.constraint.mail.NotNull.message}")
+    @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
     @Column(nullable = false, unique = true)
     private String workMail;
 
     @Size(min = 8, max = 255, message = "{hrwebapp.constraint.password.Size.message}")
-    @NotNull(message = "{hrwebapp.constraint.password.NotNull.message}")
+    @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$", message = "{hrwebapp.constraint.password.Pattern.message}")
     @Column(nullable = false)
     private String password;

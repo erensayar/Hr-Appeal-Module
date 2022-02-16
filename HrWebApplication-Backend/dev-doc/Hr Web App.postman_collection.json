@@ -1,0 +1,662 @@
+{
+	"info": {
+		"_postman_id": "7a1b4bf8-252e-489b-a7c3-eaca9498afc8",
+		"name": "Hr Web App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get Admins",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/admins",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Admin By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/admins/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admins",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Admin",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"John\",\n    \"surname\": \"Smith\",\n    \"personalMail\": \"john.smith@hedehodo.com\",\n    \"workMail\": \"john.smith@company.com\",\n    \"password\": \"Abcd1234\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/admins",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Admin",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"John\",\n    \"surname\": \"Smith\",\n    \"personalMail\": \"johssn.smith@hedehodo.com\",\n    \"workMail\": \"johsssn.smith@company.com\",\n    \"password\": \"Pass1234\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/admins",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Admin By Id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"John\",\n    \"surname\": \"Smith\",\n    \"personalMail\": \"johssn.smith@hedehodo.com\",\n    \"workMail\": \"johsssn.smith@company.com\",\n    \"password\": \"Pass1234\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/admins/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admins",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Applicant",
+			"item": [
+				{
+					"name": "Get Applicants",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/applicants",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applicants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Applicant By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/applicants/:id",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applicants",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "apl-e1a1d378-0d95-480e-881d-0ccfd3397bb3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Applicant",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"name\": \"Harold\",\n        \"surname\": \"Stu\",\n        \"mail\": \"harold.stu@mail.com\",\n        \"telephone\": \"+905335550000\",\n        \"city\": \"İstanbul\",\n        \"district\": \"Sarıyer\",\n        \"gitLink\": \"github.com/haroldStu\",\n        \"linkedInLink\": \"linkedin.com/in/haroldStu\",\n        \"applicantStatus\": \"TO_BE_EVALUATED\",\n        \"applicationDate\": \"2022-02-13\",\n        \"cv\": \"/cv/cv-143-harold-stu-job1\",\n        \"personalInfoStoragePermission\": true\n    }"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/applicants",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applicants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Applicants",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id\": \"apl-e1a1d378-0d95-480e-881d-0ccfd3397bb3\",\n        \"name\": \"Deneme\",\n        \"surname\": \"Stu\",\n        \"mail\": \"harold.stu@mail.com\",\n        \"telephone\": \"+905335550000\",\n        \"city\": \"İstanbul\",\n        \"district\": \"Sarıyer\",\n        \"gitLink\": \"github.com/haroldStu\",\n        \"linkedInLink\": \"linkedin.com/in/haroldStu\",\n        \"applicantStatus\": \"TO_BE_EVALUATED\",\n        \"applicationDate\": \"2022-02-13\",\n        \"cv\": \"/cv/cv-143-harold-stu-job1\",\n        \"personalInfoStoragePermission\": true\n    }"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/applicants",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applicants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Applicants By Id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"John\",\n    \"surname\": \"Smith\",\n    \"personalMail\": \"johssn.smith@hedehodo.com\",\n    \"workMail\": \"johsssn.smith@company.com\",\n    \"password\": \"Pass1234\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/applicants/:id",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"applicants",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "APL-c2718ba5-b8e9-4060-a30f-641b55baf416"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Job",
+			"item": [
+				{
+					"name": "Get Jobs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/jobs",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Job By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/jobs/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Job Applicants By Job Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/jobs/:jobId/applicants",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								":jobId",
+								"applicants"
+							],
+							"variable": [
+								{
+									"key": "jobId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Job",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"name\": \"(CREATED) Java Software Engineer\",\n        \"summary\": \"(CREATED) We search software engineer to develop mobile app back end module with spring boot, hibernate, maven\",\n        \"description\": \"(CREATED) We search software engineer to develop mobile app back end module with spring boot, hibernate, maven, java 11 hede hödö hede hödö hede hödö hede hödö hede hödö hede hödö\",\n        \"expectedQualification\": \"Analytic capabilites hede hödö\",\n        \"numberOfToHire\": 2,\n        \"lastApplicationDate\": \"2022-02-22\",\n        \"applicants\": [\"APL-1a257a86-c83f-49ef-be2e-39080b1a78fb\",\"APL-4b0d36dd-a9b6-428f-8278-422f512d937c\"]\n    }"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/jobs",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Job",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"Java Software Engineer (Updated)\",\n    \"summary\": \"DENEME DENEME DENEME DEvelop mobile app back end module with spring boot, hibernate, maven\",\n    \"description\": \"DENEME DENEME DENEME arch software enginapp back end module with spring boot, hibernate, maven, java 1ede hödö hede hödö hede hödö hede hödö hede hödö\",\n    \"expectedQualification\": \"Analytic capabilites hede hödö\",\n    \"numberOfToHire\": 2,\n    \"lastApplicationDate\": \"2022-02-22\",\n    \"applicants\": [\n        \"apl-e1a1d378-0d95-480e-881d-0ccfd3397bb3\",\n        \"apl-cb210993-8f4c-4102-a921-6eef59bc8670\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/jobs",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Job By Id",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/jobs/1",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"jobs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "File",
+			"item": [
+				{
+					"name": "File Upload",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "applicant-id",
+								"value": "APLd090b57e844248ca96be4be9c53d912c",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/eren/Documents/R.ErenSayar-CV.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/files/upload",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"files",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get File By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/api/v1/files/:id",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"files",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base-url",
+			"value": "localhost:8080"
+		}
+	]
+}
