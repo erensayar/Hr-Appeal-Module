@@ -1,5 +1,6 @@
 package com.erensayar.HrWebApplicationApi.model.dto;
 
+import com.erensayar.HrWebApplicationApi.security.UserRole;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,5 +22,5 @@ public class AdminDto {
     private String personalMail;
     private String workMail;
     private String password;
-    //List<UserRole> userRoles;
+    List<UserRole> userRoles;
 }

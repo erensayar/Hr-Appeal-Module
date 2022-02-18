@@ -1,5 +1,6 @@
 package com.erensayar.HrWebApplicationApi.model.entity;
 
+import com.erensayar.HrWebApplicationApi.security.UserRole;
 import lombok.*;
 
 import javax.persistence.*;
@@ -47,7 +48,7 @@ public class Admin {
     @Column(nullable = false)
     private String password;
 
-    //@ElementCollection(fetch = FetchType.EAGER)
-    //List<UserRole> userRoles;
+    @ElementCollection(fetch = FetchType.EAGER)
+    List<UserRole> userRoles;
 
 }

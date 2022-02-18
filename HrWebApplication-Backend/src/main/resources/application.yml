@@ -19,8 +19,3 @@ spring:
 file-upload:
   storage-path: /home/eren/Downloads/storage
 
-security:
-  jwt:
-    token:
-      secret-key: secret-key
-      expire-length: 3600000 # 60 * 60 * 1000 -> minute, second, ms

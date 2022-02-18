@@ -8,6 +8,7 @@ import com.erensayar.HrWebApplicationApi.model.entity.Applicant;
 import com.erensayar.HrWebApplicationApi.model.entity.FileAttachment;
 import com.erensayar.HrWebApplicationApi.model.entity.Job;
 import com.erensayar.HrWebApplicationApi.model.enums.ApplicantStatus;
+import com.erensayar.HrWebApplicationApi.security.UserRole;
 import com.erensayar.HrWebApplicationApi.service.AdminService;
 import com.erensayar.HrWebApplicationApi.service.ApplicantService;
 import com.erensayar.HrWebApplicationApi.service.FileAttachmentService;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -39,6 +41,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .personalMail("john.smith@hedehodo.com")
                 .workMail("john.smith@company.com")
                 .password("Abcd1234")
+                .userRoles(new ArrayList<UserRole>(Arrays.asList(UserRole.ROLE_ADMIN)))
                 .build());
 
         Admin admin2 = adminService.createAdmin(AdminDto.builder()
@@ -48,6 +51,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .personalMail("egorm@hedehodo.com")
                 .workMail("egor.mykhailovic@company.com")
                 .password("Abcd1234")
+                .userRoles(new ArrayList<UserRole>(Arrays.asList(UserRole.ROLE_ADMIN)))
                 .build());
 
         FileAttachment fileAttachment1 = fileAttachmentService.createFileInfoInDb(FileAttachment.builder()

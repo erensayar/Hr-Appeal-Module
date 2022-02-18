@@ -21,9 +21,4 @@ public class AuthController {
         return ResponseEntity.ok("Hello JWT");
     }
 
-    //@PostMapping("/signup")
-    //public ResponseEntity<String> signup(@RequestBody AdminDto adminDto) {
-    //    return authService.signup(adminDto);
-    //}
-
 }

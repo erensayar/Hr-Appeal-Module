@@ -46,8 +46,5 @@ public class Job {
     private LocalDate lastApplicationDate;
 
     @ManyToMany
-    @JoinTable(name = "RLT_JOB_APPLICANT",
-            joinColumns = @JoinColumn(name = "JOB_ID"),
-            inverseJoinColumns = @JoinColumn(name = "APPLICANT_ID"))
     private List<Applicant> applicants;
 }

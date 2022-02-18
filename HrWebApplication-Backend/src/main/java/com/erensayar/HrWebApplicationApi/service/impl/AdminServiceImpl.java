@@ -7,6 +7,8 @@ import com.erensayar.HrWebApplicationApi.model.entity.Admin;
 import com.erensayar.HrWebApplicationApi.repo.AdminRepo;
 import com.erensayar.HrWebApplicationApi.service.AdminService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,14 +22,21 @@ public class AdminServiceImpl implements AdminService {
     //<================================================================================================================>
     private final AdminRepo adminRepo;
 
-    @Override
-    public Admin createAdmin(AdminDto adminDto) {
-        adminDto.setId(null);
-        return adminRepo.save(this.converterOfEmployee(adminDto));
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    public void setPasswordEncoder(BCryptPasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
     }
 
     // PUBLIC METHODS
     //<================================================================================================================>
+    @Override
+    public Admin createAdmin(AdminDto adminDto) {
+        adminDto.setId(null);
+        adminDto.setPassword(passwordEncoder.encode(adminDto.getPassword()));
+        return adminRepo.save(this.converterOfEmployee(adminDto));
+    }
 
     @Override
     public Admin getAdminById(Integer id) {
