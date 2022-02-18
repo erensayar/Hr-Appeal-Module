@@ -67,14 +67,14 @@ public class ApplicantServiceImpl implements ApplicantService {
     @Override
     public Applicant updateApplicant(ApplicantDto applicantDto) {
         if (applicantDto.getId() == null)
-            throw new BadRequestException("Id cannot be empty");
+            throw new BadRequestException("Id can not be empty");
         return applicantRepo.save(this.converterOfApplicant(applicantDto));
     }
 
     @Override
     public Applicant updateApplicant(Applicant applicant) {
         if (applicant.getId() == null)
-            throw new BadRequestException("Id cannot be empty");
+            throw new BadRequestException("Id can not be empty");
         return applicantRepo.save(applicant);
     }
 

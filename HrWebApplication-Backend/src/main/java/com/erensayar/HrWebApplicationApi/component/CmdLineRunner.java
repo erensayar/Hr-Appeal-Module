@@ -33,6 +33,7 @@ public class CmdLineRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         Admin admin1 = adminService.createAdmin(AdminDto.builder()
+                .username("JohnSmith")
                 .name("John")
                 .surname("Smith")
                 .personalMail("john.smith@hedehodo.com")
@@ -41,6 +42,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .build());
 
         Admin admin2 = adminService.createAdmin(AdminDto.builder()
+                .username("EgorMykhailovic")
                 .name("Egor")
                 .surname("Mykhailovic")
                 .personalMail("egorm@hedehodo.com")

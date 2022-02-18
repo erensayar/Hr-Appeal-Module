@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -34,6 +35,16 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public Admin getAdminByUsername(String username) {
+        return adminRepo.findByUsername(username).orElseThrow(NoContentException::new);
+    }
+
+    @Override
+    public Optional<Admin> getOptAdminByUsername(String username) {
+        return adminRepo.findByUsername(username);
+    }
+
+    @Override
     public List<Admin> getAdmins() {
         return adminRepo.findAll();
     }
@@ -41,7 +52,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin updateAdmin(AdminDto adminDto) {
         if (adminDto.getId() == null)
-            throw new BadRequestException("Id cannot be empty");
+            throw new BadRequestException("Id can not be empty");
         return adminRepo.save(this.converterOfEmployee(adminDto));
     }
 
@@ -60,6 +71,7 @@ public class AdminServiceImpl implements AdminService {
     private Admin converterOfEmployee(AdminDto adminDto) {
         return Admin.builder()
                 .id(adminDto.getId())
+                .username(adminDto.getUsername())
                 .name(adminDto.getName())
                 .surname(adminDto.getSurname())
                 .personalMail(adminDto.getPersonalMail())

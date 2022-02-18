@@ -1,12 +1,12 @@
 package com.erensayar.HrWebApplicationApi.model.entity;
 
 import lombok.*;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,6 +19,11 @@ public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
+    @Size(min = 4, max = 20, message = "{hrwebapp.constraint.username.Size.message}")
+    @Column(nullable = false, unique = true)
+    private String username;
 
     @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
     @Column(nullable = false)
@@ -41,5 +46,8 @@ public class Admin {
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).*$", message = "{hrwebapp.constraint.password.Pattern.message}")
     @Column(nullable = false)
     private String password;
+
+    //@ElementCollection(fetch = FetchType.EAGER)
+    //List<UserRole> userRoles;
 
 }

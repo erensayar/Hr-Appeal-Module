@@ -1,0 +1,29 @@
+package com.erensayar.HrWebApplicationApi.security;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RequiredArgsConstructor
+@RequestMapping("/auth")
+@RestController
+public class AuthController {
+
+    private final AuthService authService;
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        return ResponseEntity.ok(authService.login(loginRequest));
+    }
+
+    @GetMapping("/try-token")
+    public ResponseEntity<String> getMessage() {
+        return ResponseEntity.ok("Hello JWT");
+    }
+
+    //@PostMapping("/signup")
+    //public ResponseEntity<String> signup(@RequestBody AdminDto adminDto) {
+    //    return authService.signup(adminDto);
+    //}
+
+}

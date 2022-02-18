@@ -58,7 +58,7 @@ public class JobServiceImpl implements JobService {
     @Override
     public Job updateJob(JobDto jobDto) {
         if (jobDto.getId() == null)
-            throw new BadRequestException("Id cannot be empty");
+            throw new BadRequestException("Id can not be empty");
         return jobRepo.save(this.converterOfJob(jobDto));
     }
 

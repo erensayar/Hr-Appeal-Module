@@ -50,6 +50,16 @@ public class GlobalControllerAdvice {
         return handle(e, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<Object> handleUnauthorizedException(UnauthorizedException e) {
+        return handle(e, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<Object> handleForbiddenException(ForbiddenException e) {
+        return handle(e, HttpStatus.FORBIDDEN);
+    }
+
     @ExceptionHandler(OkWithMessage.class)
     public ResponseEntity<Object> OkWithMessage(OkWithMessage e) {
         return handle(e, HttpStatus.OK);
