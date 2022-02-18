@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7a1b4bf8-252e-489b-a7c3-eaca9498afc8",
+		"_postman_id": "65af34e7-044f-4df3-ab95-6fd900a73055",
 		"name": "Hr Web App",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -76,7 +76,7 @@
 					"response": []
 				},
 				{
-					"name": "Create Admin",
+					"name": "Create Admin (Use for Just Test)",
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {}
 					},
@@ -102,6 +102,37 @@
 								"api",
 								"v1",
 								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Admin (SignUp)",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"ErensssnSadayar\",\n    \"name\": \"asdasEren\",\n    \"surname\": \"Sayasdar\",\n    \"personalMail\": \"eerenasdsfdasayar@hedehodo.com\",\n    \"workMail\": \"eren.sayasdsdfadar@company.com\",\n    \"password\": \"Abcd1234\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/auth/signup",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
 							]
 						}
 					},
@@ -266,7 +297,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"name\": \"Harold\",\n        \"surname\": \"Stu\",\n        \"mail\": \"harold.stu@mail.com\",\n        \"telephone\": \"+905335550000\",\n        \"city\": \"İstanbul\",\n        \"district\": \"Sarıyer\",\n        \"gitLink\": \"github.com/haroldStu\",\n        \"linkedInLink\": \"linkedin.com/in/haroldStu\",\n        \"applicantStatus\": \"TO_BE_EVALUATED\",\n        \"applicationDate\": \"2022-02-13\",\n        \"cv\": \"/cv/cv-143-harold-stu-job1\",\n        \"personalInfoStoragePermission\": true\n    }"
+							"raw": "{\n        \"name\": \"\",\n        \"surname\": \"Stu\",\n        \"mail\": \"harold.stu@mail.com\",\n        \"telephone\": \"+905335550000\",\n        \"city\": \"İstanbul\",\n        \"district\": \"Sarıyer\",\n        \"gitLink\": \"github.com/haroldStu\",\n        \"linkedInLink\": \"linkedin.com/in/haroldStu\",\n        \"applicantStatus\": \"TO_BE_EVALUATED\",\n        \"applicationDate\": \"2022-02-13\",\n        \"cv\": \"CVda4e2edb914f41cc84b2072496fb8c22\",\n        \"personalInfoStoragePermission\": true\n    }"
 						},
 						"url": {
 							"raw": "{{base-url}}/api/v1/applicants",
@@ -575,7 +606,7 @@
 						"header": [
 							{
 								"key": "applicant-id",
-								"value": "APLd090b57e844248ca96be4be9c53d912c",
+								"value": "APL873999d2e495440c879216a1cf74ee92",
 								"type": "text"
 							}
 						],
@@ -631,8 +662,101 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Token",
+			"item": [
+				{
+					"name": "Get Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"JohnSmith\",\n    \"password\":\"Abcd1234\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/auth/login",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlcmVuIiwiaWF0IjoxNjQ1MTI1NjYyLCJleHAiOjE2NDUxMjU5NjJ9.9SNnrGr4CMayVlBlkAy0vTaHJurrepJLF_alA5HfEwU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url}}/auth/try-token",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"auth",
+								"try-token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJKb2huU21pdGgiLCJpYXQiOjE2NDUxOTI1MjgsImV4cCI6MTY0NTE5MjgyOH0.-CEbKh1AtJryc7NdycqymQDStWFQGfa6chM3XNF_vI4",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
