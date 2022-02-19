@@ -12,4 +12,4 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
 
 file-upload:
-  storage-path: /applications/hr-web-app/storage
+  storage-path: /applications/hr-appeal-module/storage

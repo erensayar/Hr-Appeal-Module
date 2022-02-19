@@ -12,12 +12,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
 public class Mail {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
     private String to;
 
@@ -28,5 +23,7 @@ public class Mail {
     private String subject;
 
     private String body;
+
+    //private List<Object> attachments;
 
 }

@@ -13,8 +13,4 @@ public interface FileAttachmentService {
 
     FileAttachment getFileById(String id);
 
-    //FileAttachment updateFileAttachment(FileAttachment fileAttachment);
-
-    //Boolean fileTypeIsAllowed();
-
 }
