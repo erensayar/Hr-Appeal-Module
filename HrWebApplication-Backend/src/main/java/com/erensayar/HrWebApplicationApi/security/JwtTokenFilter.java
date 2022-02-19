@@ -37,7 +37,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             try {
                 username = jwtTokenManager.getUsernameToken(token);
             } catch (Exception e) {
-                throw new InternalServerErrorException("@@@@@@@@@@@@@@@@@@" + e.getMessage()); // TODO
+                throw new InternalServerErrorException(e.getMessage());
             }
         }
 

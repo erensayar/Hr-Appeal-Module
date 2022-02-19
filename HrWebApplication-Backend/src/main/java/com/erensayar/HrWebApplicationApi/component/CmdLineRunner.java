@@ -41,7 +41,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .personalMail("john.smith@hedehodo.com")
                 .workMail("john.smith@company.com")
                 .password("Abcd1234")
-                .userRoles(new ArrayList<UserRole>(Arrays.asList(UserRole.ROLE_ADMIN)))
+                .userRoles(new ArrayList<>(List.of(UserRole.ROLE_ADMIN)))
                 .build());
 
         Admin admin2 = adminService.createAdmin(AdminDto.builder()
@@ -51,7 +51,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .personalMail("egorm@hedehodo.com")
                 .workMail("egor.mykhailovic@company.com")
                 .password("Abcd1234")
-                .userRoles(new ArrayList<UserRole>(Arrays.asList(UserRole.ROLE_ADMIN)))
+                .userRoles(new ArrayList<>(List.of(UserRole.ROLE_ADMIN)))
                 .build());
 
         FileAttachment fileAttachment1 = fileAttachmentService.createFileInfoInDb(FileAttachment.builder()

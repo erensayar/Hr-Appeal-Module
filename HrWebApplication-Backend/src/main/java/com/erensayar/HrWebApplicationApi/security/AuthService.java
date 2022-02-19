@@ -21,11 +21,8 @@ public class AuthService {
             return jwtTokenManager.generateToken(loginRequest.getUsername());
 
         } catch (Exception e) {
-            throw new InternalServerErrorException("@@@@@@@@@@@@@@@@@@" + e.getMessage()); // TODO
+            throw new InternalServerErrorException(e.getMessage());
         }
     }
-
-    // public String signup(AdminDto adminDto) {
-    // }
 
 }
