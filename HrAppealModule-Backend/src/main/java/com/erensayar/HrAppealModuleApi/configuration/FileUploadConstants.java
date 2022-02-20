@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "file-upload")
-public class FileUploadConfig {
+public class FileUploadConstants {
 
     private String storagePath;
 

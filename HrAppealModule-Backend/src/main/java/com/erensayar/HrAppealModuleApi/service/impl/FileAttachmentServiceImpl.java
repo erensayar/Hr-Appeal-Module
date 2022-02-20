@@ -1,6 +1,6 @@
 package com.erensayar.HrAppealModuleApi.service.impl;
 
-import com.erensayar.HrAppealModuleApi.configuration.FileUploadConfig;
+import com.erensayar.HrAppealModuleApi.configuration.FileUploadConstants;
 import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.InternalServerErrorException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
@@ -38,7 +38,7 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
     // INJECTIONS
     //<================================================================================================================>
     private final FileAttachmentRepo fileAttachmentRepo;
-    private final FileUploadConfig fileUploadConfig;
+    private final FileUploadConstants fileUploadConstants;
 
     private ApplicantService applicantService;
 
@@ -75,7 +75,7 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
 
                 // Constants
                 String fileName = "CV" + applicantName.replaceAll(" ", "") + "-" + applicantId;
-                String storagePath = fileUploadConfig.getStoragePath() + "/cv/";
+                String storagePath = fileUploadConstants.getStoragePath() + "/cv/";
                 String storagePathPlusFileName = storagePath + fileName + ".pdf";
 
                 // FileAttachment object PREPARE for save the file information to DB

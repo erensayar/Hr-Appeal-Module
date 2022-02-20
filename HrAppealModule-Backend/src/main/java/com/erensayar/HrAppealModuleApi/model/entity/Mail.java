@@ -2,10 +2,7 @@ package com.erensayar.HrAppealModuleApi.model.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -24,6 +21,6 @@ public class Mail {
 
     private String body;
 
-    //private List<Object> attachments;
+    private Map<String, Object> props;
 
 }

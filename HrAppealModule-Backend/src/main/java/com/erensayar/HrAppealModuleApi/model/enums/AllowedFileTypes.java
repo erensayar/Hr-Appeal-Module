@@ -8,5 +8,5 @@ import lombok.Getter;
 public enum AllowedFileTypes {
     pdf(0);
 
-    private final Integer id;
+    private final int id;
 }

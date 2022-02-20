@@ -76,7 +76,7 @@
 					"response": []
 				},
 				{
-					"name": "Create Admin (Use for Just Test)",
+					"name": "Create Admin",
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {}
 					},
@@ -102,37 +102,6 @@
 								"api",
 								"v1",
 								"admins"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create Admin (SignUp)",
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"username\" : \"ErensssnSadayar\",\n    \"name\": \"asdasEren\",\n    \"surname\": \"Sayasdar\",\n    \"personalMail\": \"eerenasdsfdasayar@hedehodo.com\",\n    \"workMail\": \"eren.sayasdsdfadar@company.com\",\n    \"password\": \"Abcd1234\"\n}"
-						},
-						"url": {
-							"raw": "{{base-url}}/auth/signup",
-							"host": [
-								"{{base-url}}"
-							],
-							"path": [
-								"auth",
-								"signup"
 							]
 						}
 					},
@@ -606,7 +575,7 @@
 						"header": [
 							{
 								"key": "applicant-id",
-								"value": "APL873999d2e495440c879216a1cf74ee92",
+								"value": "APL977b598e77e94771a9cf727cc7b5e99d",
 								"type": "text"
 							}
 						],
@@ -616,7 +585,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/home/eren/Documents/R.ErenSayar-CV.pdf"
+									"src": "/home/eren/Documents/Hibernate.pdf"
 								}
 							]
 						},
@@ -655,6 +624,161 @@
 								{
 									"key": "id",
 									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Mail",
+			"item": [
+				{
+					"name": "Send Mail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to\":\"erensayar@yandex.com\",\n    \"cc\":null,\n    \"bcc\":null,\n    \"subject\":\"basic trial\",\n    \"body\":\"hi, how are you?\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/mails/send",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mails",
+								"send"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Mail With Attachment",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachment",
+									"contentType": "",
+									"type": "file",
+									"src": "/home/eren/Documents/Hibernate.pdf"
+								},
+								{
+									"key": "mail",
+									"value": "{\n    \"to\":\"erensayar@yandex.com\",\n    \"cc\":null,\n    \"bcc\":null,\n    \"subject\":\"attachment trial\",\n    \"body\":\"hi, look at the file\"\n}",
+									"contentType": "application/json",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/mails/send-with-attachment",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mails",
+								"send-with-attachment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Mail As Template",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to\":\"erensayar@yandex.com\",\n    \"cc\":null,\n    \"bcc\":null,\n    \"subject\":\"trial\",\n    \"attachments\":null,\n    \"props\": {\n        \"name\": \"Eren\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/mails/send/:mailTemplateNo",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mails",
+								"send",
+								":mailTemplateNo"
+							],
+							"variable": [
+								{
+									"key": "mailTemplateNo",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Mail As Template With Attachment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "attachment",
+									"type": "file",
+									"src": "/home/eren/Documents/Hibernate.pdf"
+								},
+								{
+									"key": "mail",
+									"value": "{\n    \"to\":\"erensayar@yandex.com\",\n    \"cc\":null,\n    \"bcc\":null,\n    \"subject\":\"attachment trial\",\n    \"body\":\"hi, look at the file\",\n    \"props\": {\n        \"name\": \"eren\"\n      }\n}",
+									"contentType": "application/json",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base-url}}/api/v1/mails/send-with-attachment/:mailTemplateNo",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mails",
+								"send-with-attachment",
+								":mailTemplateNo"
+							],
+							"variable": [
+								{
+									"key": "mailTemplateNo",
+									"value": "0"
 								}
 							]
 						}
@@ -752,7 +876,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJKb2huU21pdGgiLCJpYXQiOjE2NDUxOTI1MjgsImV4cCI6MTY0NTE5MjgyOH0.-CEbKh1AtJryc7NdycqymQDStWFQGfa6chM3XNF_vI4",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJKb2huU21pdGgiLCJpYXQiOjE2NDUzODI2ODIsImV4cCI6MTY0NTM4Mjk4Mn0.vryXD3DEq0EYbu1vQMQB5w_M_x0gMBdWXqqyCpBqMwc",
 				"type": "string"
 			}
 		]

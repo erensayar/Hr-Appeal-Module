@@ -42,11 +42,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
-                .antMatchers("/api/v1/jobs/**").permitAll()
-                .antMatchers("/h2-console/**/**").permitAll() // For development
+                .antMatchers(
+                        "/auth/**",
+                        "/h2-console/**/**", // For development
+                        "/api/v1/jobs/**").permitAll()
                 .anyRequest().authenticated();
-        http.headers().frameOptions().disable(); // For h2 DB Visible From Browser
+        http.headers().frameOptions().disable(); // For development (H2 DB can be Visible From Browser)
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }

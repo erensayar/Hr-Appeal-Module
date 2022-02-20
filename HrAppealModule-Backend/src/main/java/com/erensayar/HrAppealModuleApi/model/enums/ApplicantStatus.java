@@ -12,6 +12,6 @@ public enum ApplicantStatus {
     DONE(3),            // İşe alım geçrekleşti ve arşivlendi olarak kabul edilsin.
     NEGATIVE(4);        // İşe alım süreci sonlandırıldı ve arşivlendi olarak kabul edilsin.
 
-    private final Integer statusId;
+    private final int statusId;
 
 }
