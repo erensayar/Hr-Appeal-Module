@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -42,10 +43,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers(
-                        "/auth/**",
-                        "/h2-console/**/**", // For development
-                        "/api/v1/jobs/**").permitAll()
+                .antMatchers("/auth/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/applicants").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/jobs/*").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/v1/jobs").permitAll()
+                .antMatchers("/h2-console/**/**").permitAll() // For development
                 .anyRequest().authenticated();
         http.headers().frameOptions().disable(); // For development (H2 DB can be Visible From Browser)
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
