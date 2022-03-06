@@ -12,10 +12,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class JobDtoForPublic {
+    private Integer id;
     private String name;
     private String summary;
     private String description;
     private String expectedQualification;
-    private Integer numberOfToHire;
     private LocalDate lastApplicationDate;
 }

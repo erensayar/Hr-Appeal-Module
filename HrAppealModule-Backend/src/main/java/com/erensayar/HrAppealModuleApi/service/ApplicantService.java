@@ -15,8 +15,6 @@ public interface ApplicantService {
 
     Applicant updateApplicant(ApplicantDto applicantDto);
 
-    Applicant updateApplicant(Applicant applicant);
-
     void deleteApplicantById(String id);
 
 }

@@ -11,4 +11,8 @@ spring:
     username: sa
 
 file-upload:
-  storage-path: /home/eren/Downloads/storage
+  storage-path: /Users/erensayar/Downloads/storage
+
+security:
+  jwt:
+    expire-time: 720000 # 120 minutes -> 120 * 60 * 1000

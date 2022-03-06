@@ -13,3 +13,7 @@ spring:
 
 file-upload:
   storage-path: /home/eren/Downloads/storage
+
+security:
+  jwt:
+    expire-time: 300000 # 5 minutes -> 5 * 60 * 1000

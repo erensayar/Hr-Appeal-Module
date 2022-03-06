@@ -25,6 +25,7 @@ public class ApplicantDto {
     private String district;
     private String gitLink;
     private String linkedInLink;
+    private String twitterLink;
     private ApplicantStatus applicantStatus;
     private LocalDate applicationDate;
     private String cv; // cv id

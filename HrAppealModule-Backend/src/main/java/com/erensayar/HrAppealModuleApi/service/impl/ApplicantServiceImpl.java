@@ -72,14 +72,6 @@ public class ApplicantServiceImpl implements ApplicantService {
     }
 
     @Override
-    public Applicant updateApplicant(Applicant applicant) {
-        if (applicant.getId() == null)
-            throw new BadRequestException("Id can not be empty");
-        return applicantRepo.save(applicant);
-    }
-
-
-    @Override
     public void deleteApplicantById(String id) {
         // is exist?
         applicantRepo.findById(id).orElseThrow(NoContentException::new);
@@ -111,6 +103,7 @@ public class ApplicantServiceImpl implements ApplicantService {
                 .district(applicantDto.getDistrict())
                 .gitLink(applicantDto.getGitLink())
                 .linkedInLink(applicantDto.getLinkedInLink())
+                .twitterLink(applicantDto.getTwitterLink())
                 .applicantStatus(applicantDto.getApplicantStatus())
                 .applicationDate(applicantDto.getApplicationDate())
                 .cv(getCvAndCheckException(applicantDto.getCv()))

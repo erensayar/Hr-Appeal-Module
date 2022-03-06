@@ -15,9 +15,7 @@ public class MailController {
 
     private final MailService mailService;
 
-    @PostMapping(value = "/send",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/send", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> send(@RequestBody Mail mail) {
         mailService.sendMail(mail);
         return ResponseEntity.ok("Mail Sent");

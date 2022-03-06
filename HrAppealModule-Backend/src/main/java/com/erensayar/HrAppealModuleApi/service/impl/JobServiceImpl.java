@@ -3,6 +3,7 @@ package com.erensayar.HrAppealModuleApi.service.impl;
 import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
 import com.erensayar.HrAppealModuleApi.model.dto.JobDto;
+import com.erensayar.HrAppealModuleApi.model.dto.JobDtoForPublic;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.repo.JobRepo;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -68,6 +70,32 @@ public class JobServiceImpl implements JobService {
         jobRepo.deleteById(id);
     }
 
+    @Override
+    public JobDtoForPublic getJobDtoForPublicById(Integer id) {
+        Job job = this.getJobById(id);
+        return JobDtoForPublic.builder()
+                .id(job.getId())
+                .name(job.getName())
+                .summary(job.getSummary())
+                .description(job.getDescription())
+                .expectedQualification(job.getExpectedQualification())
+                .lastApplicationDate(job.getLastApplicationDate())
+                .build();
+    }
+
+    @Override
+    public List<JobDtoForPublic> getJobsDtoForPublic() {
+        List<Job> jobs = this.getJobs();
+        return jobs.stream().map(job -> JobDtoForPublic.builder()
+                .id(job.getId())
+                .name(job.getName())
+                .summary(job.getSummary())
+                .description(job.getDescription())
+                .expectedQualification(job.getExpectedQualification())
+                .lastApplicationDate(job.getLastApplicationDate())
+                .build()).collect(Collectors.toList());
+    }
+
     // PRIVATE METHODS
     //<================================================================================================================>
     private Job converterOfJob(JobDto jobDto) {
@@ -79,11 +107,11 @@ public class JobServiceImpl implements JobService {
                 .expectedQualification(jobDto.getExpectedQualification())
                 .numberOfToHire(jobDto.getNumberOfToHire())
                 .lastApplicationDate(jobDto.getLastApplicationDate())
-                .applicants(this.getApplicantsFromApplicantIdList(jobDto.getApplicants()))
+                .applicants(this.getApplicantsFromApplicantIdList(jobDto.getApplicants())) // It's not necessary
                 .build();
     }
 
-    // This block wrote for getting object, from id list
+    // This block wrote for getting object, from dto id list
     private List<Applicant> getApplicantsFromApplicantIdList(List<String> applicantIdList) {
         List<Applicant> applicants = new ArrayList<>();
         if (applicantIdList != null) {

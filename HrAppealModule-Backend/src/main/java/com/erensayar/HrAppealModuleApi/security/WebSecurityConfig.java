@@ -45,8 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/v1/applicants").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/v1/jobs/*").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/v1/jobs").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/v1/files/upload").permitAll()
+                .antMatchers("/api/v1/jobs/**").permitAll()
                 .antMatchers("/h2-console/**/**").permitAll() // For development
                 .anyRequest().authenticated();
         http.headers().frameOptions().disable(); // For development (H2 DB can be Visible From Browser)

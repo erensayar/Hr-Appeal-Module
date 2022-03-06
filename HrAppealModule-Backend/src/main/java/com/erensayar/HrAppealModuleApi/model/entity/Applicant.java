@@ -64,6 +64,10 @@ public class Applicant {
     @Column(length = 100)
     private String linkedInLink;
 
+    @Size(min = 13, max = 100, message = "{hrwebapp.constraint.link.Size.message}")
+    @Column(length = 100)
+    private String twitterLink;
+
     @Enumerated(EnumType.ORDINAL)
     private ApplicantStatus applicantStatus;
 

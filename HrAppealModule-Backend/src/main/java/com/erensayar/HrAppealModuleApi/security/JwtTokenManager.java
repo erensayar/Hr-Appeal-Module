@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -12,9 +13,10 @@ import java.util.Date;
 @Service
 public class JwtTokenManager {
 
-
-    private static final int validity = 5 * 60 * 1000;
     Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+
+    @Value("${security.jwt.expire-time}")
+    private long validity;
 
     public String generateToken(String username) {
         return Jwts.builder()
