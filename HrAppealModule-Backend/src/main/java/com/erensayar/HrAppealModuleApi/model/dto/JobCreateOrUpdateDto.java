@@ -1,10 +1,10 @@
 package com.erensayar.HrAppealModuleApi.model.dto;
 
-import com.erensayar.HrAppealModuleApi.security.UserRole;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -14,13 +14,14 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class AdminDto {
+public class JobCreateOrUpdateDto {
     private Integer id;
     private String name;
-    private String username;
-    private String surname;
-    private String personalMail;
-    private String workMail;
-    private String password;
-    List<UserRole> userRoles;
+    private String summary;
+    private String description;
+    private String expectedQualification;
+    private Integer numberOfToHire;
+    private LocalDate lastApplicationDate;
+    private List<String> applicants; // Applicant id list
+    private Boolean isArchived;
 }

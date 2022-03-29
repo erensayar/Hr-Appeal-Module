@@ -1,6 +1,6 @@
 package com.erensayar.HrAppealModuleApi.controller;
 
-import com.erensayar.HrAppealModuleApi.model.dto.AdminDto;
+import com.erensayar.HrAppealModuleApi.model.dto.AdminCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,12 +26,12 @@ public class AdminController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createAdmin(@RequestBody AdminDto adminDto) {
-        return new ResponseEntity<>(adminService.createAdmin(adminDto), HttpStatus.CREATED);
+    public ResponseEntity<?> createAdmin(@RequestBody AdminCreateOrUpdateDto adminCreateOrUpdateDto) {
+        return new ResponseEntity<>(adminService.createAdmin(adminCreateOrUpdateDto), HttpStatus.CREATED);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateAdmin(@RequestBody AdminDto updatedAdmin) {
+    public ResponseEntity<?> updateAdmin(@RequestBody AdminCreateOrUpdateDto updatedAdmin) {
         return new ResponseEntity<>(adminService.updateAdmin(updatedAdmin), HttpStatus.OK);
     }
 

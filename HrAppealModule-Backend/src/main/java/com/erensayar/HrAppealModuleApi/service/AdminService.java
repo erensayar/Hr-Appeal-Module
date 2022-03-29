@@ -1,6 +1,6 @@
 package com.erensayar.HrAppealModuleApi.service;
 
-import com.erensayar.HrAppealModuleApi.model.dto.AdminDto;
+import com.erensayar.HrAppealModuleApi.model.dto.AdminCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Admin;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface AdminService {
 
-    Admin createAdmin(AdminDto adminDto);
+    Admin createAdmin(AdminCreateOrUpdateDto adminCreateOrUpdateDto);
 
     Admin getAdminById(Integer id);
 
@@ -18,7 +18,7 @@ public interface AdminService {
 
     List<Admin> getAdmins();
 
-    Admin updateAdmin(AdminDto adminDto);
+    Admin updateAdmin(AdminCreateOrUpdateDto adminCreateOrUpdateDto);
 
     void deleteAdminById(Integer id);
 

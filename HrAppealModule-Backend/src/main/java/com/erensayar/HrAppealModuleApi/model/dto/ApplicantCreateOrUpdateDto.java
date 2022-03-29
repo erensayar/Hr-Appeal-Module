@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
-public class ApplicantDto {
+public class ApplicantCreateOrUpdateDto {
     private String id;
     private String name;
     private String surname;
@@ -30,4 +30,5 @@ public class ApplicantDto {
     private LocalDate applicationDate;
     private String cv; // cv id
     private Boolean personalInfoStoragePermission;
+    private Boolean isArchived;
 }

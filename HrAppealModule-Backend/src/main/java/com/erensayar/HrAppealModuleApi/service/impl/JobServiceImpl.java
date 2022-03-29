@@ -2,8 +2,8 @@ package com.erensayar.HrAppealModuleApi.service.impl;
 
 import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
-import com.erensayar.HrAppealModuleApi.model.dto.JobDto;
-import com.erensayar.HrAppealModuleApi.model.dto.JobDtoForPublic;
+import com.erensayar.HrAppealModuleApi.model.dto.JobCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.JobPublicDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.repo.JobRepo;
@@ -34,9 +34,9 @@ public class JobServiceImpl implements JobService {
     // PUBLIC METHODS
     //<================================================================================================================>
     @Override
-    public Job createJob(JobDto jobDto) {
-        jobDto.setId(null);
-        return jobRepo.save(this.converterOfJob(jobDto));
+    public Job createJob(JobCreateOrUpdateDto jobCreateOrUpdateDto) {
+        jobCreateOrUpdateDto.setId(null);
+        return jobRepo.save(this.converterOfJob(jobCreateOrUpdateDto));
     }
 
     @Override
@@ -58,10 +58,10 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public Job updateJob(JobDto jobDto) {
-        if (jobDto.getId() == null)
+    public Job updateJob(JobCreateOrUpdateDto jobCreateOrUpdateDto) {
+        if (jobCreateOrUpdateDto.getId() == null)
             throw new BadRequestException("Id can not be empty");
-        return jobRepo.save(this.converterOfJob(jobDto));
+        return jobRepo.save(this.converterOfJob(jobCreateOrUpdateDto));
     }
 
     @Override
@@ -71,9 +71,9 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public JobDtoForPublic getJobDtoForPublicById(Integer id) {
+    public JobPublicDto getJobDtoForPublicById(Integer id) {
         Job job = this.getJobById(id);
-        return JobDtoForPublic.builder()
+        return JobPublicDto.builder()
                 .id(job.getId())
                 .name(job.getName())
                 .summary(job.getSummary())
@@ -84,9 +84,9 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public List<JobDtoForPublic> getJobsDtoForPublic() {
+    public List<JobPublicDto> getJobsDtoForPublic() {
         List<Job> jobs = this.getJobs();
-        return jobs.stream().map(job -> JobDtoForPublic.builder()
+        return jobs.stream().map(job -> JobPublicDto.builder()
                 .id(job.getId())
                 .name(job.getName())
                 .summary(job.getSummary())
@@ -98,16 +98,16 @@ public class JobServiceImpl implements JobService {
 
     // PRIVATE METHODS
     //<================================================================================================================>
-    private Job converterOfJob(JobDto jobDto) {
+    private Job converterOfJob(JobCreateOrUpdateDto jobCreateOrUpdateDto) {
         return Job.builder()
-                .id(jobDto.getId())
-                .name(jobDto.getName())
-                .summary(jobDto.getSummary())
-                .description(jobDto.getDescription())
-                .expectedQualification(jobDto.getExpectedQualification())
-                .numberOfToHire(jobDto.getNumberOfToHire())
-                .lastApplicationDate(jobDto.getLastApplicationDate())
-                .applicants(this.getApplicantsFromApplicantIdList(jobDto.getApplicants())) // It's not necessary
+                .id(jobCreateOrUpdateDto.getId())
+                .name(jobCreateOrUpdateDto.getName())
+                .summary(jobCreateOrUpdateDto.getSummary())
+                .description(jobCreateOrUpdateDto.getDescription())
+                .expectedQualification(jobCreateOrUpdateDto.getExpectedQualification())
+                .numberOfToHire(jobCreateOrUpdateDto.getNumberOfToHire())
+                .lastApplicationDate(jobCreateOrUpdateDto.getLastApplicationDate())
+                .applicants(this.getApplicantsFromApplicantIdList(jobCreateOrUpdateDto.getApplicants())) // It's not necessary
                 .build();
     }
 

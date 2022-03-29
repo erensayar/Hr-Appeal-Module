@@ -44,6 +44,8 @@ public class Job {
 
     private LocalDate lastApplicationDate;
 
+    private Boolean isArchived;
+
     @ManyToMany
     private List<Applicant> applicants;
 }

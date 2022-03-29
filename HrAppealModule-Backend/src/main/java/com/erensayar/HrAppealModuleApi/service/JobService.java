@@ -1,7 +1,7 @@
 package com.erensayar.HrAppealModuleApi.service;
 
-import com.erensayar.HrAppealModuleApi.model.dto.JobDto;
-import com.erensayar.HrAppealModuleApi.model.dto.JobDtoForPublic;
+import com.erensayar.HrAppealModuleApi.model.dto.JobCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.JobPublicDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 
@@ -11,7 +11,7 @@ public interface JobService {
 
     // Admin methods
 
-    Job createJob(JobDto jobDto);
+    Job createJob(JobCreateOrUpdateDto jobCreateOrUpdateDto);
 
     Job getJobById(Integer id);
 
@@ -19,13 +19,13 @@ public interface JobService {
 
     List<Applicant> getJobApplicantsById(Integer jobId);
 
-    Job updateJob(JobDto jobDto);
+    Job updateJob(JobCreateOrUpdateDto jobCreateOrUpdateDto);
 
     void deleteJobById(Integer id);
 
     // Public methods
 
-    JobDtoForPublic getJobDtoForPublicById(Integer id);
+    JobPublicDto getJobDtoForPublicById(Integer id);
 
-    List<JobDtoForPublic> getJobsDtoForPublic();
+    List<JobPublicDto> getJobsDtoForPublic();
 }

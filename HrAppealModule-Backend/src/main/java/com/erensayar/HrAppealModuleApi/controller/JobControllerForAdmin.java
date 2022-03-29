@@ -1,6 +1,6 @@
 package com.erensayar.HrAppealModuleApi.controller;
 
-import com.erensayar.HrAppealModuleApi.model.dto.JobDto;
+import com.erensayar.HrAppealModuleApi.model.dto.JobCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.service.JobService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,12 +31,12 @@ public class JobControllerForAdmin {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createJob(@RequestBody JobDto jobDto) {
-        return new ResponseEntity<>(jobService.createJob(jobDto), HttpStatus.CREATED);
+    public ResponseEntity<?> createJob(@RequestBody JobCreateOrUpdateDto jobCreateOrUpdateDto) {
+        return new ResponseEntity<>(jobService.createJob(jobCreateOrUpdateDto), HttpStatus.CREATED);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateJob(@RequestBody JobDto updatedJob) {
+    public ResponseEntity<?> updateJob(@RequestBody JobCreateOrUpdateDto updatedJob) {
         return new ResponseEntity<>(jobService.updateJob(updatedJob), HttpStatus.OK);
     }
 

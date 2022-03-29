@@ -1,0 +1,27 @@
+@import "~bootstrap/scss/bootstrap";
+
+.App {
+    font-family: "Inter", sans-serif;
+
+    .navbar {
+        display: block;
+        padding-top: 0;
+        min-height: 4rem;
+
+        .navbar-nav {
+            flex-direction: row !important;
+            background-color: rgb(37, 78, 59);
+            a {
+                margin-block: 5px;
+                margin-inline: 5px;
+            }
+        }
+
+        .login {
+            position: absolute;
+            right: 0px;
+        }
+
+        
+    }
+}

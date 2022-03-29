@@ -1,8 +1,8 @@
 package com.erensayar.HrAppealModuleApi.component;
 
-import com.erensayar.HrAppealModuleApi.model.dto.AdminDto;
-import com.erensayar.HrAppealModuleApi.model.dto.ApplicantDto;
-import com.erensayar.HrAppealModuleApi.model.dto.JobDto;
+import com.erensayar.HrAppealModuleApi.model.dto.AdminCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.ApplicantCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.JobCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Admin;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
@@ -33,7 +33,7 @@ public class CmdLineRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Admin admin1 = adminService.createAdmin(AdminDto.builder()
+        Admin admin1 = adminService.createAdmin(AdminCreateOrUpdateDto.builder()
                 .username("JohnSmith")
                 .name("John")
                 .surname("Smith")
@@ -43,7 +43,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .userRoles(new ArrayList<>(List.of(UserRole.ROLE_ADMIN)))
                 .build());
 
-        Admin admin2 = adminService.createAdmin(AdminDto.builder()
+        Admin admin2 = adminService.createAdmin(AdminCreateOrUpdateDto.builder()
                 .username("EgorMykhailovic")
                 .name("Egor")
                 .surname("Mykhailovic")
@@ -68,7 +68,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .filePath("/files/cv")
                 .build());
 
-        Applicant applicant1 = applicantService.createApplicant(ApplicantDto.builder()
+        Applicant applicant1 = applicantService.createApplicant(ApplicantCreateOrUpdateDto.builder()
                 .name("Harold")
                 .surname("Stu")
                 .mail("harold.stu@mail.com")
@@ -83,9 +83,10 @@ public class CmdLineRunner implements CommandLineRunner {
                 .applicationDate(LocalDate.now())
                 .cv(fileAttachment1.getId())
                 .personalInfoStoragePermission(true)
+                .isArchived(false)
                 .build());
 
-        Applicant applicant2 = applicantService.createApplicant(ApplicantDto.builder()
+        Applicant applicant2 = applicantService.createApplicant(ApplicantCreateOrUpdateDto.builder()
                 .name("Aragorn")
                 .surname("Elessar")
                 .mail("aragornelessar@mail.com")
@@ -100,9 +101,10 @@ public class CmdLineRunner implements CommandLineRunner {
                 .applicationDate(LocalDate.now())
                 .cv(fileAttachment2.getId())
                 .personalInfoStoragePermission(true)
+                .isArchived(false)
                 .build());
 
-        Applicant applicant3 = applicantService.createApplicant(ApplicantDto.builder()
+        Applicant applicant3 = applicantService.createApplicant(ApplicantCreateOrUpdateDto.builder()
                 .name("Legolas")
                 .surname("hedehödö")
                 .mail("legolashawk@mail.com")
@@ -117,6 +119,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .applicationDate(LocalDate.now())
                 .cv(fileAttachment3.getId())
                 .personalInfoStoragePermission(true)
+                .isArchived(false)
                 .build());
 
         List<String> applicantList1 = new ArrayList<>();
@@ -126,24 +129,37 @@ public class CmdLineRunner implements CommandLineRunner {
         List<String> applicantList2 = new ArrayList<>();
         applicantList2.add(applicant3.getId());
 
-        Job job1 = jobService.createJob(JobDto.builder()
+        Job job1 = jobService.createJob(JobCreateOrUpdateDto.builder()
                 .name("Java Software Engineer")
-                .summary("We search software engineer to develop mobile app back end module with spring boot, hibernate, maven")
+                .summary("We searching software engineer to develop mobile app back end module with spring boot, hibernate, maven")
                 .description("We search software engineer to develop mobile app back end module with spring boot, hibernate, maven, java 11 hede hödö")
                 .expectedQualification("Analytic capabilites hede hödö")
                 .numberOfToHire(2)
                 .lastApplicationDate(LocalDate.of(2022, 2, 22))
                 .applicants(applicantList1)
+                .isArchived(false)
                 .build());
 
-        Job job2 = jobService.createJob(JobDto.builder()
+        Job job2 = jobService.createJob(JobCreateOrUpdateDto.builder()
                 .name("React Front End Developer")
-                .summary("We React Front End Developer to develop web app front end module with react.js, redux toolkit, axios etc")
+                .summary("We searching React Front End Developer to develop web app front end module with react.js, redux toolkit, axios etc")
                 .description("We search software engineer to develop mobile app back end module with spring boot, hibernate, maven, java 11 hede hödö")
                 .expectedQualification("Analytic capabilites hede hödö")
                 .numberOfToHire(2)
                 .lastApplicationDate(LocalDate.of(2022, 2, 22))
                 .applicants(applicantList2)
+                .isArchived(false)
+                .build());
+
+        Job job3 = jobService.createJob(JobCreateOrUpdateDto.builder()
+                .name("Vue Front End Developer")
+                .summary("We searching Vue Front End Developer")
+                .description("hede hödö")
+                .expectedQualification("Analytic capabilites hede hödö")
+                .numberOfToHire(2)
+                .lastApplicationDate(LocalDate.of(2022, 2, 22))
+                .applicants(applicantList2)
+                .isArchived(true)
                 .build());
 
 

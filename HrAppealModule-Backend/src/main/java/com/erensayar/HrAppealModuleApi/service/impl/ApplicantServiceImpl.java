@@ -2,7 +2,7 @@ package com.erensayar.HrAppealModuleApi.service.impl;
 
 import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
-import com.erensayar.HrAppealModuleApi.model.dto.ApplicantDto;
+import com.erensayar.HrAppealModuleApi.model.dto.ApplicantCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
@@ -44,11 +44,11 @@ public class ApplicantServiceImpl implements ApplicantService {
     // PUBLIC METHODS
     //<================================================================================================================>
     @Override
-    public Applicant createApplicant(ApplicantDto applicantDto) {
-        applicantDto.setId("APL" + UUID.randomUUID().toString().replaceAll("-", ""));
-        applicantDto.setApplicantStatus(ApplicantStatus.TO_BE_EVALUATED);
-        applicantDto.setApplicationDate(LocalDate.now());
-        return applicantRepo.save(this.converterOfApplicant(applicantDto));
+    public Applicant createApplicant(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
+        applicantCreateOrUpdateDto.setId("APL" + UUID.randomUUID().toString().replaceAll("-", ""));
+        applicantCreateOrUpdateDto.setApplicantStatus(ApplicantStatus.TO_BE_EVALUATED);
+        applicantCreateOrUpdateDto.setApplicationDate(LocalDate.now());
+        return applicantRepo.save(this.converterOfApplicant(applicantCreateOrUpdateDto));
     }
 
     @Override
@@ -65,10 +65,10 @@ public class ApplicantServiceImpl implements ApplicantService {
     }
 
     @Override
-    public Applicant updateApplicant(ApplicantDto applicantDto) {
-        if (applicantDto.getId() == null)
+    public Applicant updateApplicant(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
+        if (applicantCreateOrUpdateDto.getId() == null)
             throw new BadRequestException("Id can not be empty");
-        return applicantRepo.save(this.converterOfApplicant(applicantDto));
+        return applicantRepo.save(this.converterOfApplicant(applicantCreateOrUpdateDto));
     }
 
     @Override
@@ -91,23 +91,23 @@ public class ApplicantServiceImpl implements ApplicantService {
 
     // PRIVATE METHODS
     //<================================================================================================================>
-    private Applicant converterOfApplicant(ApplicantDto applicantDto) {
+    private Applicant converterOfApplicant(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
         return Applicant.builder()
-                .id(applicantDto.getId())
-                .name(applicantDto.getName())
-                .surname(applicantDto.getSurname())
-                .mail(applicantDto.getMail())
-                .telephone(applicantDto.getTelephone())
-                .country(applicantDto.getCountry())
-                .city(applicantDto.getCity())
-                .district(applicantDto.getDistrict())
-                .gitLink(applicantDto.getGitLink())
-                .linkedInLink(applicantDto.getLinkedInLink())
-                .twitterLink(applicantDto.getTwitterLink())
-                .applicantStatus(applicantDto.getApplicantStatus())
-                .applicationDate(applicantDto.getApplicationDate())
-                .cv(getCvAndCheckException(applicantDto.getCv()))
-                .personalInfoStoragePermission(applicantDto.getPersonalInfoStoragePermission())
+                .id(applicantCreateOrUpdateDto.getId())
+                .name(applicantCreateOrUpdateDto.getName())
+                .surname(applicantCreateOrUpdateDto.getSurname())
+                .mail(applicantCreateOrUpdateDto.getMail())
+                .telephone(applicantCreateOrUpdateDto.getTelephone())
+                .country(applicantCreateOrUpdateDto.getCountry())
+                .city(applicantCreateOrUpdateDto.getCity())
+                .district(applicantCreateOrUpdateDto.getDistrict())
+                .gitLink(applicantCreateOrUpdateDto.getGitLink())
+                .linkedInLink(applicantCreateOrUpdateDto.getLinkedInLink())
+                .twitterLink(applicantCreateOrUpdateDto.getTwitterLink())
+                .applicantStatus(applicantCreateOrUpdateDto.getApplicantStatus())
+                .applicationDate(applicantCreateOrUpdateDto.getApplicationDate())
+                .cv(getCvAndCheckException(applicantCreateOrUpdateDto.getCv()))
+                .personalInfoStoragePermission(applicantCreateOrUpdateDto.getPersonalInfoStoragePermission())
                 //.jobs(getJobsFromJobIdList(applicantDto.getJobs()))
                 .build();
     }

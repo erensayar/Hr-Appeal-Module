@@ -78,4 +78,6 @@ public class Applicant {
 
     private Boolean personalInfoStoragePermission;
 
+    private Boolean isArchived;
+
 }

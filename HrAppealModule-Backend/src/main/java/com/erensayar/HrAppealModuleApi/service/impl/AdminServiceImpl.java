@@ -2,7 +2,7 @@ package com.erensayar.HrAppealModuleApi.service.impl;
 
 import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
-import com.erensayar.HrAppealModuleApi.model.dto.AdminDto;
+import com.erensayar.HrAppealModuleApi.model.dto.AdminCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Admin;
 import com.erensayar.HrAppealModuleApi.repo.AdminRepo;
 import com.erensayar.HrAppealModuleApi.service.AdminService;
@@ -32,10 +32,10 @@ public class AdminServiceImpl implements AdminService {
     // PUBLIC METHODS
     //<================================================================================================================>
     @Override
-    public Admin createAdmin(AdminDto adminDto) {
-        adminDto.setId(null);
-        adminDto.setPassword(passwordEncoder.encode(adminDto.getPassword()));
-        return adminRepo.save(this.converterOfEmployee(adminDto));
+    public Admin createAdmin(AdminCreateOrUpdateDto adminCreateOrUpdateDto) {
+        adminCreateOrUpdateDto.setId(null);
+        adminCreateOrUpdateDto.setPassword(passwordEncoder.encode(adminCreateOrUpdateDto.getPassword()));
+        return adminRepo.save(this.converterOfEmployee(adminCreateOrUpdateDto));
     }
 
     @Override
@@ -59,10 +59,10 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Admin updateAdmin(AdminDto adminDto) {
-        if (adminDto.getId() == null)
+    public Admin updateAdmin(AdminCreateOrUpdateDto adminCreateOrUpdateDto) {
+        if (adminCreateOrUpdateDto.getId() == null)
             throw new BadRequestException("Id can not be empty");
-        return adminRepo.save(this.converterOfEmployee(adminDto));
+        return adminRepo.save(this.converterOfEmployee(adminCreateOrUpdateDto));
     }
 
     @Override
@@ -77,15 +77,15 @@ public class AdminServiceImpl implements AdminService {
     // PRIVATE METHODS
     //<================================================================================================================>
 
-    private Admin converterOfEmployee(AdminDto adminDto) {
+    private Admin converterOfEmployee(AdminCreateOrUpdateDto adminCreateOrUpdateDto) {
         return Admin.builder()
-                .id(adminDto.getId())
-                .username(adminDto.getUsername())
-                .name(adminDto.getName())
-                .surname(adminDto.getSurname())
-                .personalMail(adminDto.getPersonalMail())
-                .workMail(adminDto.getWorkMail())
-                .password(adminDto.getPassword())
+                .id(adminCreateOrUpdateDto.getId())
+                .username(adminCreateOrUpdateDto.getUsername())
+                .name(adminCreateOrUpdateDto.getName())
+                .surname(adminCreateOrUpdateDto.getSurname())
+                .personalMail(adminCreateOrUpdateDto.getPersonalMail())
+                .workMail(adminCreateOrUpdateDto.getWorkMail())
+                .password(adminCreateOrUpdateDto.getPassword())
                 .build();
     }
 }

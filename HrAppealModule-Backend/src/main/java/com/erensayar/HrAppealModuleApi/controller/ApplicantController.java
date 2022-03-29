@@ -1,6 +1,6 @@
 package com.erensayar.HrAppealModuleApi.controller;
 
-import com.erensayar.HrAppealModuleApi.model.dto.ApplicantDto;
+import com.erensayar.HrAppealModuleApi.model.dto.ApplicantCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.service.ApplicantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,12 +26,12 @@ public class ApplicantController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createApplicant(@RequestBody ApplicantDto applicantDto) {
-        return new ResponseEntity<>(applicantService.createApplicant(applicantDto), HttpStatus.CREATED);
+    public ResponseEntity<?> createApplicant(@RequestBody ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
+        return new ResponseEntity<>(applicantService.createApplicant(applicantCreateOrUpdateDto), HttpStatus.CREATED);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateApplicant(@RequestBody ApplicantDto updatedApplicant) {
+    public ResponseEntity<?> updateApplicant(@RequestBody ApplicantCreateOrUpdateDto updatedApplicant) {
         return new ResponseEntity<>(applicantService.updateApplicant(updatedApplicant), HttpStatus.OK);
     }
 
