@@ -1,0 +1,13 @@
+.list-and-detail {
+    .list,
+    .detail {
+        border: 1px solid #2557a7;
+        border-radius: .2rem;
+        text-align: center;
+        display: block;
+        height: 3rem;
+        p {
+            margin-block: 5px;
+        }
+    }
+}

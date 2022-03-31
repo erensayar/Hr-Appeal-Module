@@ -1,0 +1,41 @@
+.job-list-element {
+    padding: 0.6rem;
+
+    .job-list-element-container {
+        cursor: pointer;
+        border: 1px solid #949494;
+        border-radius: .5rem;
+
+        .job-name-and-sum {
+            padding: 1rem;
+            p {
+                margin: 0;
+            }
+        }
+
+        .job-meta-data {
+            font-size: small;
+            padding: 1rem;
+
+            .job-created-date-letter {
+                float: right;
+                margin: 0;
+            }
+            .job-created-date {
+                float: right;
+                margin-bottom: 2rem;
+            }
+
+            .job-location {
+                float: right;
+                margin: 0;
+            }
+        }
+
+        
+    }
+    .job-list-element-container:hover {
+        border: 1px solid #2557a7;
+    }
+
+}

@@ -10,9 +10,7 @@ function App() {
   return (
 
     <div className="App">
-
       <Navbar></Navbar>
-      <JobsPage></JobsPage>
 
       <Routes>
         <Route path="/" element={<JobsPage />} />
@@ -21,7 +19,6 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-
     </div>
 
   );

@@ -42,6 +42,8 @@ public class Job {
 
     private Integer numberOfToHire;
 
+    private LocalDate creationDate;
+
     private LocalDate lastApplicationDate;
 
     private Boolean isArchived;

@@ -17,5 +17,6 @@ public class JobPublicDto {
     private String summary;
     private String description;
     private String expectedQualification;
+    private LocalDate creationDate;
     private LocalDate lastApplicationDate;
 }

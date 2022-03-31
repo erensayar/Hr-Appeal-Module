@@ -5,7 +5,6 @@ const JobsPage = () => {
 
     return (
         <div>
-            Jobs
             <ListAndDetail></ListAndDetail>
         </div>
     )

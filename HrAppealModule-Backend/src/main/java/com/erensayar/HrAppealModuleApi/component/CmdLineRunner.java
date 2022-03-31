@@ -138,6 +138,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .lastApplicationDate(LocalDate.of(2022, 2, 22))
                 .applicants(applicantList1)
                 .isArchived(false)
+                .creationDate(LocalDate.of(2022, 2, 1))
                 .build());
 
         Job job2 = jobService.createJob(JobCreateOrUpdateDto.builder()
@@ -149,6 +150,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .lastApplicationDate(LocalDate.of(2022, 2, 22))
                 .applicants(applicantList2)
                 .isArchived(false)
+                .creationDate(LocalDate.of(2022, 2, 1))
                 .build());
 
         Job job3 = jobService.createJob(JobCreateOrUpdateDto.builder()
@@ -160,6 +162,7 @@ public class CmdLineRunner implements CommandLineRunner {
                 .lastApplicationDate(LocalDate.of(2022, 2, 22))
                 .applicants(applicantList2)
                 .isArchived(true)
+                .creationDate(LocalDate.of(2022, 2, 1))
                 .build());
 
 

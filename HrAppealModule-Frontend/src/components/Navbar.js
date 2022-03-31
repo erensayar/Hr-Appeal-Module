@@ -1,10 +1,11 @@
+import '../styles/Navbar.scss';
 import React from 'react'
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
 
     return (
-        <div classNameName='navbar'>
+        <div className='navbar'>
 
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div>

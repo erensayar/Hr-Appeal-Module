@@ -1,27 +1,28 @@
 @import "~bootstrap/scss/bootstrap";
 
 .App {
+    
     font-family: "Inter", sans-serif;
 
-    .navbar {
-        display: block;
-        padding-top: 0;
-        min-height: 4rem;
-
-        .navbar-nav {
-            flex-direction: row !important;
-            background-color: rgb(37, 78, 59);
-            a {
-                margin-block: 5px;
-                margin-inline: 5px;
-            }
-        }
-
-        .login {
-            position: absolute;
-            right: 0px;
-        }
-
-        
+    .col-12,
+    .col-11,
+    .col-10,
+    .col-9,
+    .col-8,
+    .col-7,
+    .col-6,
+    .col-5,
+    .col-4,
+    .col-3,
+    .col-2,
+    .col-1 {
+        padding: 0;
     }
+
+    .row {
+        --bs-gutter-y: 0;
+        --bs-gutter-x: 0;
+    }
+
+    
 }

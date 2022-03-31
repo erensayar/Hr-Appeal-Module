@@ -107,6 +107,8 @@ public class JobServiceImpl implements JobService {
                 .expectedQualification(jobCreateOrUpdateDto.getExpectedQualification())
                 .numberOfToHire(jobCreateOrUpdateDto.getNumberOfToHire())
                 .lastApplicationDate(jobCreateOrUpdateDto.getLastApplicationDate())
+                .isArchived(jobCreateOrUpdateDto.getIsArchived())
+                .creationDate(jobCreateOrUpdateDto.getCreationDate())
                 .applicants(this.getApplicantsFromApplicantIdList(jobCreateOrUpdateDto.getApplicants())) // It's not necessary
                 .build();
     }

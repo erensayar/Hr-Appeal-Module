@@ -108,6 +108,7 @@ public class ApplicantServiceImpl implements ApplicantService {
                 .applicationDate(applicantCreateOrUpdateDto.getApplicationDate())
                 .cv(getCvAndCheckException(applicantCreateOrUpdateDto.getCv()))
                 .personalInfoStoragePermission(applicantCreateOrUpdateDto.getPersonalInfoStoragePermission())
+                .isArchived(applicantCreateOrUpdateDto.getIsArchived())
                 //.jobs(getJobsFromJobIdList(applicantDto.getJobs()))
                 .build();
     }
