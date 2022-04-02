@@ -2,7 +2,9 @@ import React from 'react'
 
 const ApplicantsPage = () => {
   return (
-    <div>ApplicantsPage</div>
+    <div className='applicant-page'>
+
+    </div>
   )
 }
 

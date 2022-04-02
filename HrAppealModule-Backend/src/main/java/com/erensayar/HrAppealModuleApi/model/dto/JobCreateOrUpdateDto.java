@@ -25,4 +25,6 @@ public class JobCreateOrUpdateDto {
     private LocalDate lastApplicationDate;
     private List<String> applicants; // Applicant id list
     private Boolean isArchived;
+    private String location;
+    private String benefits;
 }

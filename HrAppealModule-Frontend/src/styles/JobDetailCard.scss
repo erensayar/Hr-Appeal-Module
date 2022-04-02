@@ -1,0 +1,23 @@
+.job-detail-card {
+    padding: .6rem;
+
+    .job-detail-container {
+        border: 1px solid #2557a7;
+        border-radius: .5rem;
+        padding: 1rem;
+
+        .job-title {
+            text-align: center;
+            text-decoration: underline;
+            padding-block: 2rem;
+        }
+        
+        .job-informations{
+            padding: 2rem;
+            p{
+                padding-bottom: 1rem;
+            }
+        }
+    }
+    
+}

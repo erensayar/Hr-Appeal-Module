@@ -1,18 +1,25 @@
 import '../styles/JobListElement.scss'
 import React from 'react'
 
-const JobListElemet = () => {
+const JobListElemet = (props) => {
+
+    const { job } = props;
+
+    const openJobDetail = (key) => {
+        console.log(key)
+    }
+
     return (
         <div className='job-list-element'>
-            <div className='job-list-element-container row'>
+            <div className='job-list-element-container row' onClick={() => openJobDetail(job.id)}>
                 <div className='job-name-and-sum col-9'>
-                    <h3>Java Developer</h3>
-                    <p>We searching software engineer to develop mobile app back end module with spring boot</p>
+                    <h3>{job.name}</h3>
+                    <p>{job.summary}</p>
                 </div>
                 <div className='job-meta-data col-3'>
                     <p className='job-created-date-letter'>Created Date</p>
-                    <p className='job-created-date'>30.12.2022</p>
-                    <p className='job-location'>İstanbul - Hybrid</p>
+                    <p className='job-created-date'>{job.creationDate}</p>
+                    <p className='job-location'>{job.location}</p>
                 </div>
             </div>
         </div>

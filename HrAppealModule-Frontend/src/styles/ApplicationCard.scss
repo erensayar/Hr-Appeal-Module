@@ -1,0 +1,42 @@
+.application {
+    padding-inline: 10rem;
+
+    .application-header {
+        text-align: center;
+        border: 1px solid #949494;
+        border-radius: 0rem 0rem 0.5rem 0.5rem;
+        border-top: none;
+    }
+
+    .application-card {
+        margin-top: 2rem;
+        border: 1px solid #949494;
+        border-radius: 0.2rem;
+
+        .row{
+            margin-bottom: 1rem;
+        }
+        
+        form {
+            padding-block: 2rem;
+            padding-inline: 4rem;
+
+            .col{
+                padding-inline: 2px;
+            }
+
+            .form-group {
+                padding-block: .5rem;
+            }
+
+            .form-check {
+                padding-block: .5rem;
+            }
+
+            .form-btn{
+                margin-inline: 10rem;
+                margin-bottom: 0;
+            }
+        }
+    }
+}

@@ -48,6 +48,10 @@ public class Job {
 
     private Boolean isArchived;
 
+    private String location;
+
+    private String benefits;
+
     @ManyToMany
     private List<Applicant> applicants;
 }

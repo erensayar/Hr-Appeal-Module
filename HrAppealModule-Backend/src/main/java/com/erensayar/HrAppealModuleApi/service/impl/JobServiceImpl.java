@@ -93,6 +93,9 @@ public class JobServiceImpl implements JobService {
                 .description(job.getDescription())
                 .expectedQualification(job.getExpectedQualification())
                 .lastApplicationDate(job.getLastApplicationDate())
+                .location(job.getLocation())
+                .creationDate(job.getCreationDate())
+                .benefits(job.getBenefits())
                 .build()).collect(Collectors.toList());
     }
 
@@ -108,7 +111,9 @@ public class JobServiceImpl implements JobService {
                 .numberOfToHire(jobCreateOrUpdateDto.getNumberOfToHire())
                 .lastApplicationDate(jobCreateOrUpdateDto.getLastApplicationDate())
                 .isArchived(jobCreateOrUpdateDto.getIsArchived())
+                .location(jobCreateOrUpdateDto.getLocation())
                 .creationDate(jobCreateOrUpdateDto.getCreationDate())
+                .benefits(jobCreateOrUpdateDto.getBenefits())
                 .applicants(this.getApplicantsFromApplicantIdList(jobCreateOrUpdateDto.getApplicants())) // It's not necessary
                 .build();
     }

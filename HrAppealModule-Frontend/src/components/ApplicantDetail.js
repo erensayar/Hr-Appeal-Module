@@ -1,8 +1,8 @@
 import React from 'react'
 
-const DetailCard = () => {
+const ApplicantDetilCard = () => {
   return (
-    <div>DetailCard</div>
+    <div>ApplicantDetilCard</div>
   )
 }
 

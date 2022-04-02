@@ -1,11 +1,11 @@
 import React from 'react'
-import ListAndDetail from '../components/ListAndDetail'
+import JobListAndDetail from '../components/JobListAndDetail'
 
 const JobsPage = () => {
 
     return (
         <div>
-            <ListAndDetail></ListAndDetail>
+            <JobListAndDetail></JobListAndDetail>
         </div>
     )
 

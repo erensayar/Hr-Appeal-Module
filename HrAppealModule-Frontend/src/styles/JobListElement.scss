@@ -1,5 +1,5 @@
 .job-list-element {
-    padding: 0.6rem;
+    padding: .6rem;
 
     .job-list-element-container {
         cursor: pointer;
@@ -31,11 +31,8 @@
                 margin: 0;
             }
         }
-
-        
     }
     .job-list-element-container:hover {
         border: 1px solid #2557a7;
     }
-
 }
