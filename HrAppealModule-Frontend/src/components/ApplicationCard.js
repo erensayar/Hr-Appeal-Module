@@ -1,4 +1,5 @@
 import '../styles/ApplicationCard.scss'
+import { Link } from "react-router-dom";
 import React from 'react'
 
 const ApplicationCard = () => {
@@ -35,8 +36,6 @@ const ApplicationCard = () => {
                 <label>LinkedIn Link</label>
                 <input type="email" className="form-control" placeholder="Enter your linkedin profile link" />
               </div>
-
-
             </div>
 
             <div className='col'>
@@ -78,7 +77,7 @@ const ApplicationCard = () => {
           </div>
 
           <div className='form-btn row'>
-            <button type="submit" className="btn btn-success">Send The Apply</button>
+            <Link className='btn btn-success' to="/thanks">Send The Apply</Link>
           </div>
         </form>
       </div>

@@ -22,4 +22,10 @@
         --bs-gutter-y: 0;
         --bs-gutter-x: 0;
     }
+
+    .mid-container{
+        display: flex;
+        justify-content: center;
+        margin: .5rem;
+    }
 }

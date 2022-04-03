@@ -1,21 +1,28 @@
 .login-page {
-    margin-top: 12rem;
+    margin-top: 7rem;
     margin-inline: 20rem;
 
-    .login-form-container {
+    .login-form-container { 
         border: 1px solid #949494;
         border-radius: 5px;
-        
-        .form{
+
+        .form {
             padding: 1rem;
-        }
 
-        .form-group {
-            padding-block: 0.2rem;
-        }
+            .img-hr-admin {
+                //border-radius: 50%;
+            }
 
-        button {
-            margin-block: 0.6rem;
+            .form-group {
+                padding-block: 0.2rem;
+            }
+
+            .mid-container{
+                button{
+                    width: 10rem;
+                    margin-top: 1rem;
+                }
+            }
         }
     }
 }

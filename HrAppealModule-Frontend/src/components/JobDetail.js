@@ -24,7 +24,7 @@ const JobDetail = () => {
           <p>Ankara-Office</p>
         </div>
 
-        <Link className='btn btn-success nav-link' to="/apply">Apply</Link>
+        <Link className='btn btn-success' to="/apply">Apply</Link>
 
       </div>
     </div>

@@ -2,6 +2,7 @@ import '../styles/App.scss';
 import Navbar from "../components/Navbar";
 import JobsPage from "../pages/JobsPage";
 import ApplicationPage from '../pages/ApplicationPage';
+import ThanksPage from '../pages/ThanksPage';
 import LoginPage from "../pages/LoginPage";
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<JobsPage />} />
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/apply" element={<ApplicationPage />} />
+        <Route path="/thanks" element={<ThanksPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
