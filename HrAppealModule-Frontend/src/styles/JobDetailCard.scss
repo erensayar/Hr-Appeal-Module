@@ -1,10 +1,13 @@
 .job-detail-card {
     padding: .6rem;
-
+    position: fixed;
+    
     .job-detail-container {
         border: 1px solid #2557a7;
         border-radius: .5rem;
         padding: 1rem;
+        overflow-y: scroll;
+        height: calc(100vh - 85px);
 
         .job-title {
             text-align: center;

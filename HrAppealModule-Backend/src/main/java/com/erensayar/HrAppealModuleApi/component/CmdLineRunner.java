@@ -15,6 +15,7 @@ import com.erensayar.HrAppealModuleApi.service.FileAttachmentService;
 import com.erensayar.HrAppealModuleApi.service.JobService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -23,6 +24,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Component
+@SuppressWarnings("PMD")
 public class CmdLineRunner implements CommandLineRunner {
 
     private final AdminService adminService;
@@ -31,6 +33,7 @@ public class CmdLineRunner implements CommandLineRunner {
     private final FileAttachmentService fileAttachmentService;
 
     @Override
+    @Profile("dev")
     public void run(String... args) throws Exception {
 
         Admin admin1 = adminService.createAdmin(AdminCreateOrUpdateDto.builder()
@@ -160,6 +163,90 @@ public class CmdLineRunner implements CommandLineRunner {
         Job job3 = jobService.createJob(JobCreateOrUpdateDto.builder()
                 .name("Vue Front End Developer")
                 .summary("We searching Vue Front End Developer")
+                .description("hede hödö")
+                .expectedQualification("Analytic capabilites hede hödö")
+                .numberOfToHire(2)
+                .lastApplicationDate(LocalDate.of(2022, 2, 22))
+                .applicants(applicantList2)
+                .isArchived(true)
+                .location("İstanbul-Hybrid")
+                .benefits("Multinet")
+                .creationDate(LocalDate.of(2022, 2, 1))
+                .build());
+
+        Job job4 = jobService.createJob(JobCreateOrUpdateDto.builder()
+                .name("Vue Front End Developer4")
+                .summary("We searching Vue Front End Developer4")
+                .description("hede hödö")
+                .expectedQualification("Analytic capabilites hede hödö")
+                .numberOfToHire(2)
+                .lastApplicationDate(LocalDate.of(2022, 2, 22))
+                .applicants(applicantList2)
+                .isArchived(true)
+                .location("İstanbul-Hybrid")
+                .benefits("Multinet")
+                .creationDate(LocalDate.of(2022, 2, 1))
+                .build());
+
+        Job job5 = jobService.createJob(JobCreateOrUpdateDto.builder()
+                .name("Vue Front End Developer5")
+                .summary("We searching Vue Front End Developer5")
+                .description("hede hödö")
+                .expectedQualification("Analytic capabilites hede hödö")
+                .numberOfToHire(2)
+                .lastApplicationDate(LocalDate.of(2022, 2, 22))
+                .applicants(applicantList2)
+                .isArchived(true)
+                .location("İstanbul-Hybrid")
+                .benefits("Multinet")
+                .creationDate(LocalDate.of(2022, 2, 1))
+                .build());
+
+        Job job6 = jobService.createJob(JobCreateOrUpdateDto.builder()
+                .name("Vue Front End Developer6")
+                .summary("We searching Vue Front End Developer6")
+                .description("hede hödö")
+                .expectedQualification("Analytic capabilites hede hödö")
+                .numberOfToHire(2)
+                .lastApplicationDate(LocalDate.of(2022, 2, 22))
+                .applicants(applicantList2)
+                .isArchived(true)
+                .location("İstanbul-Hybrid")
+                .benefits("Multinet")
+                .creationDate(LocalDate.of(2022, 2, 1))
+                .build());
+
+        Job job7 = jobService.createJob(JobCreateOrUpdateDto.builder()
+                .name("Vue Front End Developer7")
+                .summary("We searching Vue Front End Developer7")
+                .description("hede hödö")
+                .expectedQualification("Analytic capabilites hede hödö")
+                .numberOfToHire(2)
+                .lastApplicationDate(LocalDate.of(2022, 2, 22))
+                .applicants(applicantList2)
+                .isArchived(true)
+                .location("İstanbul-Hybrid")
+                .benefits("Multinet")
+                .creationDate(LocalDate.of(2022, 2, 1))
+                .build());
+
+        Job job8 = jobService.createJob(JobCreateOrUpdateDto.builder()
+                .name("Vue Front End Developer8")
+                .summary("We searching Vue Front End Developer8")
+                .description("hede hödö")
+                .expectedQualification("Analytic capabilites hede hödö")
+                .numberOfToHire(2)
+                .lastApplicationDate(LocalDate.of(2022, 2, 22))
+                .applicants(applicantList2)
+                .isArchived(true)
+                .location("İstanbul-Hybrid")
+                .benefits("Multinet")
+                .creationDate(LocalDate.of(2022, 2, 1))
+                .build());
+
+        Job job9 = jobService.createJob(JobCreateOrUpdateDto.builder()
+                .name("Vue Front End Developer9")
+                .summary("We searching Vue Front End Developer9")
                 .description("hede hödö")
                 .expectedQualification("Analytic capabilites hede hödö")
                 .numberOfToHire(2)

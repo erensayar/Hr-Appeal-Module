@@ -1,12 +1,17 @@
 import '../styles/JobListElement.scss'
+import { useDispatch } from 'react-redux'
+import { setJobId } from '../redux/reducer/JobIdReducer'
+import JobDetail from './JobDetail'
 import React from 'react'
 
 const JobListElemet = (props) => {
 
     const { job } = props;
+    const dispatch = useDispatch();
 
-    const openJobDetail = (key) => {
-        console.log(key)
+    const openJobDetail = (jobId) => {
+        //JobDetail(jobId);
+        dispatch(setJobId(jobId))
     }
 
     return (

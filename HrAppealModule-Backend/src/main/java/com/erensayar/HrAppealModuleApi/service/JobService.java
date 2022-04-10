@@ -25,7 +25,7 @@ public interface JobService {
 
     // Public methods
 
-    JobPublicDto getJobDtoForPublicById(Integer id);
+    JobPublicDto getJobPublicDtoById(Integer id);
 
-    List<JobPublicDto> getJobsDtoForPublic();
+    List<JobPublicDto> getJobPublicDtoList();
 }

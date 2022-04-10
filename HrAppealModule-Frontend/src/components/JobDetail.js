@@ -1,8 +1,16 @@
 import '../styles/JobDetailCard.scss'
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
-const JobDetail = () => {
+const JobDetail = (state) => {
+
+  const [jobId, setJobId] = useState([]);
+  useEffect(() => {
+    setJobId(state.jobId);
+    console.log(jobId);
+  });
+
+
   return (
     <div className='job-detail-card'>
       <div className='job-detail-container'>

@@ -19,12 +19,12 @@ public class JobController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getJobsDtoForPublic() {
-        return new ResponseEntity<>(jobService.getJobsDtoForPublic(), HttpStatus.OK);
+        return new ResponseEntity<>(jobService.getJobPublicDtoList(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getJobDtoForPublicById(@PathVariable("id") Integer id) {
-        return new ResponseEntity<>(jobService.getJobDtoForPublicById(id), HttpStatus.OK);
+        return new ResponseEntity<>(jobService.getJobPublicDtoById(id), HttpStatus.OK);
     }
 
 }

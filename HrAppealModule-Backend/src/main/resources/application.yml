@@ -1,13 +1,11 @@
 spring:
-  # ACTIVE PROFILE
   profiles:
     active: dev
-  # COMMON PROPERTIES - For Each Profile
   main:
     allow-circular-references: true # I have nested services so I need setter injection. Circular References Prohibited by Default in spring boot 2.6 so i need this config.
   servlet:
     multipart:
-      max-file-size: 3MB
+      max-file-size: 2MB
   mail:
     default-encoding: UTF-8
     protocol: smtp
