@@ -1,14 +1,27 @@
 import '../styles/JobDetailCard.scss'
+import { useSelector } from 'react-redux'
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { getJobById } from '../api/Api'
 
-const JobDetail = (state) => {
+const JobDetail = () => {
 
-  const [jobId, setJobId] = useState([]);
-  useEffect(() => {
-    setJobId(state.jobId);
-    console.log(jobId);
-  });
+  const jobId = useSelector((state) => state.jobId.jobId)
+  const [job, setJob] = useState([]);
+
+  useEffect(() => { callApiGetJobById(jobId); }, [jobId]);
+  
+  const callApiGetJobById = async (jobId) => {
+    try {
+      console.log(jobId);
+      const response = await getJobById(jobId);
+      setJob(response.data);
+      console.log(job);
+    } 
+    catch (error) {
+      console.log(error);
+    }
+  }
 
 
   return (

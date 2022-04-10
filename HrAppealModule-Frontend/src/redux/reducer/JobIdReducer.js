@@ -8,9 +8,6 @@ export const jobIdReducer = createSlice({
     name: 'jobIdReducer',
     initialState,
     reducers: {
-        getJobId: (state) => {
-            return state.jobId;
-        },
         setJobId: (state, action) => {
             state.jobId = ""
             state.jobId += action.payload

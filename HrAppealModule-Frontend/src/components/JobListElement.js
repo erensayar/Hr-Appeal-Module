@@ -1,22 +1,16 @@
 import '../styles/JobListElement.scss'
 import { useDispatch } from 'react-redux'
 import { setJobId } from '../redux/reducer/JobIdReducer'
-import JobDetail from './JobDetail'
 import React from 'react'
 
 const JobListElemet = (props) => {
 
     const { job } = props;
     const dispatch = useDispatch();
-
-    const openJobDetail = (jobId) => {
-        //JobDetail(jobId);
-        dispatch(setJobId(jobId))
-    }
-
+    
     return (
         <div className='job-list-element'>
-            <div className='job-list-element-container row' onClick={() => openJobDetail(job.id)}>
+            <div className='job-list-element-container row' onClick={() => dispatch(setJobId(job.id))}>
                 <div className='job-name-and-sum col-9'>
                     <h3>{job.name}</h3>
                     <p>{job.summary}</p>

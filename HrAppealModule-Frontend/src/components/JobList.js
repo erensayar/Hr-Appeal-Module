@@ -1,19 +1,19 @@
 import '../styles/JobList.scss'
 import React, { useState, useEffect } from 'react';
-import JobListElemet from './JobListElemet'
+import JobListElemet from './JobListElement'
 import { getJobs } from '../api/Api'
 
 const JobList = () => {
 
   const [jobs, setJobs] = useState([]);
 
-  useEffect(() => { callApi(); }, []);
-
-  const callApi = async () => {
+  useEffect(() => { callApiGetJobs(); }, []);
+  const callApiGetJobs = async () => {
     try {
       const response = await getJobs();
       setJobs(response.data);
-    } catch (error) {
+    } 
+    catch (error) {
       console.log(error);
     }
   }

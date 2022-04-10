@@ -1,12 +1,24 @@
 import React from 'react'
-import JobListAndDetail from '../components/JobListAndDetail'
+import '../styles/ListAndDetail.scss'
+import JobList from '../components/JobList'
+import JobDetail from '../components/JobDetail'
 
 const JobsPage = () => {
 
     return (
-        <div>
-            <JobListAndDetail></JobListAndDetail>
+        <div className='list-and-detail'>
+        <div className='row'>
+  
+          <div className='col'>
+            <JobList></JobList>
+          </div>
+  
+          <div className='col'>
+            <JobDetail></JobDetail>
+          </div>
+  
         </div>
+      </div>
     )
 
 }
