@@ -6,13 +6,13 @@ import { getJobById } from '../api/Api'
 
 const JobDetail = () => {
 
-  const [jobId, setJobId] = useState(1);
+  const jobId = useSelector((state) => state.jobId.jobId);
   const [job, setJob] = useState({});
   
-  //const triggerForJobDetail = () => {
-  //  useSelector((state) => state.jobId.jobId);
-  //}
-  
+  useEffect(() => {
+    callApiGetJobById(jobId); 
+  },[jobId]);
+
   const callApiGetJobById = async (jobId) => {
     try {
       const response = await getJobById(jobId);
@@ -27,21 +27,21 @@ const JobDetail = () => {
   return (
     <div className='job-detail-card'>
       <div className='job-detail-container'>
-
+      
         <h2 className='job-title'>Java Software Engineer</h2>
         <div className='job-informations'>
           <h4>Description</h4>
-          <p>We searching software engineer to develop mobile app back end module with spring boot, hibernate, maven We searching software engineer to develop mobile app back end module with spring boot, hibernate, mavenWe searching software engineer to develop mobile app back end module with spring boot, hibernate, maven We searching software engineer to We searching software engineer to develop mobile app back end module with spring boot, hibernate, maven We searching software engineer to develop mobile app back end module with spring boot, hibernate, mavenWe searching software engineer to develop mobile app back end module with spring boot, hibernate, maven We searching software engineer to develop mobile app back end module with spring boot, hibernate, mavendevelop mobile app back end module with spring boot, hibernate, maven</p>
+          <p>{job.description}</p>
           <h4>Expected Qualifications</h4>
-          <p>We searching software engineer to develop mobile app back end module with spring boot, hibernate, maven</p>
+          <p>{job.expectedQualification}</p>
           <h4>Creation Date</h4>
-          <p>2022-02-01</p>
+          <p>{job.creationDate}</p>
           <h4>Last Application Date</h4>
-          <p>2022-02-01</p>
+          <p>{job.lastApplicationDate}</p>
           <h4>Benefits</h4>
-          <p>Multinet</p>
+          <p>{job.benefits}</p>
           <h4>Location</h4>
-          <p>Ankara-Office</p>
+          <p>{job.location}</p>
         </div>
 
         <Link className='btn btn-success' to="/apply">Apply</Link>

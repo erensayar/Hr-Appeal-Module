@@ -1,8 +1,13 @@
 import '../styles/ApplicationCard.scss'
+import { useSelector } from 'react-redux'
 import { Link } from "react-router-dom";
 import React from 'react'
 
 const ApplicationCard = () => {
+
+  const jobId = useSelector((state) => state.jobId.jobId);
+
+
   return (
     <div className='application'>
 

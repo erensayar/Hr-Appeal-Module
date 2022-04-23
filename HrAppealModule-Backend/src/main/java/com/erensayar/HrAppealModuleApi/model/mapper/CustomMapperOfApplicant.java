@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class CustomMapperOfApplicant { // TODO: Mapstruct icinde burayi gerceklestirebilir miyim?
+public class CustomMapperOfApplicant {
 
   private final FileAttachmentService fileAttachmentService;
   private final JobService jobService;

@@ -6,12 +6,11 @@ import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.service.ApplicantService;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomMapperOfJob { // TODO: Mapstruct icinde burayi gerceklestirebilir miyim?
+public class CustomMapperOfJob {
 
   // INJECTIONS
   //<==============================================================================================>

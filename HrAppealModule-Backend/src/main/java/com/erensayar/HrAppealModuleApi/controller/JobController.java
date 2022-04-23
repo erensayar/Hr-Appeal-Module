@@ -23,7 +23,7 @@ public class JobController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getJobDtoForPublicById(@PathVariable("id") Integer id) {
+    public ResponseEntity<?> getJobDtoByIdForPublic(@PathVariable("id") Integer id) {
         return new ResponseEntity<>(jobService.getJobPublicDtoById(id), HttpStatus.OK);
     }
 

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    jobId: ""
+    jobId: 1
 }
 
 export const jobIdReducer = createSlice({
@@ -9,11 +9,11 @@ export const jobIdReducer = createSlice({
     initialState,
     reducers: {
         setJobId: (state, action) => {
-            state.jobId = ""
+            state.jobId = 0
             state.jobId += action.payload
         }
     },
 })
 
-export const { getJobId, setJobId } = jobIdReducer.actions
+export const { setJobId } = jobIdReducer.actions
 export default jobIdReducer.reducer
