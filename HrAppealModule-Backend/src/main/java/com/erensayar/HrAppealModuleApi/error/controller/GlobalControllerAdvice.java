@@ -75,7 +75,7 @@ public class GlobalControllerAdvice {
         responseHeaders.add(CONTENT_TYPE, CONTENT_TYPE_VALUE);
 
         ErrorResponse responseBody = ErrorResponse.builder()
-                .errorType(e.getClass().getName())
+                .errorType(e.getClass().getSimpleName())
                 .errorCode(errorCode)
                 .errorMessage(errorMessage)
                 .build();

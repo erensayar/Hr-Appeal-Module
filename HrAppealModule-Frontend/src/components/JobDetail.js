@@ -6,17 +6,17 @@ import { getJobById } from '../api/Api'
 
 const JobDetail = () => {
 
-  const jobId = useSelector((state) => state.jobId.jobId)
-  const [job, setJob] = useState([]);
-
-  useEffect(() => { callApiGetJobById(jobId); }, [jobId]);
+  const [jobId, setJobId] = useState(1);
+  const [job, setJob] = useState({});
+  
+  //const triggerForJobDetail = () => {
+  //  useSelector((state) => state.jobId.jobId);
+  //}
   
   const callApiGetJobById = async (jobId) => {
     try {
-      console.log(jobId);
       const response = await getJobById(jobId);
       setJob(response.data);
-      console.log(job);
     } 
     catch (error) {
       console.log(error);
@@ -29,7 +29,6 @@ const JobDetail = () => {
       <div className='job-detail-container'>
 
         <h2 className='job-title'>Java Software Engineer</h2>
-
         <div className='job-informations'>
           <h4>Description</h4>
           <p>We searching software engineer to develop mobile app back end module with spring boot, hibernate, maven We searching software engineer to develop mobile app back end module with spring boot, hibernate, mavenWe searching software engineer to develop mobile app back end module with spring boot, hibernate, maven We searching software engineer to We searching software engineer to develop mobile app back end module with spring boot, hibernate, maven We searching software engineer to develop mobile app back end module with spring boot, hibernate, mavenWe searching software engineer to develop mobile app back end module with spring boot, hibernate, maven We searching software engineer to develop mobile app back end module with spring boot, hibernate, mavendevelop mobile app back end module with spring boot, hibernate, maven</p>

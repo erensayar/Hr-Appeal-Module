@@ -3,8 +3,8 @@ package com.erensayar.HrAppealModuleApi.error.exception;
 // Default Errors. They can be override.
 public final class ExceptionConstants {
 
-    static final String EXCEPTION_CODE = "0000";
-    static final String EXCEPTION_MESSAGE = "Error!";
+    static final String ERROR_CODE = "0000";
+    static final String ERROR_MESSAGE = "Error!";
 
     static final String BAD_REQUEST_ERROR_CODE                = "0001";
     static final String BAD_REQUEST_ERROR_MESSAGE             = "Bad Request";

@@ -16,4 +16,8 @@ public class OkWithMessage extends BaseException {
         super(OK_CODE, errorMessage);
     }
 
+    public OkWithMessage(final String errCode, final String errorMessage) {
+      super(errCode, errorMessage);
+    }
+
 }
