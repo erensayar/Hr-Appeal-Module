@@ -2,8 +2,8 @@ package com.erensayar.HrAppealModuleApi.service.impl;
 
 import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
-import com.erensayar.HrAppealModuleApi.model.dto.JobCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.JobPublicDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.JobCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.response_dto.GetJobPublicDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.model.mapper.CustomMapperOfJob;
@@ -71,12 +71,12 @@ public class JobServiceImpl implements JobService {
   }
 
   @Override
-  public JobPublicDto getJobPublicDtoById(Integer id) {
+  public GetJobPublicDto getJobPublicDtoById(Integer id) {
     return mapperOfJob.toJobPublicDto(this.getJobById(id));
   }
 
   @Override
-  public List<JobPublicDto> getJobPublicDtoList() {
+  public List<GetJobPublicDto> getJobPublicDtoList() {
     return mapperOfJob.toJobPublicDtoList(this.getJobs());
   }
 

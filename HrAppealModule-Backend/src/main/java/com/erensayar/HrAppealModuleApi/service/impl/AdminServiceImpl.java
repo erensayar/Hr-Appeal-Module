@@ -2,7 +2,7 @@ package com.erensayar.HrAppealModuleApi.service.impl;
 
 import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
-import com.erensayar.HrAppealModuleApi.model.dto.AdminCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.AdminCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Admin;
 import com.erensayar.HrAppealModuleApi.model.mapper.MapperOfAdmin;
 import com.erensayar.HrAppealModuleApi.repo.AdminRepo;

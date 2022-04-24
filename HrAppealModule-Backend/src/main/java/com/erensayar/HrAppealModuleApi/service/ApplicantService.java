@@ -1,6 +1,6 @@
 package com.erensayar.HrAppealModuleApi.service;
 
-import com.erensayar.HrAppealModuleApi.model.dto.ApplicantCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 
 import java.util.List;

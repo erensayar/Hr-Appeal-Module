@@ -1,9 +1,14 @@
 import React from 'react'
+import ApplicationCard from '../components/ApplyCard'
 
-const ApplyPage = () => {
+const ApplicationPage = () => {
+  
   return (
-    <div>ApplyPage</div>
+    <div className='application-page'>
+      <ApplicationCard />
+    </div>
   )
+  
 }
 
-export default ApplyPage
+export default ApplicationPage

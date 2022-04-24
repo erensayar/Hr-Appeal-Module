@@ -2,20 +2,20 @@ import '../styles/JobDetailCard.scss'
 import { useSelector } from 'react-redux'
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { getJobById } from '../api/Api'
+import { getJobs } from '../api/Api'
 
 const JobDetail = () => {
 
   const jobId = useSelector((state) => state.jobId.jobId);
   const [job, setJob] = useState({});
-  
+
   useEffect(() => {
-    callApiGetJobById(jobId); 
+    callApiForGetJobById(jobId); 
   },[jobId]);
 
-  const callApiGetJobById = async (jobId) => {
+  const callApiForGetJobById = async (jobId) => {
     try {
-      const response = await getJobById(jobId);
+      const response = await getJobs(jobId);
       setJob(response.data);
     } 
     catch (error) {

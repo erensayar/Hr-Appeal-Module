@@ -1,8 +1,8 @@
 package com.erensayar.HrAppealModuleApi.component;
 
-import com.erensayar.HrAppealModuleApi.model.dto.AdminCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.ApplicantCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.JobCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.AdminCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.JobCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Admin;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;

@@ -1,10 +1,11 @@
 import '../styles/App.scss';
 import Navbar from "../components/Navbar";
 import JobsPage from "../pages/JobsPage";
-import ApplicationPage from '../pages/ApplicationPage';
+import ApplyPage from '../pages/ApplyPage';
 import ThanksPage from '../pages/ThanksPage';
 import LoginPage from "../pages/LoginPage";
 import { Routes, Route, Navigate } from "react-router-dom";
+import ApplyErrorPage from '../pages/ApplyErrorPage';
 
 function App() {
 
@@ -16,7 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<JobsPage />} />
         <Route path="/jobs" element={<JobsPage />} />
-        <Route path="/apply" element={<ApplicationPage />} />
+        <Route path="/Apply" element={<ApplyPage />} />
+        <Route path="/Apply/error" element={<ApplyErrorPage />} />
         <Route path="/thanks" element={<ThanksPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />

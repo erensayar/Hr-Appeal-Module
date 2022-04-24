@@ -2,7 +2,7 @@ package com.erensayar.HrAppealModuleApi.service.impl;
 
 import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
-import com.erensayar.HrAppealModuleApi.model.dto.ApplicantCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
@@ -55,15 +55,15 @@ public class ApplicantServiceImpl implements ApplicantService {
   @Override
   public List<Applicant> getApplicants() {
     List<Applicant> applicants = applicantRepo.findAll();
-      if (applicants.isEmpty())
-          throw new NoContentException();
+    if (applicants.isEmpty())
+        throw new NoContentException();
     return applicants;
   }
 
   @Override
   public Applicant updateApplicant(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
-      if (applicantCreateOrUpdateDto.getId() == null)
-          throw new BadRequestException("Id can not be empty");
+    if (applicantCreateOrUpdateDto.getId() == null)
+      throw new BadRequestException("Id can not be empty");
     return applicantRepo.save(
         customMapperOfApplicant.applicantCreateOrUpdateDtoToEntity(applicantCreateOrUpdateDto));
   }

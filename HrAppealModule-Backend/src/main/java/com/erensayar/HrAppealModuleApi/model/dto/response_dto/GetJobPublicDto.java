@@ -1,4 +1,4 @@
-package com.erensayar.HrAppealModuleApi.model.dto;
+package com.erensayar.HrAppealModuleApi.model.dto.response_dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @Builder
-public class JobPublicDto {
+public class GetJobPublicDto {
     private Integer id;
     private String name;
     private String summary;

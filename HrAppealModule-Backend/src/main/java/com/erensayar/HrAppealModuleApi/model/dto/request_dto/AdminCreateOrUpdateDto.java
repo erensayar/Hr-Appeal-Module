@@ -1,4 +1,4 @@
-package com.erensayar.HrAppealModuleApi.model.dto;
+package com.erensayar.HrAppealModuleApi.model.dto.request_dto;
 
 import com.erensayar.HrAppealModuleApi.security.UserRole;
 import lombok.Builder;

@@ -1,9 +1,12 @@
 import axios from "axios";
 
-export const getJobs = () => {
-  return axios.get(`/api/v1/jobs`);
+export const getJobs = (id) => {
+  const path = id
+    ? `/api/v1/jobs/${id}`
+    : `/api/v1/jobs`
+  return axios.get(path);
 }
 
-export const getJobById = (id) => {
-  return axios.get(`/api/v1/jobs/${id}`);
+export const sendApplicant = (applicant) => {
+  return axios.post(`/api/v1/applicants`, applicant);
 }
