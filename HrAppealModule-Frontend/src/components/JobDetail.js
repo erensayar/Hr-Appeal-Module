@@ -6,7 +6,7 @@ import { getJobs } from '../api/Api'
 
 const JobDetail = () => {
 
-  const jobId = useSelector((state) => state.jobId.jobId);
+  const jobId = useSelector((state) => state.job.jobId);
   const [job, setJob] = useState({});
 
   useEffect(() => {

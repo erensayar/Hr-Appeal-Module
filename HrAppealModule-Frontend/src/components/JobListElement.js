@@ -1,6 +1,6 @@
 import '../styles/JobListElement.scss'
 import { useDispatch } from 'react-redux'
-import { setJobId } from '../redux/reducer/JobIdReducer'
+import { setJobLocation, setJobId, setJobName } from '../redux/reducer/JobReducer'
 import React from 'react'
 
 const JobListElemet = (props) => {
@@ -8,9 +8,15 @@ const JobListElemet = (props) => {
     const { job } = props;
     const dispatch = useDispatch();
     
+    const dispatchJob = () => {
+        dispatch(setJobId(job.id))
+        dispatch(setJobName(job.name))
+        dispatch(setJobLocation(job.location))
+    }
+
     return (
         <div className='job-list-element'>
-            <div className='job-list-element-container row' onClick={() => dispatch(setJobId(job.id))}>
+            <div className='job-list-element-container row' onClick={dispatchJob}>
                 <div className='job-name-and-sum col-9'>
                     <h3>{job.name}</h3>
                     <p>{job.summary}</p>

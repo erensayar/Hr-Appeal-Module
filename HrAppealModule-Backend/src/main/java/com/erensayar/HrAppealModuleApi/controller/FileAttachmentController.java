@@ -1,6 +1,5 @@
 package com.erensayar.HrAppealModuleApi.controller;
 
-import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.service.FileAttachmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -22,10 +21,10 @@ public class FileAttachmentController {
   @PostMapping(value = "/upload",
       consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<FileAttachment>  saveFile(
+  public ResponseEntity<String>  saveFile(
       @RequestPart("file") MultipartFile file,
       @RequestHeader("applicant-id") String applicantId) {
-    return ResponseEntity.ok(fileAttachmentService.saveFile(file, applicantId));
+    return ResponseEntity.ok(fileAttachmentService.saveFile(file, applicantId).getId());
   }
 
 }

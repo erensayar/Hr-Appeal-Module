@@ -10,3 +10,7 @@ export const getJobs = (id) => {
 export const sendApplicant = (applicant) => {
   return axios.post(`/api/v1/applicants`, applicant);
 }
+
+export const sendFile = (file) => {
+  return axios.post(`/api/v1/files/upload`, file);
+}

@@ -43,8 +43,7 @@ public class ApplicantServiceImpl implements ApplicantService {
     applicantCreateOrUpdateDto.setId("APL" + UUID.randomUUID().toString().replaceAll("-", ""));
     applicantCreateOrUpdateDto.setApplicantStatus(ApplicantStatus.TO_BE_EVALUATED);
     applicantCreateOrUpdateDto.setApplicationDate(LocalDate.now());
-    return applicantRepo.save(
-        customMapperOfApplicant.applicantCreateOrUpdateDtoToEntity(applicantCreateOrUpdateDto));
+    return applicantRepo.save(customMapperOfApplicant.applicantCreateOrUpdateDtoToEntity(applicantCreateOrUpdateDto));
   }
 
   @Override
@@ -64,8 +63,7 @@ public class ApplicantServiceImpl implements ApplicantService {
   public Applicant updateApplicant(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
     if (applicantCreateOrUpdateDto.getId() == null)
       throw new BadRequestException("Id can not be empty");
-    return applicantRepo.save(
-        customMapperOfApplicant.applicantCreateOrUpdateDtoToEntity(applicantCreateOrUpdateDto));
+    return applicantRepo.save(customMapperOfApplicant.applicantCreateOrUpdateDtoToEntity(applicantCreateOrUpdateDto));
   }
 
   @Override
