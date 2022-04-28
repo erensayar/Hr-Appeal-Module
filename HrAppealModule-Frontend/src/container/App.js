@@ -17,8 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<JobsPage />} />
         <Route path="/jobs" element={<JobsPage />} />
-        <Route path="/Apply" element={<ApplyPage />} />
-        <Route path="/Apply/error" element={<ApplyErrorPage />} />
+        <Route path="/apply" element={<ApplyPage />} />
+        <Route path="/apply/error" element={<ApplyErrorPage />} />
         <Route path="/thanks" element={<ThanksPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
