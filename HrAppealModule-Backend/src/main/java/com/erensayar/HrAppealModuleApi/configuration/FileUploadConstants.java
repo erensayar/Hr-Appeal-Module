@@ -11,6 +11,6 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "file-upload")
 public class FileUploadConstants {
 
-    private String storagePath;
+  private String storagePath;
 
 }

@@ -5,19 +5,19 @@ import static com.erensayar.HrAppealModuleApi.error.exception.ExceptionConstants
 
 public class OkWithMessage extends BaseException {
 
-    private static final String ERROR_CODE = OK_CODE;
-    private static final String ERROR_MESSAGE = OK_MESSAGE;
+  private static final String ERROR_CODE = OK_CODE;
+  private static final String ERROR_MESSAGE = OK_MESSAGE;
 
-    public OkWithMessage() {
-        super(ERROR_CODE, ERROR_MESSAGE);
-    }
+  public OkWithMessage() {
+    super(ERROR_CODE, ERROR_MESSAGE);
+  }
 
-    public OkWithMessage(final String errorMessage) {
-        super(OK_CODE, errorMessage);
-    }
+  public OkWithMessage(final String errorMessage) {
+    super(OK_CODE, errorMessage);
+  }
 
-    public OkWithMessage(final String errCode, final String errorMessage) {
-      super(errCode, errorMessage);
-    }
+  public OkWithMessage(final String errCode, final String errorMessage) {
+    super(errCode, errorMessage);
+  }
 
 }

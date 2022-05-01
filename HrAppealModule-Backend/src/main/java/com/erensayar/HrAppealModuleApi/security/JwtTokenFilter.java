@@ -22,9 +22,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
   private final JwtTokenManager jwtTokenManager;
 
   @Override
-  protected void doFilterInternal(HttpServletRequest httpServletRequest,
-                                  HttpServletResponse httpServletResponse,
-                                  FilterChain filterChain) throws ServletException, IOException {
+  protected void doFilterInternal(
+      HttpServletRequest httpServletRequest,
+      HttpServletResponse httpServletResponse,
+      FilterChain filterChain) throws ServletException, IOException {
 
     final String authHeader = httpServletRequest.getHeader("Authorization");
 

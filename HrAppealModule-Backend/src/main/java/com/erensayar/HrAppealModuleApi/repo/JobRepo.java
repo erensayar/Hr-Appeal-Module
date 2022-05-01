@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface JobRepo extends JpaRepository<Job, Integer> {
 
-    // Doesnt work :/
-    // @Query(value = "SELECT JOB_ID FROM RLT_JOB_APPLICANT WHERE APPLICANT_ID='?'", nativeQuery = true)
-    // List<Integer> findAllByApplicantId(String applicantId);
+  // Doesnt work :/
+  // @Query(value = "SELECT JOB_ID FROM RLT_JOB_APPLICANT WHERE APPLICANT_ID='?'", nativeQuery = true)
+  // List<Integer> findAllByApplicantId(String applicantId);
 
 }

@@ -6,39 +6,48 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/api/v1/applicants")
 @RequiredArgsConstructor
 @RestController
 public class ApplicantController {
 
-    private final ApplicantService applicantService;
+  private final ApplicantService applicantService;
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getApplicantById(@PathVariable("id") String id) {
-        return new ResponseEntity<>(applicantService.getApplicantById(id), HttpStatus.OK);
-    }
+  @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> getApplicantById(@PathVariable("id") String id) {
+    return new ResponseEntity<>(applicantService.getApplicantById(id), HttpStatus.OK);
+  }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getApplicants() {
-        return new ResponseEntity<>(applicantService.getApplicants(), HttpStatus.OK);
-    }
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> getApplicants() {
+    return new ResponseEntity<>(applicantService.getApplicants(), HttpStatus.OK);
+  }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createApplicant(@RequestBody ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
-        return new ResponseEntity<>(applicantService.createApplicant(applicantCreateOrUpdateDto), HttpStatus.CREATED);
-    }
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> createApplicant(
+      @RequestBody ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
+    return new ResponseEntity<>(applicantService.createApplicant(applicantCreateOrUpdateDto), HttpStatus.CREATED);
+  }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateApplicant(@RequestBody ApplicantCreateOrUpdateDto updatedApplicant) {
-        return new ResponseEntity<>(applicantService.updateApplicant(updatedApplicant), HttpStatus.OK);
-    }
+  @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updateApplicant(
+      @RequestBody ApplicantCreateOrUpdateDto updatedApplicant) {
+    return new ResponseEntity<>(applicantService.updateApplicant(updatedApplicant), HttpStatus.OK);
+  }
 
-    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> deleteApplicantById(@PathVariable("id") String id) {
-        applicantService.deleteApplicantById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+  @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> deleteApplicantById(@PathVariable("id") String id) {
+    applicantService.deleteApplicantById(id);
+    return new ResponseEntity<>(HttpStatus.OK);
+  }
 
 }

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ApplicantRepo extends JpaRepository<Applicant, String> {
 
-    //List<Applicant> findAllByJobs(Job job);
+  //List<Applicant> findAllByJobs(Job job);
 
 }

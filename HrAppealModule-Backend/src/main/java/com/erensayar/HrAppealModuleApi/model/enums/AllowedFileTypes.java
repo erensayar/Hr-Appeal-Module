@@ -6,7 +6,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum AllowedFileTypes {
-    pdf(0);
+  pdf(0);
 
-    private final int id;
+  private final int id;
+
 }

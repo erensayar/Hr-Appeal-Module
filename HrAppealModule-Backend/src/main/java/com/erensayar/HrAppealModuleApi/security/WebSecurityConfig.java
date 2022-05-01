@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -40,16 +41,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   // CONFIG
   //<==============================================================================================>
   @Override
+  @Profile("prod")
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable();
+
     http.authorizeRequests()
         .antMatchers("/auth/**").permitAll()
         .antMatchers(HttpMethod.POST, "/api/v1/applicants").permitAll()
         .antMatchers(HttpMethod.POST, "/api/v1/files/upload").permitAll()
         .antMatchers("/api/v1/jobs/**").permitAll()
-        .antMatchers("/v3/api-docs").permitAll() // For development
-        .antMatchers("/swagger-ui.html**").permitAll() // For development
-        .antMatchers("/h2-console/**/**").permitAll(); // For development
+        .antMatchers("/api-docs/**").permitAll() // For development
+        .antMatchers("/swagger-ui/**").permitAll() // For development
+        .antMatchers("/h2-console/**/**").permitAll() // For development
+        .anyRequest().authenticated();
     http.headers().frameOptions().disable(); // For development (H2 DB can be Visible From Browser)
     http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);

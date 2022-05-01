@@ -1,12 +1,16 @@
 package com.erensayar.HrAppealModuleApi.error.model;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Builder
 public class ErrorResponse {
-    private String errorType;
-    private String errorCode;
-    private String errorMessage;
+
+  private String errorType;
+  private String errorCode;
+  private String errorMessage;
+
 }

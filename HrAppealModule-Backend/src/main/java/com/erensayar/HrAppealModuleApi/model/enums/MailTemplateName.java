@@ -6,11 +6,11 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum MailTemplateName {
-    ThanksForYourInterest(0),
-    InviteToInterview(1),
-    NegativeResponse(2);
+  ThanksForYourInterest(0),
+  InviteToInterview(1),
+  NegativeResponse(2);
 
-    private final int templateNo;
+  private final int templateNo;
 
 
 }

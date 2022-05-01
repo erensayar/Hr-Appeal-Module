@@ -17,14 +17,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class JobServiceImpl implements JobService {
 
-  // INJECTIONS
-  //<==============================================================================================>
   private final JobRepo jobRepo;
   private final MapperOfJob mapperOfJob;
 
 
-  // PUBLIC METHODS
-  //<==============================================================================================>
   @Override
   public Job createJob(JobCreateOrUpdateDto jobCreateOrUpdateDto) {
     jobCreateOrUpdateDto.setId(null);

@@ -4,30 +4,21 @@ import com.erensayar.HrAppealModuleApi.model.dto.request_dto.JobCreateOrUpdateDt
 import com.erensayar.HrAppealModuleApi.model.dto.response_dto.GetJobDtoForPublic;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
-import com.erensayar.HrAppealModuleApi.service.ApplicantService;
+import com.erensayar.HrAppealModuleApi.repo.ApplicantRepo;
+import com.erensayar.HrAppealModuleApi.service.UtilClass;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class MapperOfJob {
 
+  private final ApplicantRepo applicantRepo;
+  private final UtilClass utilClass;
 
-  // INJECTIONS
-  //<==============================================================================================>
-  private ApplicantService applicantService;
-
-  @Autowired
-  public void setApplicantService(
-      ApplicantService applicantService) {
-    this.applicantService = applicantService;
-  }
-
-  //<==============================================================================================>
   public Job dtoToEntity(JobCreateOrUpdateDto jobCreateOrUpdateDto) {
     return Job.builder()
         .id(jobCreateOrUpdateDto.getId())
@@ -51,7 +42,7 @@ public class MapperOfJob {
     List<Applicant> applicants = new ArrayList<>();
     if (applicantIdList != null) {
       for (String applicantId : applicantIdList) {
-        applicants.add(applicantService.getApplicantById(applicantId));
+        applicants.add(utilClass.optEmptyControl(applicantRepo.findById(applicantId)));
       }
       return applicants;
     } else {

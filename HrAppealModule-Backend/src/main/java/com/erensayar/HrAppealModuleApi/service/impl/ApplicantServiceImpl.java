@@ -14,32 +14,17 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class ApplicantServiceImpl implements ApplicantService {
 
-  // INJECTIONS
-  //<================================================================================================================>
   private final ApplicantRepo applicantRepo;
+  private final MapperOfApplicant mapperOfApplicant;
+  private final JobService jobService;
 
-  private MapperOfApplicant mapperOfApplicant;
-  @Autowired
-  public void setMapperOfApplicant(
-      MapperOfApplicant mapperOfApplicant) {
-    this.mapperOfApplicant = mapperOfApplicant;
-  }
 
-  private JobService jobService;
-  @Autowired
-  public void setJobService(JobService jobService) {
-    this.jobService = jobService;
-  }
-
-  // PUBLIC METHODS
-  //<================================================================================================================>
   @Override
   public Applicant createApplicant(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
     applicantCreateOrUpdateDto.setId("APL" + UUID.randomUUID().toString().replaceAll("-", ""));
@@ -56,15 +41,17 @@ public class ApplicantServiceImpl implements ApplicantService {
   @Override
   public List<Applicant> getApplicants() {
     List<Applicant> applicants = applicantRepo.findAll();
-    if (applicants.isEmpty())
+    if (applicants.isEmpty()) {
       throw new NoContentException();
+    }
     return applicants;
   }
 
   @Override
   public Applicant updateApplicant(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
-    if (applicantCreateOrUpdateDto.getId() == null)
+    if (applicantCreateOrUpdateDto.getId() == null) {
       throw new BadRequestException("Id can not be empty");
+    }
     return applicantRepo.save(mapperOfApplicant.dtoToEntity(applicantCreateOrUpdateDto));
   }
 

@@ -29,7 +29,6 @@ public class AdminServiceImpl implements AdminService {
     this.passwordEncoder = passwordEncoder;
   }
 
-  // PUBLIC METHODS
   //<==============================================================================================>
   @Override
   public Admin createAdmin(AdminCreateOrUpdateDto adminCreateOrUpdateDto) {

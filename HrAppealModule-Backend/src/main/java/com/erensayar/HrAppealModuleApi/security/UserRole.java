@@ -7,13 +7,13 @@ import org.springframework.security.core.GrantedAuthority;
 @AllArgsConstructor
 @Getter
 public enum UserRole implements GrantedAuthority {
-    ROLE_ADMIN(0),
-    ROLE_CLIENT(1);
+  ROLE_ADMIN(0),
+  ROLE_CLIENT(1);
 
-    private final Integer id;
+  private final Integer id;
 
-    public String getAuthority() {
-        return name();
-    }
+  public String getAuthority() {
+    return name();
+  }
 
 }
