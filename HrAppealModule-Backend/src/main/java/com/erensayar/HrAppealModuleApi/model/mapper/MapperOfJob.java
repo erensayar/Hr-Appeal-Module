@@ -1,7 +1,7 @@
 package com.erensayar.HrAppealModuleApi.model.mapper;
 
 import com.erensayar.HrAppealModuleApi.model.dto.request_dto.JobCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.response_dto.GetJobDtoForPublic;
+import com.erensayar.HrAppealModuleApi.model.dto.response_dto.JobGetDtoForPublic;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.repo.ApplicantRepo;
@@ -50,8 +50,8 @@ public class MapperOfJob {
     }
   }
 
-  public GetJobDtoForPublic entityToGetJobDto(Job job) {
-    return GetJobDtoForPublic.builder()
+  public JobGetDtoForPublic entityToDto(Job job) {
+    return JobGetDtoForPublic.builder()
         .id(job.getId())
         .name(job.getName())
         .summary(job.getSummary())
@@ -64,18 +64,8 @@ public class MapperOfJob {
         .build();
   }
 
-  public List<GetJobDtoForPublic> entityListToGetJobDtoList(List<Job> jobs) {
-    return jobs.stream().map(job -> GetJobDtoForPublic.builder()
-        .id(job.getId())
-        .name(job.getName())
-        .summary(job.getSummary())
-        .description(job.getDescription())
-        .expectedQualification(job.getExpectedQualification())
-        .creationDate(job.getCreationDate())
-        .lastApplicationDate(job.getLastApplicationDate())
-        .location(job.getLocation())
-        .benefits(job.getBenefits())
-        .build()).collect(Collectors.toList());
+  public List<JobGetDtoForPublic> entityListToDtoList(List<Job> jobs) {
+    return jobs.stream().map(this::entityToDto).collect(Collectors.toList());
   }
 
 }

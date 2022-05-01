@@ -1,7 +1,8 @@
 package com.erensayar.HrAppealModuleApi.model.mapper;
 
-import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.response_dto.ApplicantGetDto;
+import com.erensayar.HrAppealModuleApi.model.dto.response_dto.FileAttachmentGetDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
@@ -11,6 +12,7 @@ import com.erensayar.HrAppealModuleApi.service.UtilClass;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +27,6 @@ public class MapperOfApplicant {
   private final JobRepo jobRepo;
 
   public Applicant dtoToEntity(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
-    FileAttachment fileAttachment = getFileAttachment(applicantCreateOrUpdateDto.getCv());
     return Applicant.builder()
         .id(applicantCreateOrUpdateDto.getId())
         .name(applicantCreateOrUpdateDto.getName())
@@ -40,17 +41,53 @@ public class MapperOfApplicant {
         .twitterLink(applicantCreateOrUpdateDto.getTwitterLink())
         .applicantStatus(applicantCreateOrUpdateDto.getApplicantStatus())
         .applicationDate(applicantCreateOrUpdateDto.getApplicationDate())
-        .cv(fileAttachment)
+        .cv(getFileAttachment(applicantCreateOrUpdateDto.getCv()))
         .personalInfoStoragePermission(applicantCreateOrUpdateDto.getPersonalInfoStoragePermission())
         .isArchived(applicantCreateOrUpdateDto.getIsArchived())
         //.jobs(getJobsFromJobIdList(applicantDto.getJobs())) // Cift yonlu ilişki kurulursa kullanilir
         .build();
   }
 
+/*
+
+  public ApplicantGetDto entityToDto(Applicant applicant) {
+    return ApplicantGetDto.builder()
+        .id(applicant.getId())
+        .name(applicant.getName())
+        .surname(applicant.getSurname())
+        .mail(applicant.getMail())
+        .telephone(applicant.getTelephone())
+        .country(applicant.getCountry())
+        .city(applicant.getCity())
+        .district(applicant.getDistrict())
+        .gitLink(applicant.getGitLink())
+        .linkedInLink(applicant.getLinkedInLink())
+        .twitterLink(applicant.getTwitterLink())
+        .applicantStatus(applicant.getApplicantStatus())
+        .applicationDate(applicant.getApplicationDate())
+        .cv(mapFileAttachmentWithNullCheck(applicant.getCv()))
+        .personalInfoStoragePermission(applicant.getPersonalInfoStoragePermission())
+        .isArchived(applicant.getIsArchived())
+        .build();
+  }
+
+
+  public List<ApplicantGetDto> entityListToDtoList(List<Applicant> applicants) {
+    return applicants.stream().map(this::entityToDto).collect(Collectors.toList());
+  }
+
+  private FileAttachmentGetDto mapFileAttachmentWithNullCheck(FileAttachment fileAttachment) {
+    if (fileAttachment == null) {
+      return null;
+    }
+    return mapperOfFileAttachment.entityToDto(fileAttachment);
+  }
+
+ */
+
   private FileAttachment getFileAttachment(String cvId) {
     if (cvId == null) {
-      log.debug("First you need upload the file and enter the file id. ");
-      throw new BadRequestException("First you need upload the file and enter the file id. ");
+      return null;
     }
     Optional<FileAttachment> optFileAttachment = fileAttachmentRepo.findById(cvId);
     return utilClass.optEmptyControl(optFileAttachment);

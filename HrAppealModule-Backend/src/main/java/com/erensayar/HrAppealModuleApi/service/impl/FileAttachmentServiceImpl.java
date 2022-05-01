@@ -48,7 +48,7 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
     String applicantName = null;
     try {
       applicant = applicantService.getApplicantById(applicantId);
-      applicantName = applicant.getName() + "_" + applicant.getSurname();
+      applicantName = applicant.getName() + "-" + applicant.getSurname();
     } catch (NoContentException e) {
       throw new NotFoundException("Send Valid Applicant Id from header!");
     }
@@ -64,7 +64,7 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
       if (isAllowedFileType(detectedFileType)) {
 
         // Constants
-        String fileName = "CV" + applicantName.replaceAll(" ", "") + "-" + applicantId;
+        String fileName = "CV-" + applicantName.replaceAll(" ", "") + "-" + applicantId;
         String storagePath = fileUploadConstants.getStoragePath() + "/cv/";
         String storagePathPlusFileName = storagePath + fileName + ".pdf";
 
@@ -84,11 +84,9 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
         // Create File & Duplicate Control
         boolean isFileCreated = file.createNewFile();
         if (!isFileCreated) { // Duplicate condition
-          log.debug(
-              "File already exist. Deleted old file. And saved new file. File Name: " + fileName);
+          log.debug("File already exist. Deleted old file. And saved new file. File Name: " + fileName);
           this.deleteFileFromHardDrive(storagePathPlusFileName);
-          attachment.setId(
-              applicant.getCv().getId()); // Written to not save new file. this provide to update
+          attachment.setId(applicant.getCv().getId()); // Written to not save new file. this provide to update
           this.updateFileAttachmentName(attachment); // update file name in db
           // File create try again
           if (!file.createNewFile()) {

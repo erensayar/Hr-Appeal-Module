@@ -1,5 +1,7 @@
 package com.erensayar.HrAppealModuleApi.model.entity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.OneToOne;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -22,4 +24,8 @@ public class FileAttachment {
     private String filePath;
 
     private LocalDateTime createOrUpdateTime;
+
+    //@OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy = "cv")
+    //private Applicant applicant;
+
 }

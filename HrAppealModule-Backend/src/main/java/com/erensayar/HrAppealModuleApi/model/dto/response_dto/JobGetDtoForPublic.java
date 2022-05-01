@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class GetJobDtoForPublic {
+public class JobGetDtoForPublic {
 
   private Integer id;
   private String name;
@@ -23,4 +23,5 @@ public class GetJobDtoForPublic {
   private LocalDate lastApplicationDate;
   private String location;
   private String benefits;
+
 }
