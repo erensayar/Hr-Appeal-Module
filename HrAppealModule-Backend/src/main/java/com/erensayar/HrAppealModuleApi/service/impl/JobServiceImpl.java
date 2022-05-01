@@ -3,16 +3,14 @@ package com.erensayar.HrAppealModuleApi.service.impl;
 import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
 import com.erensayar.HrAppealModuleApi.model.dto.request_dto.JobCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.response_dto.GetJobPublicDto;
+import com.erensayar.HrAppealModuleApi.model.dto.response_dto.GetJobDtoForPublic;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
-import com.erensayar.HrAppealModuleApi.model.mapper.CustomMapperOfJob;
 import com.erensayar.HrAppealModuleApi.model.mapper.MapperOfJob;
 import com.erensayar.HrAppealModuleApi.repo.JobRepo;
 import com.erensayar.HrAppealModuleApi.service.JobService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -24,19 +22,13 @@ public class JobServiceImpl implements JobService {
   private final JobRepo jobRepo;
   private final MapperOfJob mapperOfJob;
 
-  private CustomMapperOfJob customMapperOfJob;
-  @Autowired
-  public void setCustomMapperOfJob(
-      CustomMapperOfJob customMapperOfJob) {
-    this.customMapperOfJob = customMapperOfJob;
-  }
 
   // PUBLIC METHODS
   //<==============================================================================================>
   @Override
   public Job createJob(JobCreateOrUpdateDto jobCreateOrUpdateDto) {
     jobCreateOrUpdateDto.setId(null);
-    return jobRepo.save(customMapperOfJob.jobCreateOrUpdateDtoMapToEntity(jobCreateOrUpdateDto));
+    return jobRepo.save(mapperOfJob.dtoToEntity(jobCreateOrUpdateDto));
   }
 
   @Override
@@ -47,8 +39,8 @@ public class JobServiceImpl implements JobService {
   @Override
   public List<Job> getJobs() {
     List<Job> jobs = jobRepo.findAll();
-      if (jobs.isEmpty())
-          throw new NoContentException();
+    if (jobs.isEmpty())
+      throw new NoContentException();
     return jobs;
   }
 
@@ -59,9 +51,9 @@ public class JobServiceImpl implements JobService {
 
   @Override
   public Job updateJob(JobCreateOrUpdateDto jobCreateOrUpdateDto) {
-      if (jobCreateOrUpdateDto.getId() == null)
-          throw new BadRequestException("Id can not be empty");
-    return jobRepo.save(customMapperOfJob.jobCreateOrUpdateDtoMapToEntity(jobCreateOrUpdateDto));
+    if (jobCreateOrUpdateDto.getId() == null)
+      throw new BadRequestException("Id can not be empty");
+    return jobRepo.save(mapperOfJob.dtoToEntity(jobCreateOrUpdateDto));
   }
 
   @Override
@@ -71,13 +63,13 @@ public class JobServiceImpl implements JobService {
   }
 
   @Override
-  public GetJobPublicDto getJobPublicDtoById(Integer id) {
-    return mapperOfJob.toJobPublicDto(this.getJobById(id));
+  public GetJobDtoForPublic getJobPublicDtoById(Integer id) {
+    return mapperOfJob.entityToGetJobDto(this.getJobById(id));
   }
 
   @Override
-  public List<GetJobPublicDto> getJobPublicDtoList() {
-    return mapperOfJob.toJobPublicDtoList(this.getJobs());
+  public List<GetJobDtoForPublic> getJobPublicDtoList() {
+    return mapperOfJob.entityListToGetJobDtoList(this.getJobs());
   }
 
 }

@@ -19,7 +19,6 @@ import lombok.Setter;
 @Builder
 public class AdminCreateOrUpdateDto {
 
-  List<UserRole> userRoles;
   private Integer id;
   private String name;
   private String username;
@@ -27,4 +26,6 @@ public class AdminCreateOrUpdateDto {
   private String personalMail;
   private String workMail;
   private String password;
+  List<UserRole> userRoles;
+
 }

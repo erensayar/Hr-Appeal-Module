@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class GetJobPublicDto {
+public class GetJobDtoForPublic {
 
   private Integer id;
   private String name;

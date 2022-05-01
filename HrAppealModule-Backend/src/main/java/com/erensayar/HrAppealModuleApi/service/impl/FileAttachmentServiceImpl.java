@@ -41,7 +41,6 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
     private final FileUploadConstants fileUploadConstants;
 
     private ApplicantService applicantService;
-
     @Autowired
     public void setApplicantService(ApplicantService applicantService) {
         this.applicantService = applicantService;

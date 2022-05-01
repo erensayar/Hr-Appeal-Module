@@ -6,7 +6,7 @@ import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUp
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
-import com.erensayar.HrAppealModuleApi.model.mapper.CustomMapperOfApplicant;
+import com.erensayar.HrAppealModuleApi.model.mapper.MapperOfApplicant;
 import com.erensayar.HrAppealModuleApi.repo.ApplicantRepo;
 import com.erensayar.HrAppealModuleApi.service.ApplicantService;
 import com.erensayar.HrAppealModuleApi.service.JobService;
@@ -25,12 +25,14 @@ public class ApplicantServiceImpl implements ApplicantService {
   //<================================================================================================================>
   private final ApplicantRepo applicantRepo;
 
-  private JobService jobService;
-  private CustomMapperOfApplicant customMapperOfApplicant;
+  private MapperOfApplicant mapperOfApplicant;
   @Autowired
-  public void setCustomMapperOfApplicant(CustomMapperOfApplicant customMapperOfApplicant) {
-    this.customMapperOfApplicant = customMapperOfApplicant;
+  public void setMapperOfApplicant(
+      MapperOfApplicant mapperOfApplicant) {
+    this.mapperOfApplicant = mapperOfApplicant;
   }
+
+  private JobService jobService;
   @Autowired
   public void setJobService(JobService jobService) {
     this.jobService = jobService;
@@ -43,7 +45,7 @@ public class ApplicantServiceImpl implements ApplicantService {
     applicantCreateOrUpdateDto.setId("APL" + UUID.randomUUID().toString().replaceAll("-", ""));
     applicantCreateOrUpdateDto.setApplicantStatus(ApplicantStatus.TO_BE_EVALUATED);
     applicantCreateOrUpdateDto.setApplicationDate(LocalDate.now());
-    return applicantRepo.save(customMapperOfApplicant.applicantCreateOrUpdateDtoToEntity(applicantCreateOrUpdateDto));
+    return applicantRepo.save(mapperOfApplicant.dtoToEntity(applicantCreateOrUpdateDto));
   }
 
   @Override
@@ -55,7 +57,7 @@ public class ApplicantServiceImpl implements ApplicantService {
   public List<Applicant> getApplicants() {
     List<Applicant> applicants = applicantRepo.findAll();
     if (applicants.isEmpty())
-        throw new NoContentException();
+      throw new NoContentException();
     return applicants;
   }
 
@@ -63,7 +65,7 @@ public class ApplicantServiceImpl implements ApplicantService {
   public Applicant updateApplicant(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
     if (applicantCreateOrUpdateDto.getId() == null)
       throw new BadRequestException("Id can not be empty");
-    return applicantRepo.save(customMapperOfApplicant.applicantCreateOrUpdateDtoToEntity(applicantCreateOrUpdateDto));
+    return applicantRepo.save(mapperOfApplicant.dtoToEntity(applicantCreateOrUpdateDto));
   }
 
   @Override
