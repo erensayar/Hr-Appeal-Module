@@ -85,7 +85,7 @@ public class MapperOfApplicant {
 
  */
 
-  private FileAttachment getFileAttachment(String cvId) {
+  public FileAttachment getFileAttachment(String cvId) {
     if (cvId == null) {
       return null;
     }

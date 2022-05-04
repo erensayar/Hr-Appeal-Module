@@ -4,16 +4,21 @@ import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
 import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
+import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
 import com.erensayar.HrAppealModuleApi.model.mapper.MapperOfApplicant;
 import com.erensayar.HrAppealModuleApi.repo.ApplicantRepo;
 import com.erensayar.HrAppealModuleApi.service.ApplicantService;
 import com.erensayar.HrAppealModuleApi.service.JobService;
+import com.erensayar.HrAppealModuleApi.service.UtilClass;
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.util.ReflectionUtils;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -23,6 +28,7 @@ public class ApplicantServiceImpl implements ApplicantService {
   private final ApplicantRepo applicantRepo;
   private final MapperOfApplicant mapperOfApplicant;
   private final JobService jobService;
+  private final UtilClass utilClass;
 
 
   @Override
@@ -72,5 +78,22 @@ public class ApplicantServiceImpl implements ApplicantService {
     // Now we can delete
     applicantRepo.deleteById(id);
   }
+
+  @Override
+  public Applicant patchApplicant(String id, Map<String, Object> fields) {
+    Applicant applicant = utilClass.optEmptyControl(applicantRepo.findById(id));
+    fields.forEach((key, value) -> {
+      Field field = ReflectionUtils.findRequiredField(Applicant.class, key);
+      field.setAccessible(true);
+      if (key.equals("cv")) {
+        FileAttachment fileAttachment = mapperOfApplicant.getFileAttachment((String) value);
+        ReflectionUtils.setField(field, applicant, fileAttachment);
+      } else {
+        ReflectionUtils.setField(field, applicant, value);
+      }
+    });
+    return applicantRepo.save(applicant);
+  }
+
 
 }

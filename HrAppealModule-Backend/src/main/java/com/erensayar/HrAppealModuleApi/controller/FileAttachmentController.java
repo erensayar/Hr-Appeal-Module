@@ -21,10 +21,10 @@ public class FileAttachmentController {
   @PostMapping(value = "/upload",
       consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<String> saveFile(
+  public ResponseEntity<?> saveFile(
       @RequestPart("file") MultipartFile file,
       @RequestHeader("applicant-id") String applicantId) {
-    return ResponseEntity.ok(fileAttachmentService.saveFile(file, applicantId).getId());
+    return ResponseEntity.ok(fileAttachmentService.saveFile(file, applicantId));
   }
 
 }

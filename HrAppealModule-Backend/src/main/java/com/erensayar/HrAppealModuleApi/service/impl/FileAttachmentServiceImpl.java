@@ -5,6 +5,7 @@ import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.InternalServerErrorException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
 import com.erensayar.HrAppealModuleApi.error.exception.NotFoundException;
+import com.erensayar.HrAppealModuleApi.model.dto.response_dto.FileAttachmentCreateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.enums.AllowedFileTypes;
@@ -25,7 +26,6 @@ import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tika.Tika;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,8 +40,7 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
 
 
   @Override
-  public FileAttachment saveFile(MultipartFile multipartFile, String applicantId) {
-
+  public FileAttachmentCreateDto saveFile(MultipartFile multipartFile, String applicantId) {
     // I used try/catch because 204 has no body.
     // If we had 204 then throw 404 for this situation. This more understandable.
     Applicant applicant = null;
@@ -99,7 +98,9 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
         fos.write(arr);
         fos.close();
 
-        return this.createFileInfoInDb(attachment);
+        return FileAttachmentCreateDto.builder()
+            .id(this.createFileInfoInDb(attachment).getId())
+            .build();
       } else {
         throw new BadRequestException("Just pdf format is acceptable.");
       }
@@ -111,9 +112,8 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
 
   @Override
   public FileAttachment createFileInfoInDb(FileAttachment fileAttachment) {
-      if (fileAttachment.getId() == null) {
-          fileAttachment.setId("CV" + UUID.randomUUID().toString().replaceAll("-", ""));
-      }
+    if (fileAttachment.getId() == null)
+        fileAttachment.setId("CV" + UUID.randomUUID().toString().replaceAll("-", ""));
     fileAttachment.setCreateOrUpdateTime(LocalDateTime.now());
     return fileAttachmentRepo.save(fileAttachment);
   }

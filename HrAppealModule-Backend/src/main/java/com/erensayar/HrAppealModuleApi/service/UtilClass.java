@@ -2,8 +2,13 @@ package com.erensayar.HrAppealModuleApi.service;
 
 import com.erensayar.HrAppealModuleApi.error.exception.ConflictException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
@@ -34,16 +39,31 @@ public class UtilClass {
     return opt.get();
   }
 
-  public <T> T optPresentControl(Optional<T> opt) {
+  public <T> void optPresentControl(Optional<T> opt) {
     if (opt.isPresent()) {
-      log.error("Already exist. ");
+      log.error("Already exist.");
       throw new ConflictException();
     }
-    return opt.get();
   }
 
   public int generateRandomNumberAdjustedRange(int max, int min) {
     return new Random().nextInt((max - min) + 1) + min;
+  }
+
+  public <T> void printClassFields(Class<T> c) {
+    Field[] fields = c.getDeclaredFields();
+    for (Field field : fields) {
+      System.out.println(field.getName() + ": " + field.getType().getSimpleName());
+    }
+  }
+
+  private <T> void checkClassHasTheseFields(Class<T> c, Set<String> inputFieldNames) {
+    List<String> classFieldNames = Arrays.stream(c.getDeclaredFields()).map(Field::getName).toList();
+    boolean isContainAll = classFieldNames.retainAll(inputFieldNames);
+    if (!isContainAll) {
+      log.error("No Field whit these fields.");
+      throw new NoContentException();
+    }
   }
 
 }

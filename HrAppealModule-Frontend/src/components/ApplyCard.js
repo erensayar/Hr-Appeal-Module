@@ -1,7 +1,7 @@
 import '../styles/ApplicationCard.scss'
 import { useSelector } from 'react-redux'
 import React, { useState } from 'react';
-import { sendApplicant, sendFile } from '../api/Api';
+import { patchApplicant, sendApplicant, sendFile } from '../api/Api';
 import { useNavigate } from "react-router-dom";
 
 const ApplicationCard = () => {
@@ -40,11 +40,24 @@ const ApplicationCard = () => {
 
   const sendApplication = (e, applicant) => {
     e.preventDefault();
+    // 1 create applicant 
+    callApiForSendApplicant(applicant);
+    // 2 send file and take file id
+    callApiForSendFile(selectedFile);
+    // 3 update applicant for create relation with added file.
+    callApiForPatchApplicant(cvId);
 
-    // 1 send file and take file id
-    
-    // 2 create applicant and set the file id
+  }
 
+
+  const callApiForSendApplicant = async (applicant) => {
+    try {
+      await sendApplicant(applicant);
+    }
+    catch (error) {
+      navigate("/apply/error");
+      console.log(error);
+    }
   }
 
   const callApiForSendFile = async (file) => {
@@ -58,9 +71,9 @@ const ApplicationCard = () => {
     }
   }
 
-  const callApiForSendApplication = async (applicant) => {
+  const callApiForPatchApplicant = async (applicantId, object) => {
     try {
-      await sendApplicant(jobId);
+      await patchApplicant(applicantId, object);
       navigate("/thanks");
     }
     catch (error) {

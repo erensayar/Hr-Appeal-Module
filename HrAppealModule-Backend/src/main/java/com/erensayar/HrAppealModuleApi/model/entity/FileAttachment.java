@@ -1,12 +1,13 @@
 package com.erensayar.HrAppealModuleApi.model.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.OneToOne;
-import lombok.*;
-
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -16,16 +17,16 @@ import java.time.LocalDateTime;
 @Entity
 public class FileAttachment {
 
-    @Id
-    private String id;
+  @Id
+  private String id;
 
-    private String name;
+  private String name;
 
-    private String filePath;
+  private String filePath;
 
-    private LocalDateTime createOrUpdateTime;
+  private LocalDateTime createOrUpdateTime;
 
-    //@OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy = "cv")
-    //private Applicant applicant;
+  //@OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, mappedBy = "cv")
+  //private Applicant applicant;
 
 }
