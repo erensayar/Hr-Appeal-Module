@@ -13,7 +13,6 @@ import com.erensayar.HrAppealModuleApi.service.ApplicantService;
 import com.erensayar.HrAppealModuleApi.service.JobService;
 import com.erensayar.HrAppealModuleApi.service.UtilClass;
 import java.lang.reflect.Field;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -34,8 +33,6 @@ public class ApplicantServiceImpl implements ApplicantService {
   @Override
   public Applicant createApplicant(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
     applicantCreateOrUpdateDto.setId("APL" + UUID.randomUUID().toString().replaceAll("-", ""));
-    applicantCreateOrUpdateDto.setApplicantStatus(ApplicantStatus.TO_BE_EVALUATED);
-    applicantCreateOrUpdateDto.setApplicationDate(LocalDate.now());
     return applicantRepo.save(mapperOfApplicant.dtoToEntity(applicantCreateOrUpdateDto));
   }
 

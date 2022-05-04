@@ -1,18 +1,17 @@
 package com.erensayar.HrAppealModuleApi.model.mapper;
 
 import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.response_dto.ApplicantGetDto;
-import com.erensayar.HrAppealModuleApi.model.dto.response_dto.FileAttachmentGetDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
+import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
 import com.erensayar.HrAppealModuleApi.repo.FileAttachmentRepo;
 import com.erensayar.HrAppealModuleApi.repo.JobRepo;
 import com.erensayar.HrAppealModuleApi.service.UtilClass;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -39,12 +38,13 @@ public class MapperOfApplicant {
         .gitLink(applicantCreateOrUpdateDto.getGitLink())
         .linkedInLink(applicantCreateOrUpdateDto.getLinkedInLink())
         .twitterLink(applicantCreateOrUpdateDto.getTwitterLink())
-        .applicantStatus(applicantCreateOrUpdateDto.getApplicantStatus())
-        .applicationDate(applicantCreateOrUpdateDto.getApplicationDate())
         .cv(getFileAttachment(applicantCreateOrUpdateDto.getCv()))
         .personalInfoStoragePermission(applicantCreateOrUpdateDto.getPersonalInfoStoragePermission())
-        .isArchived(applicantCreateOrUpdateDto.getIsArchived())
-        //.jobs(getJobsFromJobIdList(applicantDto.getJobs())) // Cift yonlu ilişki kurulursa kullanilir
+        // Defaults
+        .applicantStatus(ApplicantStatus.TO_BE_EVALUATED)
+        .applicationDateAndTime(LocalDateTime.now())
+        .isArchived(false)
+        //.jobs(getJobsFromJobIdList(applicantDto.getJobs())) // Cift yonlu ilişki kurulursa kullanir
         .build();
   }
 

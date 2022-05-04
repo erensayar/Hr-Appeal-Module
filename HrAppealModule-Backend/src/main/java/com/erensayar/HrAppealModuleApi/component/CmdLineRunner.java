@@ -84,11 +84,8 @@ public class CmdLineRunner implements CommandLineRunner {
         .gitLink("github.com/haroldStu")
         .linkedInLink("linkedin.com/in/haroldStu")
         .twitterLink("twitter.com/ehdehödö")
-        .applicantStatus(ApplicantStatus.TO_BE_EVALUATED)
-        .applicationDate(LocalDate.now())
         .cv(fileAttachment1.getId())
         .personalInfoStoragePermission(true)
-        .isArchived(false)
         .build());
 
     Applicant applicant2 = applicantService.createApplicant(ApplicantCreateOrUpdateDto.builder()
@@ -102,11 +99,8 @@ public class CmdLineRunner implements CommandLineRunner {
         .gitLink("github.com/aragornelessar")
         .linkedInLink("linkedin.com/in/aragornelessar")
         .twitterLink("twitter.com/ehdehödö")
-        .applicantStatus(ApplicantStatus.TO_BE_EVALUATED)
-        .applicationDate(LocalDate.now())
         .cv(fileAttachment2.getId())
         .personalInfoStoragePermission(true)
-        .isArchived(false)
         .build());
 
     Applicant applicant3 = applicantService.createApplicant(ApplicantCreateOrUpdateDto.builder()
@@ -120,11 +114,8 @@ public class CmdLineRunner implements CommandLineRunner {
         .gitLink("github.com/legolasss")
         .linkedInLink("linkedin.com/in/legolasss")
         .twitterLink("twitter.com/ehdehödö")
-        .applicantStatus(ApplicantStatus.TO_BE_EVALUATED)
-        .applicationDate(LocalDate.now())
         .cv(fileAttachment3.getId())
         .personalInfoStoragePermission(true)
-        .isArchived(false)
         .build());
 
     List<String> applicantList1 = new ArrayList<>();
@@ -136,10 +127,8 @@ public class CmdLineRunner implements CommandLineRunner {
 
     Job job1 = jobService.createJob(JobCreateOrUpdateDto.builder()
         .name("Java Software Engineer")
-        .summary(
-            "We searching software engineer to develop mobile app back end module with spring boot, hibernate, maven")
-        .description(
-            "We search software engineer to develop mobile app back end module with spring boot, hibernate, maven, java 11 hede hödö")
+        .summary("We searching software engineer to develop mobile app back end module with spring boot, hibernate, maven")
+        .description("We search software engineer to develop mobile app back end module with spring boot, hibernate, maven, java 11 hede hödö")
         .expectedQualification("Analytic capabilites hede hödö")
         .numberOfToHire(2)
         .lastApplicationDate(LocalDate.of(2022, 2, 22))
@@ -152,10 +141,8 @@ public class CmdLineRunner implements CommandLineRunner {
 
     Job job2 = jobService.createJob(JobCreateOrUpdateDto.builder()
         .name("React Front End Developer")
-        .summary(
-            "We searching React Front End Developer to develop web app front end module with react.js, redux toolkit, axios etc")
-        .description(
-            "We search software engineer to develop mobile app back end module with spring boot, hibernate, maven, java 11 hede hödö")
+        .summary("We searching React Front End Developer to develop web app front end module with react.js, redux toolkit, axios etc")
+        .description("We search software engineer to develop mobile app back end module with spring boot, hibernate, maven, java 11 hede hödö We search software engineer to develop mobile app back end module with spring boot, hibernate, maven, java 11 hede hödö")
         .expectedQualification("Analytic capabilites hede hödö")
         .numberOfToHire(2)
         .lastApplicationDate(LocalDate.of(2022, 2, 22))

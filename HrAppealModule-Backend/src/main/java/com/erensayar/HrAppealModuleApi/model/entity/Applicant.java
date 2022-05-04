@@ -1,7 +1,7 @@
 package com.erensayar.HrAppealModuleApi.model.entity;
 
 import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -80,7 +80,7 @@ public class Applicant {
   @Enumerated(EnumType.ORDINAL)
   private ApplicantStatus applicantStatus;
 
-  private LocalDate applicationDate;
+  private LocalDateTime applicationDateAndTime;
 
   @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
   private FileAttachment cv;
