@@ -10,10 +10,10 @@ const JobDetail = () => {
   const [job, setJob] = useState({});
 
   useEffect(() => {
-    callApiForGetJobById(jobId); 
+    callGetJobById(jobId); 
   },[jobId]);
 
-  const callApiForGetJobById = async (jobId) => {
+  const callGetJobById = async (jobId) => {
     try {
       const response = await getJobs(jobId);
       setJob(response.data);

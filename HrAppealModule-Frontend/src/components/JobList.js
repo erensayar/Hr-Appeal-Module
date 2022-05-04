@@ -7,8 +7,8 @@ const JobList = () => {
 
   const [jobs, setJobs] = useState([]);
 
-  useEffect(() => { callApiForGetJobs(); }, []);
-  const callApiForGetJobs = async () => {
+  useEffect(() => { callGetJobs(); }, []);
+  const callGetJobs = async () => {
     try {
       const response = await getJobs();
       setJobs(response.data);

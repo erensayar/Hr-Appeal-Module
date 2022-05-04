@@ -11,6 +11,8 @@ const ApplicationCard = () => {
   const jobLocation = useSelector((state) => state.job.jobLocation);
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState();
+  const [cvId, setcvId] = useState();
+  const [applicantId, setApplicantId] = useState();
   const [applicant, setApplicant] = useState({
     "name": null,
     "surname": null,
@@ -24,7 +26,6 @@ const ApplicationCard = () => {
     "twitterLink": null,
     "applicantStatus": null,
     "applicationDate": null,
-    "cvId": null,
     "personalInfoStoragePermission": false,
     "isArchived": null
   });
@@ -40,19 +41,23 @@ const ApplicationCard = () => {
 
   const sendApplication = (e, applicant) => {
     e.preventDefault();
+    // 0 Control storage permission
+    if (!applicant.personalInfoStoragePermission) {
+      window.alert("Allow permission! We want  this permission to review your resume.");
+      return;
+    }
     // 1 create applicant 
-    callApiForSendApplicant(applicant);
+    callSendApplicant(applicant);
     // 2 send file and take file id
-    callApiForSendFile(selectedFile);
-    // 3 update applicant for create relation with added file.
-    callApiForPatchApplicant(cvId);
-
+    callSendFile(selectedFile, applicantId);
+    // 3 update applicant for create relation with saved file.
+    callPatchApplicant(applicantId, cvId);
   }
 
-
-  const callApiForSendApplicant = async (applicant) => {
+  const callSendApplicant = async (applicant) => {
     try {
-      await sendApplicant(applicant);
+      const response = await sendApplicant(applicant);
+      setApplicantId(response.data.id);
     }
     catch (error) {
       navigate("/apply/error");
@@ -60,10 +65,10 @@ const ApplicationCard = () => {
     }
   }
 
-  const callApiForSendFile = async (file) => {
+  const callSendFile = async (file, applicantId) => {
     try {
-      const response = await sendFile(file);
-      setApplicant({cvId: response.data});
+      const response = await sendFile(file, applicantId);
+      setcvId({ cvId: response.data });
     }
     catch (error) {
       navigate("/apply/error");
@@ -71,7 +76,7 @@ const ApplicationCard = () => {
     }
   }
 
-  const callApiForPatchApplicant = async (applicantId, object) => {
+  const callPatchApplicant = async (applicantId, object) => {
     try {
       await patchApplicant(applicantId, object);
       navigate("/thanks");
