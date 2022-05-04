@@ -1,7 +1,7 @@
-package com.erensayar.HrAppealModuleApi.model.dto.request_dto;
+package com.erensayar.HrAppealModuleApi.model.dto.requestDto;
 
-import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
-import java.time.LocalDate;
+import com.erensayar.HrAppealModuleApi.model.entity.Job;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,6 +30,7 @@ public class ApplicantCreateOrUpdateDto {
   private String gitLink;
   private String linkedInLink;
   private String twitterLink;
-  private String cv; // cv id
   private Boolean personalInfoStoragePermission;
+  private String cv; // cv id
+  private List<Integer> jobs; // job id list
 }

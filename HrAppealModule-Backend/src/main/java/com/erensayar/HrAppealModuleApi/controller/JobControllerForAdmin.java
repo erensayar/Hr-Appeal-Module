@@ -1,6 +1,8 @@
 package com.erensayar.HrAppealModuleApi.controller;
 
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.JobCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.requestDto.JobCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.entity.Job;
+import com.erensayar.HrAppealModuleApi.model.mapper.MapperOfJob;
 import com.erensayar.HrAppealModuleApi.service.JobService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class JobControllerForAdmin {
 
   private final JobService jobService;
+  private final MapperOfJob mapperOfJob;
 
   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> getJobById(@PathVariable("id") Integer id) {

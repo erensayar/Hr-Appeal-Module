@@ -2,8 +2,8 @@ package com.erensayar.HrAppealModuleApi.service.impl;
 
 import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.JobCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.response_dto.JobGetDtoForPublic;
+import com.erensayar.HrAppealModuleApi.model.dto.requestDto.JobCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.responseDto.JobGetDtoForPublic;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.model.mapper.MapperOfJob;

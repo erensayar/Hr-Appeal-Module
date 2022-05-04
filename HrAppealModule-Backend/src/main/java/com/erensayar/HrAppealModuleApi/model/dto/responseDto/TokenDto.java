@@ -1,4 +1,4 @@
-package com.erensayar.HrAppealModuleApi.model.dto.response_dto;
+package com.erensayar.HrAppealModuleApi.model.dto.responseDto;
 
 import lombok.Builder;
 import lombok.Getter;

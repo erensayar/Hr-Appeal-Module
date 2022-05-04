@@ -1,13 +1,12 @@
 package com.erensayar.HrAppealModuleApi.component;
 
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.AdminCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.JobCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.requestDto.AdminCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.requestDto.ApplicantCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.requestDto.JobCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Admin;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
-import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
 import com.erensayar.HrAppealModuleApi.security.UserRole;
 import com.erensayar.HrAppealModuleApi.service.AdminService;
 import com.erensayar.HrAppealModuleApi.service.ApplicantService;
@@ -251,6 +250,20 @@ public class CmdLineRunner implements CommandLineRunner {
         .creationDate(LocalDate.of(2022, 2, 1))
         .build());
 
+    System.out.println("---------------------------------");
+    System.out.println("---------------------------------");
+    System.out.println(job9);
+    for(Applicant a: job9.getApplicants()){
+      System.out.println(a);
+    }
+    System.out.println("---------------------------------");
+    System.out.println("---------------------------------");
+    System.out.println(applicant1);
+    //for(Job j : applicant1.getJobs()){
+    //  System.out.println(j);
+    //}
+    System.out.println("---------------------------------");
+    System.out.println("---------------------------------");
 
   }
 

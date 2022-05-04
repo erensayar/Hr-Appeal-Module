@@ -1,7 +1,7 @@
 package com.erensayar.HrAppealModuleApi.security;
 
 import com.erensayar.HrAppealModuleApi.error.exception.InternalServerErrorException;
-import com.erensayar.HrAppealModuleApi.model.dto.response_dto.TokenDto;
+import com.erensayar.HrAppealModuleApi.model.dto.responseDto.TokenDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

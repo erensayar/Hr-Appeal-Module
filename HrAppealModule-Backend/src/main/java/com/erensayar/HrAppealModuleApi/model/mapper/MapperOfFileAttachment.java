@@ -1,7 +1,5 @@
 package com.erensayar.HrAppealModuleApi.model.mapper;
 
-import com.erensayar.HrAppealModuleApi.model.dto.response_dto.FileAttachmentGetDto;
-import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package com.erensayar.HrAppealModuleApi.model.dto.request_dto;
+package com.erensayar.HrAppealModuleApi.model.dto.requestDto;
 
 import com.erensayar.HrAppealModuleApi.security.UserRole;
 import java.util.List;

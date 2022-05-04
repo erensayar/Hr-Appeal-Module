@@ -2,12 +2,15 @@ package com.erensayar.HrAppealModuleApi.model.entity;
 
 import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
 import java.time.LocalDateTime;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -82,11 +85,14 @@ public class Applicant {
 
   private LocalDateTime applicationDateAndTime;
 
-  @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
-  private FileAttachment cv;
-
   private Boolean personalInfoStoragePermission;
 
   private Boolean isArchived;
+
+  @OneToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+  private FileAttachment cv;
+
+  @ManyToMany(mappedBy = "applicants")
+  private List<Job> jobs;
 
 }

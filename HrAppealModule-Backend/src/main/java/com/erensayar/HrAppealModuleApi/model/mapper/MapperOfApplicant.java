@@ -1,6 +1,7 @@
 package com.erensayar.HrAppealModuleApi.model.mapper;
 
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.mainResponseDto.ApplicantDto;
+import com.erensayar.HrAppealModuleApi.model.dto.requestDto.ApplicantCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -40,18 +42,18 @@ public class MapperOfApplicant {
         .twitterLink(applicantCreateOrUpdateDto.getTwitterLink())
         .cv(getFileAttachment(applicantCreateOrUpdateDto.getCv()))
         .personalInfoStoragePermission(applicantCreateOrUpdateDto.getPersonalInfoStoragePermission())
+        .jobs(getJobsFromJobIdList(applicantCreateOrUpdateDto.getJobs()))
         // Defaults
         .applicantStatus(ApplicantStatus.TO_BE_EVALUATED)
         .applicationDateAndTime(LocalDateTime.now())
         .isArchived(false)
-        //.jobs(getJobsFromJobIdList(applicantDto.getJobs())) // Cift yonlu ilişki kurulursa kullanir
         .build();
   }
 
-/*
-
-  public ApplicantGetDto entityToDto(Applicant applicant) {
-    return ApplicantGetDto.builder()
+  // For Bidirectional
+  // <=============================================================================================>
+  public ApplicantDto entityToDto(Applicant applicant) {
+    return ApplicantDto.builder()
         .id(applicant.getId())
         .name(applicant.getName())
         .surname(applicant.getSurname())
@@ -64,26 +66,26 @@ public class MapperOfApplicant {
         .linkedInLink(applicant.getLinkedInLink())
         .twitterLink(applicant.getTwitterLink())
         .applicantStatus(applicant.getApplicantStatus())
-        .applicationDate(applicant.getApplicationDate())
-        .cv(mapFileAttachmentWithNullCheck(applicant.getCv()))
+        .applicationDateAndTime(applicant.getApplicationDateAndTime())
+        .cv(applicant.getCv())
         .personalInfoStoragePermission(applicant.getPersonalInfoStoragePermission())
         .isArchived(applicant.getIsArchived())
         .build();
   }
 
 
-  public List<ApplicantGetDto> entityListToDtoList(List<Applicant> applicants) {
+  public List<ApplicantDto> entityListToDtoList(List<Applicant> applicants) {
     return applicants.stream().map(this::entityToDto).collect(Collectors.toList());
   }
 
-  private FileAttachmentGetDto mapFileAttachmentWithNullCheck(FileAttachment fileAttachment) {
-    if (fileAttachment == null) {
-      return null;
-    }
-    return mapperOfFileAttachment.entityToDto(fileAttachment);
-  }
-
- */
+  // if establish bidirectional relation with File attachment
+  // private FileAttachmentDto mapFileAttachmentWithNullCheck(FileAttachment fileAttachment) {
+  //   if (fileAttachment == null) {
+  //     return null;
+  //   }
+  //   return mapperOfFileAttachment.entityToDto(fileAttachment);
+  // }
+  // <=============================================================================================>
 
   public FileAttachment getFileAttachment(String cvId) {
     if (cvId == null) {
@@ -96,15 +98,14 @@ public class MapperOfApplicant {
 
   // This block wrote for getting object, from id list
   private List<Job> getJobsFromJobIdList(List<Integer> jobIdList) {
-    List<Job> jobs = new ArrayList<>();
-    if (jobIdList != null) {
-      for (Integer jobId : jobIdList) {
-        jobs.add(utilClass.optEmptyControl(jobRepo.findById(jobId)));
-      }
-      return jobs;
-    } else {
+    if (jobIdList == null) {
       return null;
     }
+    List<Job> jobs = new ArrayList<>();
+    for (Integer jobId : jobIdList) {
+      jobs.add(utilClass.optEmptyControl(jobRepo.findById(jobId)));
+    }
+    return jobs;
   }
 
 }

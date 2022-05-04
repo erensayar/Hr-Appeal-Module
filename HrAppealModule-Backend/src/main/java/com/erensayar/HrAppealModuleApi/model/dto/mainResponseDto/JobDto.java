@@ -1,4 +1,4 @@
-package com.erensayar.HrAppealModuleApi.model.dto.returnDto;
+package com.erensayar.HrAppealModuleApi.model.dto.mainResponseDto;
 
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;

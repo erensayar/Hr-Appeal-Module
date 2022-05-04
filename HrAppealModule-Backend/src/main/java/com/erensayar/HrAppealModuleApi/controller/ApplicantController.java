@@ -1,7 +1,11 @@
 package com.erensayar.HrAppealModuleApi.controller;
 
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.mainResponseDto.ApplicantDto;
+import com.erensayar.HrAppealModuleApi.model.dto.requestDto.ApplicantCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
+import com.erensayar.HrAppealModuleApi.model.mapper.MapperOfApplicant;
 import com.erensayar.HrAppealModuleApi.service.ApplicantService;
+import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,30 +27,41 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApplicantController {
 
   private final ApplicantService applicantService;
+  private final MapperOfApplicant mapperOfApplicant;
 
   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> getApplicantById(@PathVariable("id") String id) {
-    return new ResponseEntity<>(applicantService.getApplicantById(id), HttpStatus.OK);
+    Applicant applicant = applicantService.getApplicantById(id);
+    ApplicantDto applicantDto = new ApplicantDto(applicant);
+    return new ResponseEntity<>(applicantDto, HttpStatus.OK);
   }
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> getApplicants() {
-    return new ResponseEntity<>(applicantService.getApplicants(), HttpStatus.OK);
+    List<Applicant> applicantList = applicantService.getApplicants();
+    List<ApplicantDto> applicantDtoList = mapperOfApplicant.entityListToDtoList(applicantList);
+    return new ResponseEntity<>(applicantDtoList, HttpStatus.OK);
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> createApplicant(@RequestBody ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
-    return new ResponseEntity<>(applicantService.createApplicant(applicantCreateOrUpdateDto), HttpStatus.CREATED);
+    Applicant applicant = applicantService.createApplicant(applicantCreateOrUpdateDto);
+    ApplicantDto applicantDto = new ApplicantDto(applicant);
+    return new ResponseEntity<>(applicantDto, HttpStatus.CREATED);
   }
 
   @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> updateApplicant(@RequestBody ApplicantCreateOrUpdateDto updatedApplicant) {
-    return new ResponseEntity<>(applicantService.updateApplicant(updatedApplicant), HttpStatus.OK);
+    Applicant applicant = applicantService.updateApplicant(updatedApplicant);
+    ApplicantDto applicantDto = new ApplicantDto(applicant);
+    return new ResponseEntity<>(applicantDto, HttpStatus.OK);
   }
 
   @PatchMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> patchApplicant(@PathVariable String id, @RequestBody Map<String, Object> fields) {
-    return new ResponseEntity<>(applicantService.patchApplicant(id, fields), HttpStatus.OK);
+    Applicant applicant = applicantService.patchApplicant(id, fields);
+    ApplicantDto applicantDto = new ApplicantDto(applicant);
+    return new ResponseEntity<>(applicantDto, HttpStatus.OK);
   }
 
   @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

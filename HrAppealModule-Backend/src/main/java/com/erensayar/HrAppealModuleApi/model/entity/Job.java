@@ -62,4 +62,5 @@ public class Job {
 
   @ManyToMany
   private List<Applicant> applicants;
+
 }

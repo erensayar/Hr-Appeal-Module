@@ -2,11 +2,10 @@ package com.erensayar.HrAppealModuleApi.service.impl;
 
 import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.requestDto.ApplicantCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
-import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
 import com.erensayar.HrAppealModuleApi.model.mapper.MapperOfApplicant;
 import com.erensayar.HrAppealModuleApi.repo.ApplicantRepo;
 import com.erensayar.HrAppealModuleApi.service.ApplicantService;

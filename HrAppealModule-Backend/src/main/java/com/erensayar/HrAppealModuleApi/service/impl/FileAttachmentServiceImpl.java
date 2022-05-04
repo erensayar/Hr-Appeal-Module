@@ -5,7 +5,7 @@ import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.InternalServerErrorException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
 import com.erensayar.HrAppealModuleApi.error.exception.NotFoundException;
-import com.erensayar.HrAppealModuleApi.model.dto.response_dto.FileAttachmentCreateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.responseDto.FileAttachmentCreateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.enums.AllowedFileTypes;

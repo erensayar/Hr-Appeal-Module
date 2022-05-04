@@ -1,6 +1,6 @@
 package com.erensayar.HrAppealModuleApi.service;
 
-import com.erensayar.HrAppealModuleApi.model.dto.response_dto.FileAttachmentCreateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.responseDto.FileAttachmentCreateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import org.springframework.web.multipart.MultipartFile;
 

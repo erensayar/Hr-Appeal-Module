@@ -1,4 +1,4 @@
-package com.erensayar.HrAppealModuleApi.model.dto.returnDto;
+package com.erensayar.HrAppealModuleApi.model.dto.mainResponseDto;
 
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;

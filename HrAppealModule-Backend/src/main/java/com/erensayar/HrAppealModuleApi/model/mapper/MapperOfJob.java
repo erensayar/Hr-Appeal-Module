@@ -1,7 +1,7 @@
 package com.erensayar.HrAppealModuleApi.model.mapper;
 
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.JobCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.response_dto.JobGetDtoForPublic;
+import com.erensayar.HrAppealModuleApi.model.dto.requestDto.JobCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.responseDto.JobGetDtoForPublic;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.repo.ApplicantRepo;
@@ -32,22 +32,20 @@ public class MapperOfJob {
         .location(jobCreateOrUpdateDto.getLocation())
         .creationDate(jobCreateOrUpdateDto.getCreationDate())
         .benefits(jobCreateOrUpdateDto.getBenefits())
-        .applicants(this.getApplicantsFromApplicantIdList(
-            jobCreateOrUpdateDto.getApplicants())) // It's not necessary
+        .applicants(this.getApplicantsFromApplicantIdList(jobCreateOrUpdateDto.getApplicants())) // It's not necessary
         .build();
   }
 
   // This block wrote for getting object, from dto id list
   private List<Applicant> getApplicantsFromApplicantIdList(List<String> applicantIdList) {
-    List<Applicant> applicants = new ArrayList<>();
-    if (applicantIdList != null) {
-      for (String applicantId : applicantIdList) {
-        applicants.add(utilClass.optEmptyControl(applicantRepo.findById(applicantId)));
-      }
-      return applicants;
-    } else {
+    if (applicantIdList == null) {
       return null;
     }
+    List<Applicant> applicants = new ArrayList<>();
+    for (String applicantId : applicantIdList) {
+      applicants.add(utilClass.optEmptyControl(applicantRepo.findById(applicantId)));
+    }
+    return applicants;
   }
 
   public JobGetDtoForPublic entityToDto(Job job) {
