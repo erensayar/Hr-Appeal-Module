@@ -1,4 +1,4 @@
-package com.erensayar.HrAppealModuleApi.model.dto.response_dto;
+package com.erensayar.HrAppealModuleApi.model.dto.returnDto;
 
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
@@ -12,11 +12,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FileAttachmentGetDto {
+public class FileAttachmenDto {
 
   private String id;
   private String name;
   private String filePath;
   private LocalDateTime createOrUpdateTime;
+  //private ApplicantDto applicant;
 
 }
