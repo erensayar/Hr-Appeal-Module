@@ -11,21 +11,32 @@ const ApplicationCard = () => {
   const jobLocation = useSelector((state) => state.job.jobLocation);
   const navigate = useNavigate();
 
-  const [cvId, setcvId] = useState();
+  const [cvId, setcvId] = useState('');
   const [selectedFile, setSelectedFile] = useState();
 
-  const [applicantId, setApplicantId] = useState();
-  const [name, setName] = useState();
-  const [surname, setSurname] = useState();
-  const [mail, setMail] = useState();
-  const [telephone, setTelephone] = useState();
-  const [country, setCountry] = useState();
-  const [city, setCity] = useState();
-  const [district, setDistrict] = useState();
-  const [gitLink, setGitLink] = useState();
-  const [linkedInLink, setLinkedInLink] = useState();
-  const [twitterLink, setTwitterLink] = useState();
-  const [personalInfoStoragePermission, setPersonalInfoStoragePermission] = useState(false);
+  const [applicantId, setApplicantId] = useState('');
+  //const [name, setName] = useState();
+  //const [surname, setSurname] = useState();
+  //const [mail, setMail] = useState();
+  //const [telephone, setTelephone] = useState();
+  //const [country, setCountry] = useState();
+  //const [city, setCity] = useState();
+  //const [district, setDistrict] = useState();
+  //const [gitLink, setGitLink] = useState();
+  //const [linkedInLink, setLinkedInLink] = useState();
+  //const [twitterLink, setTwitterLink] = useState();
+  //const [personalInfoStoragePermission, setPersonalInfoStoragePermission] = useState(false);
+  const [name, setName] = useState("Eren");
+  const [surname, setSurname] = useState("Sayar");
+  const [mail, setMail] = useState("erensayar@yandex.com");
+  const [telephone, setTelephone] = useState("01231231212");
+  const [country, setCountry] = useState("Türkiye");
+  const [city, setCity] = useState("İstanbul");
+  const [district, setDistrict] = useState("Sarıyer");
+  const [gitLink, setGitLink] = useState("github.com/erensayar");
+  const [linkedInLink, setLinkedInLink] = useState("linkledin.com/in/erensayar");
+  const [twitterLink, setTwitterLink] = useState("twitter.com/hedhehed");
+  const [personalInfoStoragePermission, setPersonalInfoStoragePermission] = useState(true);
   const applicant = {
     name: name,
     surname: surname,
@@ -54,25 +65,25 @@ const ApplicationCard = () => {
   // <========================================================>
   const sendApplication = (e) => {
     e.preventDefault();
-    console.log(applicant);
-    console.log(applicant);
+
     // 0 Control storage permission
     if (!applicant.personalInfoStoragePermission) {
       window.alert("Allow permission!  We want this permission to review your resume.");
       return;
     }
+
     // 1 create applicant 
-    callSendApplicant(applicant);
+    callSendApplicant();
     // 2 send file and take file id
-    callSendFile(selectedFile, applicantId);
+    callSendFile();
     // 3 update applicant for create relation with saved file.
-    callPatchApplicant(applicantId, cvId);
+    callPatchApplicant();
   }
 
-  const callSendApplicant = async (applicant) => {
+  const callSendApplicant = async () => {
     try {
       const response = await sendApplicant(applicant);
-      setApplicantId(response.data.id);
+      setApplicantId(...response.data.id);
     }
     catch (error) {
       navigate("/apply/error");
@@ -80,10 +91,10 @@ const ApplicationCard = () => {
     }
   }
 
-  const callSendFile = async (file, applicantId) => {
+  const callSendFile = async () => {
     try {
-      const response = await sendFile(file, applicantId);
-      setcvId({ cvId: response.data });
+      const response = await sendFile(selectedFile, applicantId);
+      setcvId(...response.data.id);
     }
     catch (error) {
       navigate("/apply/error");
@@ -91,7 +102,12 @@ const ApplicationCard = () => {
     }
   }
 
-  const callPatchApplicant = async (applicantId, object) => {
+  const callPatchApplicant = async () => {
+
+    const object = {
+      cv: cvId
+    }
+
     try {
       await patchApplicant(applicantId, object);
       navigate("/thanks");

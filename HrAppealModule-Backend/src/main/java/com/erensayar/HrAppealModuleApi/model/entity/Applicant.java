@@ -45,9 +45,9 @@ public class Applicant {
   @Column(length = 50, nullable = false)
   private String mail;
 
-  @Size(min = 13, max = 13, message = "{hrwebapp.constraint.telephone.Size.message}")
+  @Size(min = 10, max = 13, message = "{hrwebapp.constraint.telephone.Size.message}")
   @NotNull(message = "{hrwebapp.constraint.NotNull.message}")
-  @Column(length = 11, nullable = false)
+  @Column(length = 10, nullable = false)
   private String telephone;
 
   @Size(min = 2, max = 15, message = "{hrwebapp.constraint.country.Size.message}")

@@ -28,7 +28,7 @@ const JobDetail = () => {
     <div className='job-detail-card'>
       <div className='job-detail-container'>
       
-        <h2 className='job-title'>Java Software Engineer</h2>
+        <h2 className='job-title'>{job.name}</h2>
         <div className='job-informations'>
           <h4>Description</h4>
           <p>{job.description}</p>

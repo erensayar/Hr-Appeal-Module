@@ -10,7 +10,7 @@ import com.erensayar.HrAppealModuleApi.model.mapper.ApplicantMapper;
 import com.erensayar.HrAppealModuleApi.repo.ApplicantRepo;
 import com.erensayar.HrAppealModuleApi.service.ApplicantService;
 import com.erensayar.HrAppealModuleApi.service.JobService;
-import com.erensayar.HrAppealModuleApi.service.UtilClass;
+import com.erensayar.HrAppealModuleApi.service.util.UtilClass;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;

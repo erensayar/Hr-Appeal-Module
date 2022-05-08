@@ -1,11 +1,10 @@
-package com.erensayar.HrAppealModuleApi.service;
+package com.erensayar.HrAppealModuleApi.service.util;
 
 import com.erensayar.HrAppealModuleApi.error.exception.ConflictException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
@@ -65,5 +64,8 @@ public class UtilClass {
       throw new NoContentException();
     }
   }
+
+  // TODO: Phone number parser
+  //  set 10 length all valid format
 
 }

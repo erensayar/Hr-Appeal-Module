@@ -5,7 +5,7 @@ import com.erensayar.HrAppealModuleApi.model.dto.response_dto.JobPublicDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.repo.ApplicantRepo;
-import com.erensayar.HrAppealModuleApi.service.UtilClass;
+import com.erensayar.HrAppealModuleApi.service.util.UtilClass;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

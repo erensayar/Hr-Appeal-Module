@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getJobs = (id) => {
   const path = id
-    ? `/api/v1/jobs/${id}`
+    ? `/api/v1/jobs/detail/${id}`
     : `/api/v1/jobs`
   return axios.get(path);
 }
@@ -16,13 +16,15 @@ export const patchApplicant = (applicantId, body) => {
 }
 
 export const sendFile = (file, applicantId) => {
+  let fd = new FormData();
+  fd.append('file', file);
   const options = {
     method: 'POST',
-    headers: { 
+    headers: {
       'content-type': 'multipart/form-data',
       'applicant-id': applicantId
     },
-    data: file,
+    data: fd,
     url: `/api/v1/files/upload`
   };
   return axios(options);

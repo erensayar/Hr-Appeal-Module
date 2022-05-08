@@ -7,7 +7,7 @@ import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
 import com.erensayar.HrAppealModuleApi.repo.FileAttachmentRepo;
 import com.erensayar.HrAppealModuleApi.repo.JobRepo;
-import com.erensayar.HrAppealModuleApi.service.UtilClass;
+import com.erensayar.HrAppealModuleApi.service.util.UtilClass;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
