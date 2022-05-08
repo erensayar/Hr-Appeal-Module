@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -50,43 +49,6 @@ public class MapperOfApplicant {
         .build();
   }
 
-  // For Bidirectional
-  // <=============================================================================================>
-  public ApplicantDto entityToDto(Applicant applicant) {
-    return ApplicantDto.builder()
-        .id(applicant.getId())
-        .name(applicant.getName())
-        .surname(applicant.getSurname())
-        .mail(applicant.getMail())
-        .telephone(applicant.getTelephone())
-        .country(applicant.getCountry())
-        .city(applicant.getCity())
-        .district(applicant.getDistrict())
-        .gitLink(applicant.getGitLink())
-        .linkedInLink(applicant.getLinkedInLink())
-        .twitterLink(applicant.getTwitterLink())
-        .applicantStatus(applicant.getApplicantStatus())
-        .applicationDateAndTime(applicant.getApplicationDateAndTime())
-        .cv(applicant.getCv())
-        .personalInfoStoragePermission(applicant.getPersonalInfoStoragePermission())
-        .isArchived(applicant.getIsArchived())
-        .build();
-  }
-
-
-  public List<ApplicantDto> entityListToDtoList(List<Applicant> applicants) {
-    return applicants.stream().map(this::entityToDto).collect(Collectors.toList());
-  }
-
-  // if establish bidirectional relation with File attachment
-  // private FileAttachmentDto mapFileAttachmentWithNullCheck(FileAttachment fileAttachment) {
-  //   if (fileAttachment == null) {
-  //     return null;
-  //   }
-  //   return mapperOfFileAttachment.entityToDto(fileAttachment);
-  // }
-  // <=============================================================================================>
-
   public FileAttachment getFileAttachment(String cvId) {
     if (cvId == null) {
       return null;
@@ -107,5 +69,16 @@ public class MapperOfApplicant {
     }
     return jobs;
   }
+
+  // Methods For Bidirectional
+  // <=============================================================================================>
+  public List<ApplicantDto> entityListToDtoList(List<Applicant> applicants) {
+    List<ApplicantDto> applicantDtoList = new ArrayList<>();
+    for(Applicant a : applicants){
+      applicantDtoList.add(new ApplicantDto(a));
+    }
+    return applicantDtoList;
+  }
+  // <=============================================================================================>
 
 }

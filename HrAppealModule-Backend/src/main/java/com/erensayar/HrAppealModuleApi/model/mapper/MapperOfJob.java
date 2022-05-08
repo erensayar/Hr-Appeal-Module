@@ -1,11 +1,13 @@
 package com.erensayar.HrAppealModuleApi.model.mapper;
 
+import com.erensayar.HrAppealModuleApi.model.dto.mainResponseDto.JobDto;
 import com.erensayar.HrAppealModuleApi.model.dto.requestDto.JobCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.dto.responseDto.JobGetDtoForPublic;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.repo.ApplicantRepo;
 import com.erensayar.HrAppealModuleApi.service.UtilClass;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,11 +30,12 @@ public class MapperOfJob {
         .expectedQualification(jobCreateOrUpdateDto.getExpectedQualification())
         .numberOfToHire(jobCreateOrUpdateDto.getNumberOfToHire())
         .lastApplicationDate(jobCreateOrUpdateDto.getLastApplicationDate())
-        .isArchived(jobCreateOrUpdateDto.getIsArchived())
         .location(jobCreateOrUpdateDto.getLocation())
-        .creationDate(jobCreateOrUpdateDto.getCreationDate())
         .benefits(jobCreateOrUpdateDto.getBenefits())
-        .applicants(this.getApplicantsFromApplicantIdList(jobCreateOrUpdateDto.getApplicants())) // It's not necessary
+        .applicants(this.getApplicantsFromApplicantIdList(jobCreateOrUpdateDto.getApplicants()))
+        // Defaults
+        .isArchived(false)
+        .creationDate(LocalDate.now())
         .build();
   }
 
@@ -48,7 +51,7 @@ public class MapperOfJob {
     return applicants;
   }
 
-  public JobGetDtoForPublic entityToDto(Job job) {
+  public JobGetDtoForPublic entityToJobGetDtoForPublic(Job job) {
     return JobGetDtoForPublic.builder()
         .id(job.getId())
         .name(job.getName())
@@ -62,8 +65,18 @@ public class MapperOfJob {
         .build();
   }
 
-  public List<JobGetDtoForPublic> entityListToDtoList(List<Job> jobs) {
-    return jobs.stream().map(this::entityToDto).collect(Collectors.toList());
+  public List<JobGetDtoForPublic> entityListToJobGetDtoForPublicList(List<Job> jobs) {
+    return jobs.stream().map(this::entityToJobGetDtoForPublic).collect(Collectors.toList());
   }
 
+  // Methods For Bidirectional
+  // <=============================================================================================>
+  public List<JobDto> entityListToJobDtoList(List<Job> jobs) {
+    List<JobDto> jobDtoList = new ArrayList<>();
+    for (Job j : jobs) {
+      jobDtoList.add(new JobDto(j));
+    }
+    return jobDtoList;
+  }
+  // <=============================================================================================>
 }

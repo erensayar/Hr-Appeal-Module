@@ -58,14 +58,4 @@ public class JobServiceImpl implements JobService {
     jobRepo.deleteById(id);
   }
 
-  @Override
-  public JobGetDtoForPublic getJobPublicDtoById(Integer id) {
-    return mapperOfJob.entityToDto(this.getJobById(id));
-  }
-
-  @Override
-  public List<JobGetDtoForPublic> getJobPublicDtoList() {
-    return mapperOfJob.entityListToDtoList(this.getJobs());
-  }
-
 }
