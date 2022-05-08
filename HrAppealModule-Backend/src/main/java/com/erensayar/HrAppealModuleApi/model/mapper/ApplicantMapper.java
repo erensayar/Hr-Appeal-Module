@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 @Service
-public class MapperOfApplicant {
+public class ApplicantMapper {
 
   private final FileAttachmentRepo fileAttachmentRepo;
   private final UtilClass utilClass;
@@ -44,46 +44,9 @@ public class MapperOfApplicant {
         .applicantStatus(ApplicantStatus.TO_BE_EVALUATED)
         .applicationDateAndTime(LocalDateTime.now())
         .isArchived(false)
-        //.jobs(getJobsFromJobIdList(applicantDto.getJobs())) // Cift yonlu ilişki kurulursa kullanir
         .build();
   }
 
-/*
-
-  public ApplicantGetDto entityToDto(Applicant applicant) {
-    return ApplicantGetDto.builder()
-        .id(applicant.getId())
-        .name(applicant.getName())
-        .surname(applicant.getSurname())
-        .mail(applicant.getMail())
-        .telephone(applicant.getTelephone())
-        .country(applicant.getCountry())
-        .city(applicant.getCity())
-        .district(applicant.getDistrict())
-        .gitLink(applicant.getGitLink())
-        .linkedInLink(applicant.getLinkedInLink())
-        .twitterLink(applicant.getTwitterLink())
-        .applicantStatus(applicant.getApplicantStatus())
-        .applicationDate(applicant.getApplicationDate())
-        .cv(mapFileAttachmentWithNullCheck(applicant.getCv()))
-        .personalInfoStoragePermission(applicant.getPersonalInfoStoragePermission())
-        .isArchived(applicant.getIsArchived())
-        .build();
-  }
-
-
-  public List<ApplicantGetDto> entityListToDtoList(List<Applicant> applicants) {
-    return applicants.stream().map(this::entityToDto).collect(Collectors.toList());
-  }
-
-  private FileAttachmentGetDto mapFileAttachmentWithNullCheck(FileAttachment fileAttachment) {
-    if (fileAttachment == null) {
-      return null;
-    }
-    return mapperOfFileAttachment.entityToDto(fileAttachment);
-  }
-
- */
 
   public FileAttachment getFileAttachment(String cvId) {
     if (cvId == null) {
@@ -95,16 +58,16 @@ public class MapperOfApplicant {
 
 
   // This block wrote for getting object, from id list
+  // If create bidirectional relation then u can use this
   private List<Job> getJobsFromJobIdList(List<Integer> jobIdList) {
-    List<Job> jobs = new ArrayList<>();
-    if (jobIdList != null) {
-      for (Integer jobId : jobIdList) {
-        jobs.add(utilClass.optEmptyControl(jobRepo.findById(jobId)));
-      }
-      return jobs;
-    } else {
+    if (jobIdList == null) {
       return null;
     }
+    List<Job> jobs = new ArrayList<>();
+    for (Integer jobId : jobIdList) {
+      jobs.add(utilClass.optEmptyControl(jobRepo.findById(jobId)));
+    }
+    return jobs;
   }
 
 }

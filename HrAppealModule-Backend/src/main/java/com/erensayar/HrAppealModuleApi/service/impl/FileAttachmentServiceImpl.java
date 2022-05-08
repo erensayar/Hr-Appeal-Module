@@ -5,7 +5,7 @@ import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.InternalServerErrorException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
 import com.erensayar.HrAppealModuleApi.error.exception.NotFoundException;
-import com.erensayar.HrAppealModuleApi.model.dto.response_dto.FileAttachmentCreateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.response_dto.FileAttachmentDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.enums.AllowedFileTypes;
@@ -40,7 +40,7 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
 
 
   @Override
-  public FileAttachmentCreateDto saveFile(MultipartFile multipartFile, String applicantId) {
+  public FileAttachmentDto saveFile(MultipartFile multipartFile, String applicantId) {
     // I used try/catch because 204 has no body.
     // If we had 204 then throw 404 for this situation. This more understandable.
     Applicant applicant = null;
@@ -49,7 +49,8 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
       applicant = applicantService.getApplicantById(applicantId);
       applicantName = applicant.getName() + "-" + applicant.getSurname();
     } catch (NoContentException e) {
-      throw new NotFoundException("Send Valid Applicant Id from header!");
+      log.error("Send A Valid Applicant Id from header! ");
+      throw new NotFoundException("Send A Valid Applicant Id from header! ");
     }
 
     try {
@@ -74,8 +75,8 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
         attachment.setFilePath(storagePathPlusFileName);
 
         // Directory control. If not exist create directory
-        if (!this.dirExistControl(storagePath)) {
-          this.createDirectories(storagePath);
+        if (!dirExistControl(storagePath)) {
+          createDirectories(storagePath);
         }
 
         File file = new File(storagePathPlusFileName);
@@ -84,11 +85,12 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
         boolean isFileCreated = file.createNewFile();
         if (!isFileCreated) { // Duplicate condition
           log.debug("File already exist. Deleted old file. And saved new file. File Name: " + fileName);
-          this.deleteFileFromHardDrive(storagePathPlusFileName);
+          deleteFileFromHardDrive(storagePathPlusFileName);
           attachment.setId(applicant.getCv().getId()); // Written to not save new file. this provide to update
-          this.updateFileAttachmentName(attachment); // update file name in db
+          updateFileAttachmentName(attachment); // update file name in db
           // File create try again
           if (!file.createNewFile()) {
+            log.error("IO Exception. Data writing failed. ");
             throw new InternalServerErrorException("IO Exception. Data writing failed. ");
           }
         }
@@ -98,15 +100,20 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
         fos.write(arr);
         fos.close();
 
-        return FileAttachmentCreateDto.builder()
-            .id(this.createFileInfoInDb(attachment).getId())
+        FileAttachment fileInfoInDb = createFileInfoInDb(attachment);
+        return FileAttachmentDto.builder()
+            .id(fileInfoInDb.getId())
+            .createOrUpdateTime(fileInfoInDb.getCreateOrUpdateTime())
             .build();
-      } else {
+      }
+      else {
+        log.error("Just pdf format is acceptable. ");
         throw new BadRequestException("Just pdf format is acceptable.");
       }
+
     } catch (IOException e) {
-      e.printStackTrace();
-      throw new InternalServerErrorException("IO Exception. Data write process is failed ");
+      log.error("IO Exception. Data write process is failed. ");
+      throw new InternalServerErrorException("IO Exception. Data write process is failed. ");
     }
   }
 
@@ -124,7 +131,7 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
   }
 
   private void updateFileAttachmentName(FileAttachment fileAttachmentUpdated) {
-    FileAttachment fileInDb = this.getFileById(fileAttachmentUpdated.getId());
+    FileAttachment fileInDb = getFileById(fileAttachmentUpdated.getId());
     fileInDb.setFilePath(fileAttachmentUpdated.getFilePath());
     fileAttachmentUpdated.setCreateOrUpdateTime(LocalDateTime.now());
     fileAttachmentRepo.save(fileAttachmentUpdated);
@@ -171,6 +178,7 @@ public class FileAttachmentServiceImpl implements FileAttachmentService {
       Files.createDirectories(target);
     } catch (IOException e) {
       log.debug("Create Directories IO Exception: " + e);
+      throw new BadRequestException("Create Directories IO Exception -> " + e.getMessage());
     }
   }
 

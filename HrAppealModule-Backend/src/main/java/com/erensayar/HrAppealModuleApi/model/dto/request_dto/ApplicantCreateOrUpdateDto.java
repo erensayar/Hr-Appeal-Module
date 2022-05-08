@@ -30,6 +30,6 @@ public class ApplicantCreateOrUpdateDto {
   private String gitLink;
   private String linkedInLink;
   private String twitterLink;
-  private String cv; // cv id
   private Boolean personalInfoStoragePermission;
+  private String cv; // cv id
 }

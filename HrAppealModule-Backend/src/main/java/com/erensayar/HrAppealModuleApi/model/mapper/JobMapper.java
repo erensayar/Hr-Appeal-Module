@@ -1,7 +1,7 @@
 package com.erensayar.HrAppealModuleApi.model.mapper;
 
 import com.erensayar.HrAppealModuleApi.model.dto.request_dto.JobCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.response_dto.JobGetDtoForPublic;
+import com.erensayar.HrAppealModuleApi.model.dto.response_dto.JobPublicDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.repo.ApplicantRepo;
@@ -14,12 +14,13 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class MapperOfJob {
+public class JobMapper {
 
   private final ApplicantRepo applicantRepo;
   private final UtilClass utilClass;
 
   public Job dtoToEntity(JobCreateOrUpdateDto jobCreateOrUpdateDto) {
+    List<String> jobApplicants = jobCreateOrUpdateDto.getApplicants();
     return Job.builder()
         .id(jobCreateOrUpdateDto.getId())
         .name(jobCreateOrUpdateDto.getName())
@@ -32,26 +33,25 @@ public class MapperOfJob {
         .location(jobCreateOrUpdateDto.getLocation())
         .creationDate(jobCreateOrUpdateDto.getCreationDate())
         .benefits(jobCreateOrUpdateDto.getBenefits())
-        .applicants(this.getApplicantsFromApplicantIdList(
-            jobCreateOrUpdateDto.getApplicants())) // It's not necessary
+        .applicants(getApplicantsFromApplicantIdList(jobApplicants))
         .build();
   }
 
   // This block wrote for getting object, from dto id list
   private List<Applicant> getApplicantsFromApplicantIdList(List<String> applicantIdList) {
-    List<Applicant> applicants = new ArrayList<>();
-    if (applicantIdList != null) {
-      for (String applicantId : applicantIdList) {
-        applicants.add(utilClass.optEmptyControl(applicantRepo.findById(applicantId)));
-      }
-      return applicants;
-    } else {
+    if (applicantIdList == null) {
       return null;
     }
+    List<Applicant> applicants = new ArrayList<>();
+    for (String applicantId : applicantIdList) {
+      applicants.add(utilClass.optEmptyControl(applicantRepo.findById(applicantId)));
+    }
+    return applicants;
+
   }
 
-  public JobGetDtoForPublic entityToDto(Job job) {
-    return JobGetDtoForPublic.builder()
+  public JobPublicDto entityToDto(Job job) {
+    return JobPublicDto.builder()
         .id(job.getId())
         .name(job.getName())
         .summary(job.getSummary())
@@ -64,7 +64,7 @@ public class MapperOfJob {
         .build();
   }
 
-  public List<JobGetDtoForPublic> entityListToDtoList(List<Job> jobs) {
+  public List<JobPublicDto> entityListToDtoList(List<Job> jobs) {
     return jobs.stream().map(this::entityToDto).collect(Collectors.toList());
   }
 

@@ -4,7 +4,7 @@ import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
 import com.erensayar.HrAppealModuleApi.model.dto.request_dto.AdminCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Admin;
-import com.erensayar.HrAppealModuleApi.model.mapper.MapperOfAdmin;
+import com.erensayar.HrAppealModuleApi.model.mapper.AdminMapper;
 import com.erensayar.HrAppealModuleApi.repo.AdminRepo;
 import com.erensayar.HrAppealModuleApi.service.AdminService;
 import java.util.List;
@@ -21,7 +21,7 @@ public class AdminServiceImpl implements AdminService {
   // INJECTION
   //<==============================================================================================>
   private final AdminRepo adminRepo;
-  private final MapperOfAdmin mapperOfAdmin;
+  private final AdminMapper adminMapper;
   
   private BCryptPasswordEncoder passwordEncoder;
   @Autowired
@@ -35,7 +35,7 @@ public class AdminServiceImpl implements AdminService {
     adminCreateOrUpdateDto.setId(null);
     adminCreateOrUpdateDto.setPassword(
         passwordEncoder.encode(adminCreateOrUpdateDto.getPassword()));
-    return adminRepo.save(mapperOfAdmin.toEntity(adminCreateOrUpdateDto));
+    return adminRepo.save(adminMapper.toEntity(adminCreateOrUpdateDto));
   }
 
   @Override
@@ -63,7 +63,7 @@ public class AdminServiceImpl implements AdminService {
     if (adminCreateOrUpdateDto.getId() == null) {
       throw new BadRequestException("Id can not be empty");
     }
-    return adminRepo.save(mapperOfAdmin.toEntity(adminCreateOrUpdateDto));
+    return adminRepo.save(adminMapper.toEntity(adminCreateOrUpdateDto));
   }
 
   @Override

@@ -27,9 +27,9 @@ public class JobCreateOrUpdateDto {
   private Integer numberOfToHire;
   private LocalDate creationDate;
   private LocalDate lastApplicationDate;
-  private List<String> applicants; // Applicant id list
   private Boolean isArchived;
   private String location;
   private String benefits;
+  private List<String> applicants; // Applicant id list
 
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class MapperOfAdmin {
+public class AdminMapper {
 
   public Admin toEntity(AdminCreateOrUpdateDto adminCreateOrUpdateDto) {
     return Admin.builder()

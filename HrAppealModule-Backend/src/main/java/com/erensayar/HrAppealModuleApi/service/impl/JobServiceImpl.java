@@ -3,10 +3,9 @@ package com.erensayar.HrAppealModuleApi.service.impl;
 import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
 import com.erensayar.HrAppealModuleApi.model.dto.request_dto.JobCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.response_dto.JobGetDtoForPublic;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
-import com.erensayar.HrAppealModuleApi.model.mapper.MapperOfJob;
+import com.erensayar.HrAppealModuleApi.model.mapper.JobMapper;
 import com.erensayar.HrAppealModuleApi.repo.JobRepo;
 import com.erensayar.HrAppealModuleApi.service.JobService;
 import java.util.List;
@@ -18,13 +17,13 @@ import org.springframework.stereotype.Service;
 public class JobServiceImpl implements JobService {
 
   private final JobRepo jobRepo;
-  private final MapperOfJob mapperOfJob;
+  private final JobMapper jobMapper;
 
 
   @Override
   public Job createJob(JobCreateOrUpdateDto jobCreateOrUpdateDto) {
     jobCreateOrUpdateDto.setId(null);
-    return jobRepo.save(mapperOfJob.dtoToEntity(jobCreateOrUpdateDto));
+    return jobRepo.save(jobMapper.dtoToEntity(jobCreateOrUpdateDto));
   }
 
   @Override
@@ -41,31 +40,21 @@ public class JobServiceImpl implements JobService {
   }
 
   @Override
-  public List<Applicant> getJobApplicantsById(Integer jobId) {
-    return this.getJobById(jobId).getApplicants();
+  public List<Applicant> getJobApplicantsByJobId(Integer jobId) {
+    return getJobById(jobId).getApplicants();
   }
 
   @Override
   public Job updateJob(JobCreateOrUpdateDto jobCreateOrUpdateDto) {
     if (jobCreateOrUpdateDto.getId() == null)
       throw new BadRequestException("Id can not be empty");
-    return jobRepo.save(mapperOfJob.dtoToEntity(jobCreateOrUpdateDto));
+    return jobRepo.save(jobMapper.dtoToEntity(jobCreateOrUpdateDto));
   }
 
   @Override
   public void deleteJobById(Integer id) {
     jobRepo.findById(id).orElseThrow(NoContentException::new);
     jobRepo.deleteById(id);
-  }
-
-  @Override
-  public JobGetDtoForPublic getJobPublicDtoById(Integer id) {
-    return mapperOfJob.entityToDto(this.getJobById(id));
-  }
-
-  @Override
-  public List<JobGetDtoForPublic> getJobPublicDtoList() {
-    return mapperOfJob.entityListToDtoList(this.getJobs());
   }
 
 }

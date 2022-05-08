@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ApplicantGetDto {
+public class ApplicantDto {
 
   private String id;
   private String name;
@@ -28,7 +28,7 @@ public class ApplicantGetDto {
   private String twitterLink;
   private ApplicantStatus applicantStatus;
   private LocalDate applicationDate;
-  private FileAttachmentGetDto cv;
+  private FileAttachmentDto cv;
   private Boolean personalInfoStoragePermission;
   private Boolean isArchived;
 

@@ -6,8 +6,7 @@ import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUp
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
-import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
-import com.erensayar.HrAppealModuleApi.model.mapper.MapperOfApplicant;
+import com.erensayar.HrAppealModuleApi.model.mapper.ApplicantMapper;
 import com.erensayar.HrAppealModuleApi.repo.ApplicantRepo;
 import com.erensayar.HrAppealModuleApi.service.ApplicantService;
 import com.erensayar.HrAppealModuleApi.service.JobService;
@@ -25,7 +24,7 @@ import org.springframework.stereotype.Service;
 public class ApplicantServiceImpl implements ApplicantService {
 
   private final ApplicantRepo applicantRepo;
-  private final MapperOfApplicant mapperOfApplicant;
+  private final ApplicantMapper applicantMapper;
   private final JobService jobService;
   private final UtilClass utilClass;
 
@@ -33,7 +32,7 @@ public class ApplicantServiceImpl implements ApplicantService {
   @Override
   public Applicant createApplicant(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
     applicantCreateOrUpdateDto.setId("APL" + UUID.randomUUID().toString().replaceAll("-", ""));
-    return applicantRepo.save(mapperOfApplicant.dtoToEntity(applicantCreateOrUpdateDto));
+    return applicantRepo.save(applicantMapper.dtoToEntity(applicantCreateOrUpdateDto));
   }
 
   @Override
@@ -55,7 +54,7 @@ public class ApplicantServiceImpl implements ApplicantService {
     if (applicantCreateOrUpdateDto.getId() == null) {
       throw new BadRequestException("Id can not be empty");
     }
-    return applicantRepo.save(mapperOfApplicant.dtoToEntity(applicantCreateOrUpdateDto));
+    return applicantRepo.save(applicantMapper.dtoToEntity(applicantCreateOrUpdateDto));
   }
 
   @Override
@@ -83,7 +82,7 @@ public class ApplicantServiceImpl implements ApplicantService {
       Field field = ReflectionUtils.findRequiredField(Applicant.class, key);
       field.setAccessible(true);
       if (key.equals("cv")) {
-        FileAttachment fileAttachment = mapperOfApplicant.getFileAttachment((String) value);
+        FileAttachment fileAttachment = applicantMapper.getFileAttachment((String) value);
         ReflectionUtils.setField(field, applicant, fileAttachment);
       } else {
         ReflectionUtils.setField(field, applicant, value);
