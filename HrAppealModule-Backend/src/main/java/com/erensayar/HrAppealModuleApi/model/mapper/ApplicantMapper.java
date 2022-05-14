@@ -1,6 +1,7 @@
 package com.erensayar.HrAppealModuleApi.model.mapper;
 
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.applicant.ApplicantCreateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.applicant.ApplicantUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
@@ -25,28 +26,43 @@ public class ApplicantMapper {
   private final UtilClass utilClass;
   private final JobRepo jobRepo;
 
-  public Applicant dtoToEntity(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
+  public Applicant dtoToEntity(ApplicantCreateDto applicantCreateDto) {
     return Applicant.builder()
-        .id(applicantCreateOrUpdateDto.getId())
-        .name(applicantCreateOrUpdateDto.getName())
-        .surname(applicantCreateOrUpdateDto.getSurname())
-        .mail(applicantCreateOrUpdateDto.getMail())
-        .telephone(applicantCreateOrUpdateDto.getTelephone())
-        .country(applicantCreateOrUpdateDto.getCountry())
-        .city(applicantCreateOrUpdateDto.getCity())
-        .district(applicantCreateOrUpdateDto.getDistrict())
-        .gitLink(applicantCreateOrUpdateDto.getGitLink())
-        .linkedInLink(applicantCreateOrUpdateDto.getLinkedInLink())
-        .twitterLink(applicantCreateOrUpdateDto.getTwitterLink())
-        .cv(getFileAttachment(applicantCreateOrUpdateDto.getCv()))
-        .personalInfoStoragePermission(applicantCreateOrUpdateDto.getPersonalInfoStoragePermission())
-        // Defaults
-        .applicantStatus(ApplicantStatus.TO_BE_EVALUATED)
-        .applicationDateAndTime(LocalDateTime.now())
-        .isArchived(false)
+        .name(applicantCreateDto.getName())
+        .surname(applicantCreateDto.getSurname())
+        .mail(applicantCreateDto.getMail())
+        .telephone(applicantCreateDto.getTelephone())
+        .country(applicantCreateDto.getCountry())
+        .city(applicantCreateDto.getCity())
+        .district(applicantCreateDto.getDistrict())
+        .gitLink(applicantCreateDto.getGitLink())
+        .linkedInLink(applicantCreateDto.getLinkedInLink())
+        .twitterLink(applicantCreateDto.getTwitterLink())
+        .cv(getFileAttachment(applicantCreateDto.getCv().getId()))
+        .personalInfoStoragePermission(applicantCreateDto.getPersonalInfoStoragePermission())
         .build();
   }
 
+  public Applicant dtoToEntity(ApplicantUpdateDto applicantUpdateDto) {
+    return Applicant.builder()
+        .id(applicantUpdateDto.getId())
+        .name(applicantUpdateDto.getName())
+        .surname(applicantUpdateDto.getSurname())
+        .mail(applicantUpdateDto.getMail())
+        .telephone(applicantUpdateDto.getTelephone())
+        .country(applicantUpdateDto.getCountry())
+        .city(applicantUpdateDto.getCity())
+        .district(applicantUpdateDto.getDistrict())
+        .gitLink(applicantUpdateDto.getGitLink())
+        .linkedInLink(applicantUpdateDto.getLinkedInLink())
+        .twitterLink(applicantUpdateDto.getTwitterLink())
+        .cv(getFileAttachment(applicantUpdateDto.getCv().getId()))
+        .personalInfoStoragePermission(applicantUpdateDto.getPersonalInfoStoragePermission())
+        .applicantStatus(applicantUpdateDto.getApplicantStatus())
+        .applicationDateAndTime(applicantUpdateDto.getApplicationDateAndTime())
+        .isArchived(applicantUpdateDto.getIsArchived())
+        .build();
+  }
 
   public FileAttachment getFileAttachment(String cvId) {
     if (cvId == null) {

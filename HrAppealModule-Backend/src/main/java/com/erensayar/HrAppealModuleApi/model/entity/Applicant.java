@@ -2,6 +2,7 @@ package com.erensayar.HrAppealModuleApi.model.entity;
 
 import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
 import java.time.LocalDateTime;
+import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +22,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
 @Entity
 public class Applicant {
@@ -89,4 +89,33 @@ public class Applicant {
 
   private Boolean isArchived;
 
+  public Applicant(String name, String surname, String mail, String telephone,
+      String country, String city, String district, String gitLink, String linkedInLink,
+      String twitterLink, FileAttachment cv, Boolean personalInfoStoragePermission) {
+    this.name = name;
+    this.surname = surname;
+    this.mail = mail;
+    this.telephone = telephone;
+    this.country = country;
+    this.city = city;
+    this.district = district;
+    this.gitLink = gitLink;
+    this.linkedInLink = linkedInLink;
+    this.twitterLink = twitterLink;
+    this.cv = cv;
+    this.personalInfoStoragePermission = personalInfoStoragePermission;
+    // Defaults
+    this.id = "APL" + UUID.randomUUID().toString().replaceAll("-", "");
+    this.applicantStatus = ApplicantStatus.TO_BE_EVALUATED;
+    this.applicationDateAndTime = LocalDateTime.now();
+    this.isArchived = false;
+  }
+
+  public Applicant() {
+    // Defaults
+    this.id = "APL" + UUID.randomUUID().toString().replaceAll("-", "");
+    this.applicantStatus = ApplicantStatus.TO_BE_EVALUATED;
+    this.applicationDateAndTime = LocalDateTime.now();
+    this.isArchived = false;
+  }
 }

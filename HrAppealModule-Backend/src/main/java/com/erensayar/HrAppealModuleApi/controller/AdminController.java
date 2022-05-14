@@ -1,6 +1,6 @@
 package com.erensayar.HrAppealModuleApi.controller;
 
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.AdminCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.admin.AdminCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

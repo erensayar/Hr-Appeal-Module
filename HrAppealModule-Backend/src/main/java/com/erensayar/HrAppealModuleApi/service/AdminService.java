@@ -1,6 +1,6 @@
 package com.erensayar.HrAppealModuleApi.service;
 
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.AdminCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.admin.AdminCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Admin;
 import java.util.List;
 import java.util.Optional;

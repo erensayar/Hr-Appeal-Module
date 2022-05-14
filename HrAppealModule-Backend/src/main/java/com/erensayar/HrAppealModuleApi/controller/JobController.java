@@ -1,6 +1,6 @@
 package com.erensayar.HrAppealModuleApi.controller;
 
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.JobCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.job.JobCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.dto.response_dto.JobPublicDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
 import com.erensayar.HrAppealModuleApi.model.mapper.JobMapper;

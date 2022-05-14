@@ -1,6 +1,7 @@
 package com.erensayar.HrAppealModuleApi.controller;
 
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.applicant.ApplicantCreateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.applicant.ApplicantUpdateDto;
 import com.erensayar.HrAppealModuleApi.service.ApplicantService;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -35,13 +36,13 @@ public class ApplicantController {
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> createApplicant(@RequestBody ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
-    return new ResponseEntity<>(applicantService.createApplicant(applicantCreateOrUpdateDto), HttpStatus.CREATED);
+  public ResponseEntity<?> createApplicant(@RequestBody ApplicantCreateDto applicantCreateDto) {
+    return new ResponseEntity<>(applicantService.createApplicant(applicantCreateDto), HttpStatus.CREATED);
   }
 
   @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> updateApplicant(@RequestBody ApplicantCreateOrUpdateDto updatedApplicant) {
-    return new ResponseEntity<>(applicantService.updateApplicant(updatedApplicant), HttpStatus.OK);
+  public ResponseEntity<?> updateApplicant(@RequestBody ApplicantUpdateDto applicantUpdateDto) {
+    return new ResponseEntity<>(applicantService.updateApplicant(applicantUpdateDto), HttpStatus.OK);
   }
 
   @PatchMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

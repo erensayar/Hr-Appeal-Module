@@ -1,13 +1,12 @@
 package com.erensayar.HrAppealModuleApi.component;
 
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.AdminCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.JobCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.admin.AdminCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.applicant.ApplicantCreateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.job.JobCreateOrUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Admin;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
-import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
 import com.erensayar.HrAppealModuleApi.security.UserRole;
 import com.erensayar.HrAppealModuleApi.service.AdminService;
 import com.erensayar.HrAppealModuleApi.service.ApplicantService;
@@ -73,7 +72,7 @@ public class CmdLineRunner implements CommandLineRunner {
             .filePath("/files/cv")
             .build());
 
-    Applicant applicant1 = applicantService.createApplicant(ApplicantCreateOrUpdateDto.builder()
+    Applicant applicant1 = applicantService.createApplicant(ApplicantCreateDto.builder()
         .name("Harold")
         .surname("Stu")
         .mail("harold.stu@mail.com")
@@ -88,7 +87,7 @@ public class CmdLineRunner implements CommandLineRunner {
         .personalInfoStoragePermission(true)
         .build());
 
-    Applicant applicant2 = applicantService.createApplicant(ApplicantCreateOrUpdateDto.builder()
+    Applicant applicant2 = applicantService.createApplicant(ApplicantCreateDto.builder()
         .name("Aragorn")
         .surname("Elessar")
         .mail("aragornelessar@mail.com")
@@ -103,7 +102,7 @@ public class CmdLineRunner implements CommandLineRunner {
         .personalInfoStoragePermission(true)
         .build());
 
-    Applicant applicant3 = applicantService.createApplicant(ApplicantCreateOrUpdateDto.builder()
+    Applicant applicant3 = applicantService.createApplicant(ApplicantCreateDto.builder()
         .name("Legolas")
         .surname("hedehödö")
         .mail("legolashawk@mail.com")

@@ -2,7 +2,8 @@ package com.erensayar.HrAppealModuleApi.service.impl;
 
 import com.erensayar.HrAppealModuleApi.error.exception.BadRequestException;
 import com.erensayar.HrAppealModuleApi.error.exception.NoContentException;
-import com.erensayar.HrAppealModuleApi.model.dto.request_dto.ApplicantCreateOrUpdateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.applicant.ApplicantCreateDto;
+import com.erensayar.HrAppealModuleApi.model.dto.request_dto.applicant.ApplicantUpdateDto;
 import com.erensayar.HrAppealModuleApi.model.entity.Applicant;
 import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import com.erensayar.HrAppealModuleApi.model.entity.Job;
@@ -14,7 +15,6 @@ import com.erensayar.HrAppealModuleApi.service.util.UtilClass;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.ReflectionUtils;
 import org.springframework.stereotype.Service;
@@ -28,11 +28,9 @@ public class ApplicantServiceImpl implements ApplicantService {
   private final JobService jobService;
   private final UtilClass utilClass;
 
-
   @Override
-  public Applicant createApplicant(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
-    applicantCreateOrUpdateDto.setId("APL" + UUID.randomUUID().toString().replaceAll("-", ""));
-    return applicantRepo.save(applicantMapper.dtoToEntity(applicantCreateOrUpdateDto));
+  public Applicant createApplicant(ApplicantCreateDto applicantCreateDto) {
+    return applicantRepo.save(applicantMapper.dtoToEntity(applicantCreateDto));
   }
 
   @Override
@@ -50,11 +48,11 @@ public class ApplicantServiceImpl implements ApplicantService {
   }
 
   @Override
-  public Applicant updateApplicant(ApplicantCreateOrUpdateDto applicantCreateOrUpdateDto) {
-    if (applicantCreateOrUpdateDto.getId() == null) {
+  public Applicant updateApplicant(ApplicantUpdateDto applicantUpdateDto) {
+    if (applicantUpdateDto.getId() == null) {
       throw new BadRequestException("Id can not be empty");
     }
-    return applicantRepo.save(applicantMapper.dtoToEntity(applicantCreateOrUpdateDto));
+    return applicantRepo.save(applicantMapper.dtoToEntity(applicantUpdateDto));
   }
 
   @Override

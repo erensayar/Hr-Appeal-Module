@@ -1,4 +1,4 @@
-package com.erensayar.HrAppealModuleApi.model.dto.request_dto;
+package com.erensayar.HrAppealModuleApi.model.dto.request_dto.job;
 
 import java.time.LocalDate;
 import java.util.List;

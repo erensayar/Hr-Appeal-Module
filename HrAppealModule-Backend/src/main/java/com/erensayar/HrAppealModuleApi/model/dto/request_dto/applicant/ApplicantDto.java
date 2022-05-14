@@ -1,25 +1,19 @@
-package com.erensayar.HrAppealModuleApi.model.dto.request_dto;
+package com.erensayar.HrAppealModuleApi.model.dto.request_dto.applicant;
 
-import com.erensayar.HrAppealModuleApi.model.enums.ApplicantStatus;
-import java.time.LocalDate;
+import com.erensayar.HrAppealModuleApi.model.entity.FileAttachment;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
-/**
- * Received object if save or update to db as directly, this situation creates a security
- * vulnerability. This class created for made to avoid security vulnerabilities.
- */
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class ApplicantCreateOrUpdateDto {
+@SuperBuilder
+public class ApplicantDto {
 
-  private String id;
   private String name;
   private String surname;
   private String mail;
@@ -31,5 +25,6 @@ public class ApplicantCreateOrUpdateDto {
   private String linkedInLink;
   private String twitterLink;
   private Boolean personalInfoStoragePermission;
-  private String cv; // cv id
+  private FileAttachment cv;
+
 }
