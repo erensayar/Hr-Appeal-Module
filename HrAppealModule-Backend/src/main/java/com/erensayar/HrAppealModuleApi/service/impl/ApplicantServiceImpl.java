@@ -68,6 +68,7 @@ public class ApplicantServiceImpl implements ApplicantService {
     }
     // TODO: This solution is not very good for remove relation.
     //  Look at hibernate tricks. (I think cascade option is not helpful for this situation)
+    //  I think solution is native query. (First delete accounts from relation table then delete job)
 
     // Now we can delete
     applicantRepo.deleteById(id);

@@ -56,14 +56,12 @@ public class UtilClass {
     }
   }
 
-  private <T> void checkClassHasTheseFields(Class<T> c, Set<String> inputFieldNames) {
-    List<String> classFieldNames = Arrays.stream(c.getDeclaredFields()).map(Field::getName).toList();
-    boolean isContainAll = classFieldNames.retainAll(inputFieldNames);
-    if (!isContainAll) {
-      log.error("No Field whit these fields.");
-      throw new NoContentException();
-    }
+  private <T> boolean isRetainAllInClassTheseFields(Class<T> c, Set<String> inputFieldNames) {
+    List<String> classFieldNames = new java.util.ArrayList<>(
+        Arrays.stream(c.getDeclaredFields()).map(Field::getName).toList());
+    return classFieldNames.retainAll(inputFieldNames);
   }
+
 
   // TODO: Phone number parser
   //  set 10 length all valid format
